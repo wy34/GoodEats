@@ -82,7 +82,7 @@ class RestaurantTableViewCell: UITableViewCell {
         addSubview(imageLabelStack)
         
         thumbnailImageView.setDimension(wConst: 60, hConst: 60)
-        imageLabelStack.anchor(left: leftAnchor, paddingLeft: 20)
+        imageLabelStack.anchor(left: readableContentGuide.leftAnchor)
         imageLabelStack.center(to: self, by: .centerY)
     }
 }
