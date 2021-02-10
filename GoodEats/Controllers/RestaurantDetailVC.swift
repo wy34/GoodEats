@@ -29,19 +29,23 @@ class RestaurantDetailVC: UIViewController {
         tv.dataSource = self
         tv.allowsSelection = false
         tv.separatorStyle = .none
+        tv.contentInsetAdjustmentBehavior = .never
         return tv
     }()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
+        configureNavBar()
+        layoutViews()
     }
     
     // MARK: - UI
-    func configureUI() {
+    func configureNavBar() {
         navigationItem.largeTitleDisplayMode = .never
-        layoutViews()
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.tintColor = .white
     }
     
     func layoutViews() {

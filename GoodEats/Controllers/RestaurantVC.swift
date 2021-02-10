@@ -22,7 +22,8 @@ class RestaurantVC: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
+        configureNavBar()
+        layoutViews()
         for family in UIFont.familyNames.sorted() {
             let names = UIFont.fontNames(forFamilyName: family)
             print("Family: \(family) Font names: \(names)")
@@ -30,10 +31,18 @@ class RestaurantVC: UIViewController {
     }
 
     // MARK: - UI
-    func configureUI() {
-        navigationController?.navigationBar.prefersLargeTitles = true
+    func configureNavBar() {
         title = "GoodEats"
-        layoutViews()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        // makes navbar border disappear and transparent
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        
+        if let customFont = UIFont(name: "Rubik-Medium", size: 40) {
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.font: customFont, NSAttributedString.Key.foregroundColor: UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0)]
+        }
+        
+        navigationItem.backButtonTitle = ""
     }
     
     func layoutViews() {
