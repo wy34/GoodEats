@@ -20,7 +20,6 @@ class RestaurantDetailVC: UIViewController {
         return label
     }()
     
-    
     private lazy var tableView: UITableView = {
         let tv = UITableView()
         tv.register(RestaurantDetailIconTextCell.self, forCellReuseIdentifier: RestaurantDetailIconTextCell.reuseId)
@@ -40,9 +39,13 @@ class RestaurantDetailVC: UIViewController {
         layoutViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.navigationBar.barStyle = .black
+    }
+    
     // MARK: - UI
     func configureNavBar() {
-        navigationItem.largeTitleDisplayMode = .never
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.tintColor = .white

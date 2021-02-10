@@ -21,7 +21,8 @@ class RestaurantDetailIconTextCell: UITableViewCell {
     
     let detailLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Rubik-Regular", size: 14)
+        label.adjustsFontForContentSizeCategory = true
+        label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik-Regular", size: 14)!)
         label.numberOfLines = 0
         return label
     }()

@@ -44,7 +44,8 @@ class RestaurantDetailVCHeaderView: UIView {
     let typeLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = #colorLiteral(red: 0.9058823529, green: 0.2980392157, blue: 0.2352941176, alpha: 1)
-        label.font = UIFont(name: "Rubik-Regular", size: 13)
+        label.adjustsFontForContentSizeCategory = true
+        label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik-Regular", size: 13)!)
         label.textColor = .white
         label.textAlignment = .center
         label.layer.cornerRadius = 5
@@ -83,8 +84,8 @@ class RestaurantDetailVCHeaderView: UIView {
         dimmingView.anchor(top: topAnchor, right: rightAnchor, bottom: bottomAnchor, left: leftAnchor)
             
         typeLabel.anchor(bottom: bottomAnchor, left: leftAnchor, paddingBottom: 14, paddingLeft: 14)
-        typeLabel.setDimension(hConst: 20)
-        typeLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 100).isActive = true
+        typeLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 20).isActive = true
+        typeLabel.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -31).isActive = true
 
         nameLabel.anchor(bottom: typeLabel.topAnchor, left: typeLabel.leftAnchor, paddingBottom: 3)
         nameLabel.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -50).isActive = true

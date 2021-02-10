@@ -34,6 +34,7 @@ class RestaurantTableViewCell: UITableViewCell {
         label.text = "Location"
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.textColor = .darkGray
+        label.numberOfLines = 2
         return label
     }()
     
@@ -63,7 +64,7 @@ class RestaurantTableViewCell: UITableViewCell {
         let stack = UIStackView(arrangedSubviews: [thumbnailImageView, labelStack])
         stack.axis = .horizontal
         stack.spacing = 15
-        stack.alignment = .top
+        stack.alignment = .center
         return stack
     }()
     
@@ -82,7 +83,7 @@ class RestaurantTableViewCell: UITableViewCell {
         addSubview(imageLabelStack)
         
         thumbnailImageView.setDimension(wConst: 60, hConst: 60)
-        imageLabelStack.anchor(left: readableContentGuide.leftAnchor)
+        imageLabelStack.anchor(right: rightAnchor, left: readableContentGuide.leftAnchor, paddingRight: 15)
         imageLabelStack.center(to: self, by: .centerY)
     }
 }

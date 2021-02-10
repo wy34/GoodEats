@@ -13,7 +13,7 @@ class RestaurantVC: UIViewController {
         let tv = UITableView()
         tv.delegate = self
         tv.dataSource = self
-        tv.rowHeight = 82
+        tv.rowHeight = 90
         tv.register(RestaurantTableViewCell.self, forCellReuseIdentifier: RestaurantTableViewCell.reuseId)
         tv.cellLayoutMarginsFollowReadableWidth = true
         return tv
@@ -30,16 +30,24 @@ class RestaurantVC: UIViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.shadowImage = nil
+        navigationController?.navigationBar.barStyle = .default
+    }
+    
     // MARK: - UI
     func configureNavBar() {
         title = "GoodEats"
         navigationController?.navigationBar.prefersLargeTitles = true
-        // makes navbar border disappear and transparent
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
         
-        if let customFont = UIFont(name: "Rubik-Medium", size: 40) {
-            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.font: customFont, NSAttributedString.Key.foregroundColor: UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0)]
+        if let largeCustomFont = UIFont(name: "Rubik-Medium", size: 40) {
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.font: largeCustomFont, NSAttributedString.Key.foregroundColor: UIColor.init(red: 231, green: 76, blue: 60)]
+        }
+        
+        if let smallCustomFont = UIFont(name: "Rubik-Medium", size: 16) {
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: smallCustomFont, NSAttributedString.Key.foregroundColor: UIColor.init(red: 231, green: 76, blue: 60)]
         }
         
         navigationItem.backButtonTitle = ""
@@ -49,11 +57,7 @@ class RestaurantVC: UIViewController {
         view.addSubviews(tableView)
         tableView.anchor(top: view.topAnchor, right: view.rightAnchor, bottom: view.bottomAnchor, left: view.leftAnchor)
     }
-    
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-    
+
     // MARK: - Helpers
     func handleCheckInAccessoryView(forCellAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
@@ -129,7 +133,7 @@ extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             completionHandler(true)
         }
-        deleteAction.backgroundColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        deleteAction.backgroundColor = UIColor.init(red: 231, green: 76, blue: 60)
         deleteAction.image = UIImage(systemName: "trash")
         
         let shareAction = UIContextualAction(style: .normal, title: "Share") { (action, sourceView, completionHandler) in
@@ -153,7 +157,7 @@ extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
             self.present(activityViewController, animated: true, completion: nil)
             completionHandler(true)
         }
-        shareAction.backgroundColor = UIColor(red: 254/255, green: 149/255, blue: 38/255, alpha: 1)
+        shareAction.backgroundColor = UIColor.init(red: 254, green: 149, blue: 38)
         shareAction.image = UIImage(systemName: "square.and.arrow.up")
         
         return UISwipeActionsConfiguration(actions: [deleteAction, shareAction])

@@ -33,6 +33,7 @@
 		4CCD6D3525D1F00100B9E299 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCD6D3425D1F00100B9E299 /* UIView.swift */; };
 		4CCD6D3E25D1F79E00B9E299 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCD6D3D25D1F79E00B9E299 /* RestaurantTableViewCell.swift */; };
 		4CCD6D4325D24A6A00B9E299 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCD6D4225D24A6A00B9E299 /* Restaurant.swift */; };
+		4CEAA67525D4774C0046AE6F /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEAA67425D4774C0046AE6F /* UIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		4CCD6D3425D1F00100B9E299 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		4CCD6D3D25D1F79E00B9E299 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		4CCD6D4225D24A6A00B9E299 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		4CEAA67425D4774C0046AE6F /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				4CCD6D3425D1F00100B9E299 /* UIView.swift */,
+				4CEAA67425D4774C0046AE6F /* UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				4CCD6D4325D24A6A00B9E299 /* Restaurant.swift in Sources */,
 				4CCD6D2025D1EF2600B9E299 /* RestaurantVC.swift in Sources */,
 				4CCD6D1C25D1EF2600B9E299 /* AppDelegate.swift in Sources */,
+				4CEAA67525D4774C0046AE6F /* UIColor.swift in Sources */,
 				4C75AE4525D3705A00ECE188 /* RestaurantDetailVC.swift in Sources */,
 				4C75AE6825D38BCB00ECE188 /* RestaurantDetailVCHeaderView.swift in Sources */,
 				4CCD6D1E25D1EF2600B9E299 /* SceneDelegate.swift in Sources */,

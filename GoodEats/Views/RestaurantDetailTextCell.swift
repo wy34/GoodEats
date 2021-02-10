@@ -14,7 +14,8 @@ class RestaurantDetailTextCell: UITableViewCell {
     // MARK: - Views
     let detailLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Rubik-Light", size: 15)
+        label.adjustsFontForContentSizeCategory = true
+        label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik-Light", size: 15)!)
         label.numberOfLines = 0
         return label
     }()
@@ -32,7 +33,6 @@ class RestaurantDetailTextCell: UITableViewCell {
     // MARK: - UI
     func layoutViews() {
         addSubviews(detailLabel)
-        
         detailLabel.anchor(top: topAnchor, right: rightAnchor, bottom: bottomAnchor, left: leftAnchor, paddingTop: 15, paddingRight: 20, paddingBottom: 15, paddingLeft: 20)
     }
     
