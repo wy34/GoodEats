@@ -9,7 +9,7 @@ import UIKit
 
 class RestaurantViewController: UIViewController {
     // MARK: - Properties
-    var restuarantIsVisited = Array(repeating: false, count: restaurants.count)
+    var restaurantIsVisited = Array(repeating: false, count: restaurants.count)
     
     // MARK: - Views
     private lazy var tableView: UITableView = {
@@ -37,6 +37,13 @@ class RestaurantViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    
+    // MARK: - Helpers
+    func handleCheckInAccessoryView(forCellAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.accessoryView = restaurants[indexPath.row].isVisited ? .none : UIImageView(image: UIImage(named: "heart-tick"))
+        restaurants[indexPath.row].isVisited.toggle()
+    }
 }
 
 // MARK: - UITableView Delegate/Datasource
@@ -52,11 +59,13 @@ extension RestaurantViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantTableViewCell.reuseId, for: indexPath) as! RestaurantTableViewCell
         cell.restaurant = restaurants[indexPath.row]
-        cell.accessoryView = restuarantIsVisited[indexPath.row] ? UIImageView(image: UIImage(named: "heart-tick")) : .none
+        cell.accessoryView = restaurants[indexPath.row].isVisited ? UIImageView(image: UIImage(named: "heart-tick")) : .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
         let optionMenu = UIAlertController(title: nil, message: "What do you want to do?", preferredStyle: .actionSheet)
         
         if let popoverController = optionMenu.popoverPresentationController {
@@ -72,10 +81,8 @@ extension RestaurantViewController: UITableViewDelegate, UITableViewDataSource {
             self.present(alertMessage, animated: true, completion: nil)
         }
         
-        let checkInAction = UIAlertAction(title: restuarantIsVisited[indexPath.row] ? "Undo Check in" : "Check In", style: .default) { (action) in
-            let cell = tableView.cellForRow(at: indexPath)
-            cell?.accessoryView = self.restuarantIsVisited[indexPath.row] ? .none : UIImageView(image: UIImage(named: "heart-tick"))
-            self.restuarantIsVisited[indexPath.row].toggle()
+        let checkInAction = UIAlertAction(title: restaurants[indexPath.row].isVisited ? "Undo Check in" : "Check In", style: .default) { (action) in
+            self.handleCheckInAccessoryView(forCellAt: indexPath)
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -83,6 +90,51 @@ extension RestaurantViewController: UITableViewDelegate, UITableViewDataSource {
         optionMenu.addAction(checkInAction)
         optionMenu.addAction(cancelAction)
         present(optionMenu, animated: true, completion: nil)
-        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let checkInAction = UIContextualAction(style: .normal, title: "") { (action, sourceView, completionHandler) in
+            self.handleCheckInAccessoryView(forCellAt: indexPath)
+            completionHandler(true)
+        }
+        checkInAction.backgroundColor = .systemGreen
+        checkInAction.image = !restaurants[indexPath.row].isVisited ? UIImage(systemName: "checkmark") : UIImage(systemName: "arrow.uturn.left")
+        
+        return UISwipeActionsConfiguration(actions: [checkInAction])
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
+            restaurants.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            completionHandler(true)
+        }
+        deleteAction.backgroundColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        deleteAction.image = UIImage(systemName: "trash")
+        
+        let shareAction = UIContextualAction(style: .normal, title: "Share") { (action, sourceView, completionHandler) in
+            let defaultText = "Just checking in " + restaurants[indexPath.row].name
+            let activityViewController: UIActivityViewController
+            
+            if let imageToShare = UIImage(named: restaurants[indexPath.row].image) {
+                activityViewController = UIActivityViewController(activityItems: [defaultText, imageToShare], applicationActivities: nil)
+            } else {
+                activityViewController = UIActivityViewController(activityItems: [defaultText], applicationActivities: nil)
+            }
+            
+            if let popoverViewController = activityViewController.popoverPresentationController {
+                if let cell = tableView.cellForRow(at: indexPath) {
+                    popoverViewController.sourceView = cell
+                    popoverViewController.sourceRect = cell.bounds
+                }
+            }
+            
+            self.present(activityViewController, animated: true, completion: nil)
+            completionHandler(true)
+        }
+        shareAction.backgroundColor = UIColor(red: 254/255, green: 149/255, blue: 38/255, alpha: 1)
+        shareAction.image = UIImage(systemName: "square.and.arrow.up")
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction, shareAction])
     }
 }
