@@ -24,6 +24,7 @@ class RestaurantDetailVC: UIViewController {
         let tv = UITableView()
         tv.register(RestaurantDetailIconTextCell.self, forCellReuseIdentifier: RestaurantDetailIconTextCell.reuseId)
         tv.register(RestaurantDetailTextCell.self, forCellReuseIdentifier: RestaurantDetailTextCell.reuseId)
+        tv.register(RestaurantDetailSeparatorCell.self, forCellReuseIdentifier: RestaurantDetailSeparatorCell.reuseId)
         tv.delegate = self
         tv.dataSource = self
         tv.allowsSelection = false
@@ -74,7 +75,7 @@ extension RestaurantDetailVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -90,6 +91,9 @@ extension RestaurantDetailVC: UITableViewDelegate, UITableViewDataSource {
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantDetailTextCell.reuseId, for: indexPath) as! RestaurantDetailTextCell
                 cell.populateDataIntoViews(fromRestaurant: self.restaurant)
+                return cell
+            case 3:
+                let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantDetailSeparatorCell.reuseId, for: indexPath) as! RestaurantDetailSeparatorCell
                 return cell
             default:
                 fatalError("Failed to instantiate the table view cell for detail view controller")
