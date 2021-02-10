@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: scene.coordinateSpace.bounds)
         window?.windowScene = scene
         window?.makeKeyAndVisible()
-        window?.rootViewController = RestaurantViewController()
+        window?.rootViewController = UINavigationController(rootViewController: RestaurantViewController())
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -8,9 +8,6 @@
 import UIKit
 
 class RestaurantViewController: UIViewController {
-    // MARK: - Properties
-    var restaurantIsVisited = Array(repeating: false, count: restaurants.count)
-    
     // MARK: - Views
     private lazy var tableView: UITableView = {
         let tv = UITableView()
@@ -25,10 +22,16 @@ class RestaurantViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        layoutViews()
+        configureUI()
     }
 
     // MARK: - UI
+    func configureUI() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        title = "GoodEats"
+        layoutViews()
+    }
+    
     func layoutViews() {
         view.addSubviews(tableView)
         tableView.anchor(top: view.topAnchor, right: view.rightAnchor, bottom: view.bottomAnchor, left: view.leftAnchor)
@@ -41,8 +44,8 @@ class RestaurantViewController: UIViewController {
     // MARK: - Helpers
     func handleCheckInAccessoryView(forCellAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        cell?.accessoryView = restaurants[indexPath.row].isVisited ? .none : UIImageView(image: UIImage(named: "heart-tick"))
-        restaurants[indexPath.row].isVisited.toggle()
+        cell?.accessoryView = restaurants[indexPath.row].isCheckedIn ? .none : UIImageView(image: UIImage(named: "heart-tick"))
+        restaurants[indexPath.row].isCheckedIn.toggle()
     }
 }
 
@@ -59,37 +62,41 @@ extension RestaurantViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantTableViewCell.reuseId, for: indexPath) as! RestaurantTableViewCell
         cell.restaurant = restaurants[indexPath.row]
-        cell.accessoryView = restaurants[indexPath.row].isVisited ? UIImageView(image: UIImage(named: "heart-tick")) : .none
+        cell.accessoryView = restaurants[indexPath.row].isCheckedIn ? UIImageView(image: UIImage(named: "heart-tick")) : .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
-        let optionMenu = UIAlertController(title: nil, message: "What do you want to do?", preferredStyle: .actionSheet)
         
-        if let popoverController = optionMenu.popoverPresentationController {
-            if let cell = tableView.cellForRow(at: indexPath) {
-                popoverController.sourceView = cell
-                popoverController.sourceRect = cell.bounds
-            }
-        }
-        
-        let callAction = UIAlertAction(title: "Call 123-000-\(indexPath.row)", style: .default) { (action) in
-            let alertMessage = UIAlertController(title: "Service Unavailable", message: "Sorry, the call feature is not available yet. Please retry later.", preferredStyle: .alert)
-            alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alertMessage, animated: true, completion: nil)
-        }
-        
-        let checkInAction = UIAlertAction(title: restaurants[indexPath.row].isVisited ? "Undo Check in" : "Check In", style: .default) { (action) in
-            self.handleCheckInAccessoryView(forCellAt: indexPath)
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        optionMenu.addAction(callAction)
-        optionMenu.addAction(checkInAction)
-        optionMenu.addAction(cancelAction)
-        present(optionMenu, animated: true, completion: nil)
+        let restaurantDetailVC = RestaurantDetailViewController()
+        restaurantDetailVC.restaurant = restaurants[indexPath.row]
+        navigationController?.pushViewController(restaurantDetailVC, animated: true)
+//        let optionMenu = UIAlertController(title: nil, message: "What do you want to do?", preferredStyle: .actionSheet)
+//        
+//        // for ipads
+//        if let popoverController = optionMenu.popoverPresentationController {
+//            if let cell = tableView.cellForRow(at: indexPath) {
+//                popoverController.sourceView = cell
+//                popoverController.sourceRect = cell.bounds
+//            }
+//        }
+//        
+//        let callAction = UIAlertAction(title: "Call 123-000-\(indexPath.row)", style: .default) { (action) in
+//            let alertMessage = UIAlertController(title: "Service Unavailable", message: "Sorry, the call feature is not available yet. Please retry later.", preferredStyle: .alert)
+//            alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//            self.present(alertMessage, animated: true, completion: nil)
+//        }
+//        
+//        let checkInAction = UIAlertAction(title: restaurants[indexPath.row].isCheckedIn ? "Undo Check in" : "Check In", style: .default) { (action) in
+//            self.handleCheckInAccessoryView(forCellAt: indexPath)
+//        }
+//        
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//        optionMenu.addAction(callAction)
+//        optionMenu.addAction(checkInAction)
+//        optionMenu.addAction(cancelAction)
+//        present(optionMenu, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -98,7 +105,7 @@ extension RestaurantViewController: UITableViewDelegate, UITableViewDataSource {
             completionHandler(true)
         }
         checkInAction.backgroundColor = .systemGreen
-        checkInAction.image = !restaurants[indexPath.row].isVisited ? UIImage(systemName: "checkmark") : UIImage(systemName: "arrow.uturn.left")
+        checkInAction.image = !restaurants[indexPath.row].isCheckedIn ? UIImage(systemName: "checkmark") : UIImage(systemName: "arrow.uturn.left")
         
         return UISwipeActionsConfiguration(actions: [checkInAction])
     }
@@ -122,6 +129,7 @@ extension RestaurantViewController: UITableViewDelegate, UITableViewDataSource {
                 activityViewController = UIActivityViewController(activityItems: [defaultText], applicationActivities: nil)
             }
             
+            // for ipads
             if let popoverViewController = activityViewController.popoverPresentationController {
                 if let cell = tableView.cellForRow(at: indexPath) {
                     popoverViewController.sourceView = cell

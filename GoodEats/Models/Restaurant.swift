@@ -12,7 +12,7 @@ struct Restaurant {
     let name: String
     let location: String
     let type: String
-    var isVisited = false
+    var isCheckedIn = false
 }
 
 var restaurants = [

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C75AE4525D3705A00ECE188 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C75AE4425D3705A00ECE188 /* RestaurantDetailViewController.swift */; };
 		4CCD6D1C25D1EF2600B9E299 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCD6D1B25D1EF2600B9E299 /* AppDelegate.swift */; };
 		4CCD6D1E25D1EF2600B9E299 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCD6D1D25D1EF2600B9E299 /* SceneDelegate.swift */; };
 		4CCD6D2025D1EF2600B9E299 /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCD6D1F25D1EF2600B9E299 /* RestaurantViewController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C75AE4425D3705A00ECE188 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 		4CCD6D1825D1EF2600B9E299 /* GoodEats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodEats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CCD6D1B25D1EF2600B9E299 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CCD6D1D25D1EF2600B9E299 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				4CCD6D1F25D1EF2600B9E299 /* RestaurantViewController.swift */,
+				4C75AE4425D3705A00ECE188 /* RestaurantDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				4CCD6D4325D24A6A00B9E299 /* Restaurant.swift in Sources */,
 				4CCD6D2025D1EF2600B9E299 /* RestaurantViewController.swift in Sources */,
 				4CCD6D1C25D1EF2600B9E299 /* AppDelegate.swift in Sources */,
+				4C75AE4525D3705A00ECE188 /* RestaurantDetailViewController.swift in Sources */,
 				4CCD6D1E25D1EF2600B9E299 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
