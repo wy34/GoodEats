@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RestaurantViewController: UIViewController {
+class RestaurantVC: UIViewController {
     // MARK: - Views
     private lazy var tableView: UITableView = {
         let tv = UITableView()
@@ -23,6 +23,10 @@ class RestaurantViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        for family in UIFont.familyNames.sorted() {
+            let names = UIFont.fontNames(forFamilyName: family)
+            print("Family: \(family) Font names: \(names)")
+        }
     }
 
     // MARK: - UI
@@ -50,7 +54,7 @@ class RestaurantViewController: UIViewController {
 }
 
 // MARK: - UITableView Delegate/Datasource
-extension RestaurantViewController: UITableViewDelegate, UITableViewDataSource {
+extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -69,7 +73,7 @@ extension RestaurantViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let restaurantDetailVC = RestaurantDetailViewController()
+        let restaurantDetailVC = RestaurantDetailVC()
         restaurantDetailVC.restaurant = restaurants[indexPath.row]
         navigationController?.pushViewController(restaurantDetailVC, animated: true)
 //        let optionMenu = UIAlertController(title: nil, message: "What do you want to do?", preferredStyle: .actionSheet)
