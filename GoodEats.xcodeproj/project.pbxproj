@@ -25,6 +25,9 @@
 		4C75AE6825D38BCB00ECE188 /* RestaurantDetailVCHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C75AE6725D38BCB00ECE188 /* RestaurantDetailVCHeaderView.swift */; };
 		4C75AE6D25D399DB00ECE188 /* RestaurantDetailIconTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C75AE6C25D399DB00ECE188 /* RestaurantDetailIconTextCell.swift */; };
 		4C75AE7025D39C1000ECE188 /* RestaurantDetailTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C75AE6F25D39C1000ECE188 /* RestaurantDetailTextCell.swift */; };
+		4CC76ED525D5B74D00D072A2 /* RestaurantDetailRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC76ED425D5B74D00D072A2 /* RestaurantDetailRatingView.swift */; };
+		4CC76ED825D5BFD400D072A2 /* RatingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC76ED725D5BFD400D072A2 /* RatingVC.swift */; };
+		4CC76EDB25D5C5F200D072A2 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC76EDA25D5C5F200D072A2 /* UIButton.swift */; };
 		4CCD6D1C25D1EF2600B9E299 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCD6D1B25D1EF2600B9E299 /* AppDelegate.swift */; };
 		4CCD6D1E25D1EF2600B9E299 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCD6D1D25D1EF2600B9E299 /* SceneDelegate.swift */; };
 		4CCD6D2025D1EF2600B9E299 /* RestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCD6D1F25D1EF2600B9E299 /* RestaurantVC.swift */; };
@@ -58,6 +61,9 @@
 		4C75AE6725D38BCB00ECE188 /* RestaurantDetailVCHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailVCHeaderView.swift; sourceTree = "<group>"; };
 		4C75AE6C25D399DB00ECE188 /* RestaurantDetailIconTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailIconTextCell.swift; sourceTree = "<group>"; };
 		4C75AE6F25D39C1000ECE188 /* RestaurantDetailTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailTextCell.swift; sourceTree = "<group>"; };
+		4CC76ED425D5B74D00D072A2 /* RestaurantDetailRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailRatingView.swift; sourceTree = "<group>"; };
+		4CC76ED725D5BFD400D072A2 /* RatingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingVC.swift; sourceTree = "<group>"; };
+		4CC76EDA25D5C5F200D072A2 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		4CCD6D1825D1EF2600B9E299 /* GoodEats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodEats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CCD6D1B25D1EF2600B9E299 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CCD6D1D25D1EF2600B9E299 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +166,7 @@
 			children = (
 				4CCD6D3425D1F00100B9E299 /* UIView.swift */,
 				4CEAA67425D4774C0046AE6F /* UIColor.swift */,
+				4CC76EDA25D5C5F200D072A2 /* UIButton.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -170,6 +177,7 @@
 				4CCD6D1F25D1EF2600B9E299 /* RestaurantVC.swift */,
 				4C75AE4425D3705A00ECE188 /* RestaurantDetailVC.swift */,
 				4CEAA68825D4E13F0046AE6F /* MapVC.swift */,
+				4CC76ED725D5BFD400D072A2 /* RatingVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -183,6 +191,7 @@
 				4C75AE6F25D39C1000ECE188 /* RestaurantDetailTextCell.swift */,
 				4CEAA68125D491500046AE6F /* RestaurantDetailSeparatorCell.swift */,
 				4CEAA68525D4DC370046AE6F /* RestaurantDetailMapCell.swift */,
+				4CC76ED425D5B74D00D072A2 /* RestaurantDetailRatingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -278,12 +287,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CC76EDB25D5C5F200D072A2 /* UIButton.swift in Sources */,
 				4CCD6D3E25D1F79E00B9E299 /* RestaurantTableViewCell.swift in Sources */,
+				4CC76ED525D5B74D00D072A2 /* RestaurantDetailRatingView.swift in Sources */,
 				4CCD6D3525D1F00100B9E299 /* UIView.swift in Sources */,
 				4C75AE7025D39C1000ECE188 /* RestaurantDetailTextCell.swift in Sources */,
 				4C75AE6D25D399DB00ECE188 /* RestaurantDetailIconTextCell.swift in Sources */,
 				4CCD6D4325D24A6A00B9E299 /* Restaurant.swift in Sources */,
 				4CCD6D2025D1EF2600B9E299 /* RestaurantVC.swift in Sources */,
+				4CC76ED825D5BFD400D072A2 /* RatingVC.swift in Sources */,
 				4CCD6D1C25D1EF2600B9E299 /* AppDelegate.swift in Sources */,
 				4CEAA68225D491500046AE6F /* RestaurantDetailSeparatorCell.swift in Sources */,
 				4CEAA68625D4DC370046AE6F /* RestaurantDetailMapCell.swift in Sources */,

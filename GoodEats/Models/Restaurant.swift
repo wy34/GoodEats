@@ -15,8 +15,9 @@ class Restaurant {
     let description: String
     let image: String
     var isCheckedIn: Bool
+    var rating: String
     
-    init(name: String, type: String, location: String, phone: String, description: String, image: String, isCheckedIn: Bool) {
+    init(name: String, type: String, location: String, phone: String, description: String, image: String, isCheckedIn: Bool, rating: String = "") {
         self.image = image
         self.name = name
         self.location = location
@@ -24,6 +25,7 @@ class Restaurant {
         self.phone = phone
         self.description = description
         self.isCheckedIn = isCheckedIn
+        self.rating = rating
     }
     
     convenience init() {

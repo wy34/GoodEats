@@ -62,6 +62,12 @@ class RestaurantDetailVCHeaderView: UIView {
         return iv
     }()
     
+    let ratingImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        return iv
+    }()
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -78,14 +84,14 @@ class RestaurantDetailVCHeaderView: UIView {
     }
     
     func layoutUI() {
-        addSubviews(restaurantImageView, dimmingView, typeLabel, nameLabel, heartImageView)
+        addSubviews(restaurantImageView, dimmingView, typeLabel, nameLabel, heartImageView, ratingImageView)
         
         restaurantImageView.anchor(top: topAnchor, right: rightAnchor, bottom: bottomAnchor, left: leftAnchor)
         dimmingView.anchor(top: topAnchor, right: rightAnchor, bottom: bottomAnchor, left: leftAnchor)
             
         typeLabel.anchor(bottom: bottomAnchor, left: leftAnchor, paddingBottom: 14, paddingLeft: 14)
         typeLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 20).isActive = true
-        typeLabel.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -31).isActive = true
+        typeLabel.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -95).isActive = true
 
         nameLabel.anchor(bottom: typeLabel.topAnchor, left: typeLabel.leftAnchor, paddingBottom: 3)
         nameLabel.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -50).isActive = true
@@ -93,5 +99,8 @@ class RestaurantDetailVCHeaderView: UIView {
         heartImageView.setDimension(wConst: 15, hConst: 15)
         heartImageView.anchor(left: typeLabel.rightAnchor, paddingLeft: 8)
         heartImageView.center(to: typeLabel, by: .centerY)
+        
+        ratingImageView.setDimension(wConst: 52, hConst: 50)
+        ratingImageView.anchor(right: rightAnchor, bottom: typeLabel.bottomAnchor, paddingRight: 10)
     }
 }
