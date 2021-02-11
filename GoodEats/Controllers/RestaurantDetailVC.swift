@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 class RestaurantDetailVC: UIViewController {
     // MARK: - Properties
@@ -25,9 +26,9 @@ class RestaurantDetailVC: UIViewController {
         tv.register(RestaurantDetailIconTextCell.self, forCellReuseIdentifier: RestaurantDetailIconTextCell.reuseId)
         tv.register(RestaurantDetailTextCell.self, forCellReuseIdentifier: RestaurantDetailTextCell.reuseId)
         tv.register(RestaurantDetailSeparatorCell.self, forCellReuseIdentifier: RestaurantDetailSeparatorCell.reuseId)
+        tv.register(RestaurantDetailMapCell.self, forCellReuseIdentifier: RestaurantDetailMapCell.reuseId)
         tv.delegate = self
         tv.dataSource = self
-        tv.allowsSelection = false
         tv.separatorStyle = .none
         tv.contentInsetAdjustmentBehavior = .never
         return tv
@@ -75,7 +76,7 @@ extension RestaurantDetailVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -83,20 +84,38 @@ extension RestaurantDetailVC: UITableViewDelegate, UITableViewDataSource {
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantDetailIconTextCell.reuseId, for: indexPath) as! RestaurantDetailIconTextCell
                 cell.populateDataIntoViews(fromRestaurant: self.restaurant, forPhone: true)
+                cell.selectionStyle = .none
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantDetailIconTextCell.reuseId, for: indexPath) as! RestaurantDetailIconTextCell
                 cell.populateDataIntoViews(fromRestaurant: self.restaurant, forPhone: false)
+                cell.selectionStyle = .none
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantDetailTextCell.reuseId, for: indexPath) as! RestaurantDetailTextCell
                 cell.populateDataIntoViews(fromRestaurant: self.restaurant)
+                cell.selectionStyle = .none
                 return cell
             case 3:
                 let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantDetailSeparatorCell.reuseId, for: indexPath) as! RestaurantDetailSeparatorCell
+                cell.selectionStyle = .none
+                return cell
+            case 4:
+                let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantDetailMapCell.reuseId, for: indexPath) as! RestaurantDetailMapCell
+                cell.selectionStyle = .none
+                cell.restaurant = self.restaurant
                 return cell
             default:
                 fatalError("Failed to instantiate the table view cell for detail view controller")
+        }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 4 {
+            let mapVC = MapVC()
+            mapVC.restaurant = restaurant
+            navigationController?.pushViewController(mapVC, animated: true)
         }
     }
 }
