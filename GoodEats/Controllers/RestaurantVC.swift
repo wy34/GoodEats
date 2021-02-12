@@ -35,6 +35,7 @@ class RestaurantVC: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
         navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.tintColor = .black
     }
     
     // MARK: - UI
@@ -49,8 +50,9 @@ class RestaurantVC: UIViewController {
         if let smallCustomFont = UIFont(name: "Rubik-Medium", size: 16) {
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: smallCustomFont, NSAttributedString.Key.foregroundColor: UIColor.init(red: 231, green: 76, blue: 60)]
         }
-        
+                
         navigationItem.backButtonTitle = ""
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(handleAddTapped))
     }
     
     func layoutViews() {
@@ -63,6 +65,14 @@ class RestaurantVC: UIViewController {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.accessoryView = restaurants[indexPath.row].isCheckedIn ? .none : UIImageView(image: UIImage(named: "heart-tick"))
         restaurants[indexPath.row].isCheckedIn.toggle()
+    }
+    
+    // MARK: - Selectors
+    @objc func handleAddTapped() {
+        let addNewRestaurantVC = AddNewRestaurantVC()
+        let navigationController = UINavigationController(rootViewController: addNewRestaurantVC)
+        navigationController.modalPresentationStyle = .fullScreen
+        present(navigationController, animated: true, completion: nil)
     }
 }
 

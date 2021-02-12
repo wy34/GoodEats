@@ -35,7 +35,7 @@ class RestaurantDetailVC: UIViewController {
     }()
     
     let tableHeaderView = RestaurantDetailVCHeaderView()
-    let tableFooterView = RestaurantDetailRatingView()
+    let tableFooterView = RestaurantDetailRatingButtonView()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {

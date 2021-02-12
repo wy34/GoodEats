@@ -11,7 +11,7 @@ protocol RestaurantDetailRatingViewDelegate: class {
     func presentRatingVC()
 }
 
-class RestaurantDetailRatingView: UIView {
+class RestaurantDetailRatingButtonView: UIView {
     // MARK: - Properties
     weak var delegate: RestaurantDetailRatingViewDelegate?
     

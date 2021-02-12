@@ -25,9 +25,17 @@
 		4C75AE6825D38BCB00ECE188 /* RestaurantDetailVCHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C75AE6725D38BCB00ECE188 /* RestaurantDetailVCHeaderView.swift */; };
 		4C75AE6D25D399DB00ECE188 /* RestaurantDetailIconTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C75AE6C25D399DB00ECE188 /* RestaurantDetailIconTextCell.swift */; };
 		4C75AE7025D39C1000ECE188 /* RestaurantDetailTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C75AE6F25D39C1000ECE188 /* RestaurantDetailTextCell.swift */; };
-		4CC76ED525D5B74D00D072A2 /* RestaurantDetailRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC76ED425D5B74D00D072A2 /* RestaurantDetailRatingView.swift */; };
+		4CC76ED525D5B74D00D072A2 /* RestaurantDetailRatingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC76ED425D5B74D00D072A2 /* RestaurantDetailRatingButtonView.swift */; };
 		4CC76ED825D5BFD400D072A2 /* RatingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC76ED725D5BFD400D072A2 /* RatingVC.swift */; };
 		4CC76EDB25D5C5F200D072A2 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC76EDA25D5C5F200D072A2 /* UIButton.swift */; };
+		4CC76EDF25D6382400D072A2 /* AddNewRestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC76EDE25D6382400D072A2 /* AddNewRestaurantVC.swift */; };
+		4CC76EE525D6400700D072A2 /* NewRestaurantImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC76EE425D6400700D072A2 /* NewRestaurantImageCell.swift */; };
+		4CC76EE825D6416B00D072A2 /* BasicInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC76EE725D6416B00D072A2 /* BasicInputCell.swift */; };
+		4CC76EEB25D645FC00D072A2 /* TypeInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC76EEA25D645FC00D072A2 /* TypeInputCell.swift */; };
+		4CC76EEF25D646C300D072A2 /* NameInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC76EEE25D646C300D072A2 /* NameInputCell.swift */; };
+		4CC76EF225D646CC00D072A2 /* AddressInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC76EF125D646CC00D072A2 /* AddressInputCell.swift */; };
+		4CC76EF525D646D100D072A2 /* PhoneInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC76EF425D646D100D072A2 /* PhoneInputCell.swift */; };
+		4CC76EF825D6485E00D072A2 /* DescriptionInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC76EF725D6485E00D072A2 /* DescriptionInputCell.swift */; };
 		4CCD6D1C25D1EF2600B9E299 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCD6D1B25D1EF2600B9E299 /* AppDelegate.swift */; };
 		4CCD6D1E25D1EF2600B9E299 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCD6D1D25D1EF2600B9E299 /* SceneDelegate.swift */; };
 		4CCD6D2025D1EF2600B9E299 /* RestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCD6D1F25D1EF2600B9E299 /* RestaurantVC.swift */; };
@@ -61,9 +69,17 @@
 		4C75AE6725D38BCB00ECE188 /* RestaurantDetailVCHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailVCHeaderView.swift; sourceTree = "<group>"; };
 		4C75AE6C25D399DB00ECE188 /* RestaurantDetailIconTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailIconTextCell.swift; sourceTree = "<group>"; };
 		4C75AE6F25D39C1000ECE188 /* RestaurantDetailTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailTextCell.swift; sourceTree = "<group>"; };
-		4CC76ED425D5B74D00D072A2 /* RestaurantDetailRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailRatingView.swift; sourceTree = "<group>"; };
+		4CC76ED425D5B74D00D072A2 /* RestaurantDetailRatingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailRatingButtonView.swift; sourceTree = "<group>"; };
 		4CC76ED725D5BFD400D072A2 /* RatingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingVC.swift; sourceTree = "<group>"; };
 		4CC76EDA25D5C5F200D072A2 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		4CC76EDE25D6382400D072A2 /* AddNewRestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewRestaurantVC.swift; sourceTree = "<group>"; };
+		4CC76EE425D6400700D072A2 /* NewRestaurantImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRestaurantImageCell.swift; sourceTree = "<group>"; };
+		4CC76EE725D6416B00D072A2 /* BasicInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInputCell.swift; sourceTree = "<group>"; };
+		4CC76EEA25D645FC00D072A2 /* TypeInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeInputCell.swift; sourceTree = "<group>"; };
+		4CC76EEE25D646C300D072A2 /* NameInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameInputCell.swift; sourceTree = "<group>"; };
+		4CC76EF125D646CC00D072A2 /* AddressInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputCell.swift; sourceTree = "<group>"; };
+		4CC76EF425D646D100D072A2 /* PhoneInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneInputCell.swift; sourceTree = "<group>"; };
+		4CC76EF725D6485E00D072A2 /* DescriptionInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionInputCell.swift; sourceTree = "<group>"; };
 		4CCD6D1825D1EF2600B9E299 /* GoodEats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodEats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CCD6D1B25D1EF2600B9E299 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CCD6D1D25D1EF2600B9E299 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +134,33 @@
 				4C75AE5225D38AB000ECE188 /* Rubik-SemiBoldItalic.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		4CC76EE125D639CC00D072A2 /* RestaurantDetailVC */ = {
+			isa = PBXGroup;
+			children = (
+				4C75AE6725D38BCB00ECE188 /* RestaurantDetailVCHeaderView.swift */,
+				4C75AE6C25D399DB00ECE188 /* RestaurantDetailIconTextCell.swift */,
+				4C75AE6F25D39C1000ECE188 /* RestaurantDetailTextCell.swift */,
+				4CEAA68125D491500046AE6F /* RestaurantDetailSeparatorCell.swift */,
+				4CEAA68525D4DC370046AE6F /* RestaurantDetailMapCell.swift */,
+				4CC76ED425D5B74D00D072A2 /* RestaurantDetailRatingButtonView.swift */,
+			);
+			path = RestaurantDetailVC;
+			sourceTree = "<group>";
+		};
+		4CC76EE325D63FD200D072A2 /* AddNewRestaurantVC */ = {
+			isa = PBXGroup;
+			children = (
+				4CC76EE425D6400700D072A2 /* NewRestaurantImageCell.swift */,
+				4CC76EE725D6416B00D072A2 /* BasicInputCell.swift */,
+				4CC76EEE25D646C300D072A2 /* NameInputCell.swift */,
+				4CC76EEA25D645FC00D072A2 /* TypeInputCell.swift */,
+				4CC76EF125D646CC00D072A2 /* AddressInputCell.swift */,
+				4CC76EF425D646D100D072A2 /* PhoneInputCell.swift */,
+				4CC76EF725D6485E00D072A2 /* DescriptionInputCell.swift */,
+			);
+			path = AddNewRestaurantVC;
 			sourceTree = "<group>";
 		};
 		4CCD6D0F25D1EF2600B9E299 = {
@@ -178,6 +221,7 @@
 				4C75AE4425D3705A00ECE188 /* RestaurantDetailVC.swift */,
 				4CEAA68825D4E13F0046AE6F /* MapVC.swift */,
 				4CC76ED725D5BFD400D072A2 /* RatingVC.swift */,
+				4CC76EDE25D6382400D072A2 /* AddNewRestaurantVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -186,12 +230,8 @@
 			isa = PBXGroup;
 			children = (
 				4CCD6D3D25D1F79E00B9E299 /* RestaurantTableViewCell.swift */,
-				4C75AE6725D38BCB00ECE188 /* RestaurantDetailVCHeaderView.swift */,
-				4C75AE6C25D399DB00ECE188 /* RestaurantDetailIconTextCell.swift */,
-				4C75AE6F25D39C1000ECE188 /* RestaurantDetailTextCell.swift */,
-				4CEAA68125D491500046AE6F /* RestaurantDetailSeparatorCell.swift */,
-				4CEAA68525D4DC370046AE6F /* RestaurantDetailMapCell.swift */,
-				4CC76ED425D5B74D00D072A2 /* RestaurantDetailRatingView.swift */,
+				4CC76EE125D639CC00D072A2 /* RestaurantDetailVC */,
+				4CC76EE325D63FD200D072A2 /* AddNewRestaurantVC */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -289,8 +329,11 @@
 			files = (
 				4CC76EDB25D5C5F200D072A2 /* UIButton.swift in Sources */,
 				4CCD6D3E25D1F79E00B9E299 /* RestaurantTableViewCell.swift in Sources */,
-				4CC76ED525D5B74D00D072A2 /* RestaurantDetailRatingView.swift in Sources */,
+				4CC76EDF25D6382400D072A2 /* AddNewRestaurantVC.swift in Sources */,
+				4CC76ED525D5B74D00D072A2 /* RestaurantDetailRatingButtonView.swift in Sources */,
 				4CCD6D3525D1F00100B9E299 /* UIView.swift in Sources */,
+				4CC76EF825D6485E00D072A2 /* DescriptionInputCell.swift in Sources */,
+				4CC76EE825D6416B00D072A2 /* BasicInputCell.swift in Sources */,
 				4C75AE7025D39C1000ECE188 /* RestaurantDetailTextCell.swift in Sources */,
 				4C75AE6D25D399DB00ECE188 /* RestaurantDetailIconTextCell.swift in Sources */,
 				4CCD6D4325D24A6A00B9E299 /* Restaurant.swift in Sources */,
@@ -299,11 +342,16 @@
 				4CCD6D1C25D1EF2600B9E299 /* AppDelegate.swift in Sources */,
 				4CEAA68225D491500046AE6F /* RestaurantDetailSeparatorCell.swift in Sources */,
 				4CEAA68625D4DC370046AE6F /* RestaurantDetailMapCell.swift in Sources */,
+				4CC76EE525D6400700D072A2 /* NewRestaurantImageCell.swift in Sources */,
+				4CC76EF225D646CC00D072A2 /* AddressInputCell.swift in Sources */,
 				4CEAA67525D4774C0046AE6F /* UIColor.swift in Sources */,
+				4CC76EF525D646D100D072A2 /* PhoneInputCell.swift in Sources */,
 				4C75AE4525D3705A00ECE188 /* RestaurantDetailVC.swift in Sources */,
 				4CEAA68925D4E13F0046AE6F /* MapVC.swift in Sources */,
 				4C75AE6825D38BCB00ECE188 /* RestaurantDetailVCHeaderView.swift in Sources */,
 				4CCD6D1E25D1EF2600B9E299 /* SceneDelegate.swift in Sources */,
+				4CC76EEB25D645FC00D072A2 /* TypeInputCell.swift in Sources */,
+				4CC76EEF25D646C300D072A2 /* NameInputCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
