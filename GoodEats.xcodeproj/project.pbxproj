@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C45743725D72976008CB291 /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45743625D72976008CB291 /* PaddedTextField.swift */; };
 		4C75AE4525D3705A00ECE188 /* RestaurantDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C75AE4425D3705A00ECE188 /* RestaurantDetailVC.swift */; };
 		4C75AE5825D38AB000ECE188 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C75AE4A25D38AAF00ECE188 /* Rubik-Regular.ttf */; };
 		4C75AE5925D38AB000ECE188 /* Rubik-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C75AE4B25D38AAF00ECE188 /* Rubik-ExtraBoldItalic.ttf */; };
@@ -51,6 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C45743625D72976008CB291 /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
 		4C75AE4425D3705A00ECE188 /* RestaurantDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailVC.swift; sourceTree = "<group>"; };
 		4C75AE4A25D38AAF00ECE188 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		4C75AE4B25D38AAF00ECE188 /* Rubik-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 		4CCD6D3C25D1F76C00B9E299 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4C45743625D72976008CB291 /* PaddedTextField.swift */,
 				4CCD6D3D25D1F79E00B9E299 /* RestaurantTableViewCell.swift */,
 				4CC76EE125D639CC00D072A2 /* RestaurantDetailVC */,
 				4CC76EE325D63FD200D072A2 /* AddNewRestaurantVC */,
@@ -344,6 +347,7 @@
 				4CEAA68625D4DC370046AE6F /* RestaurantDetailMapCell.swift in Sources */,
 				4CC76EE525D6400700D072A2 /* NewRestaurantImageCell.swift in Sources */,
 				4CC76EF225D646CC00D072A2 /* AddressInputCell.swift in Sources */,
+				4C45743725D72976008CB291 /* PaddedTextField.swift in Sources */,
 				4CEAA67525D4774C0046AE6F /* UIColor.swift in Sources */,
 				4CC76EF525D646D100D072A2 /* PhoneInputCell.swift in Sources */,
 				4C75AE4525D3705A00ECE188 /* RestaurantDetailVC.swift in Sources */,

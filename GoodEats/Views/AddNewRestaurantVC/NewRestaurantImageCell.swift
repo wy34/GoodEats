@@ -12,9 +12,11 @@ class NewRestaurantImageCell: UITableViewCell {
     static let reuseId = "NewRestaurantImageCell"
     
     // MARK: - Views
-    private let restaurantImageView: UIImageView = {
+    let restaurantImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
+        iv.clipsToBounds = true
+        iv.tintColor = .black
         iv.image = UIImage(systemName: "photo")
         return iv
     }()
@@ -33,7 +35,6 @@ class NewRestaurantImageCell: UITableViewCell {
     // MARK: - UI
     func layoutViews() {
         addSubviews(restaurantImageView)
-        restaurantImageView.setDimension(wConst: 24, hConst: 18)
-        restaurantImageView.center(x: centerXAnchor, y: centerYAnchor)
+        restaurantImageView.anchor(top: topAnchor, right: rightAnchor, bottom: bottomAnchor, left: leftAnchor)
     }
 }

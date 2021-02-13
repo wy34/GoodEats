@@ -16,8 +16,8 @@ class BasicInputCell: UITableViewCell {
         return label
     }()
     
-    let textField: UITextField = {
-        let tf = UITextField()
+    let textField: PaddedTextField = {
+        let tf = PaddedTextField()
         tf.backgroundColor = #colorLiteral(red: 0.9425370097, green: 0.9603253007, blue: 0.9629049897, alpha: 1)
         tf.font = UIFont.preferredFont(forTextStyle: .body)
         return tf

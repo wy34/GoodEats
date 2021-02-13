@@ -68,6 +68,10 @@ class RatingVC: UIViewController {
         slideInButtonsOnAppear()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     // MARK: - UI
     func layoutViews() {
         view.addSubviews(backgroundImageView, closeButton, buttonStack)

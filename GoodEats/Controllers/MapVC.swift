@@ -29,6 +29,11 @@ class MapVC: UIViewController {
         addAnnotation()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.barStyle = .default
+    }
+    
     // MARK: - UI
     func layoutViews() {
         view.addSubview(mapView)

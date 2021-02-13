@@ -34,8 +34,8 @@ class RestaurantVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
-        navigationController?.navigationBar.barStyle = .default
         navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.barStyle = .default
     }
     
     // MARK: - UI
@@ -71,7 +71,6 @@ class RestaurantVC: UIViewController {
     @objc func handleAddTapped() {
         let addNewRestaurantVC = AddNewRestaurantVC()
         let navigationController = UINavigationController(rootViewController: addNewRestaurantVC)
-        navigationController.modalPresentationStyle = .fullScreen
         present(navigationController, animated: true, completion: nil)
     }
 }

@@ -8,6 +8,7 @@
 import UIKit
 import MapKit
 
+
 class RestaurantDetailVC: UIViewController {
     // MARK: - Properties
     var restaurant: Restaurant?
@@ -51,6 +52,7 @@ class RestaurantDetailVC: UIViewController {
     
     // MARK: - UI
     func configureNavBar() {
+        navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.tintColor = .white

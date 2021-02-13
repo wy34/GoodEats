@@ -25,6 +25,7 @@ class DescriptionInputCell: UITableViewCell {
         tv.backgroundColor = #colorLiteral(red: 0.9425370097, green: 0.9603253007, blue: 0.9629049897, alpha: 1)
         tv.text = "A great restaurant to try out."
         tv.font = UIFont.preferredFont(forTextStyle: .body)
+        tv.textContainerInset = UIEdgeInsets(top: 3, left: 10, bottom: 3, right: 10)
         return tv
     }()
     
@@ -40,6 +41,8 @@ class DescriptionInputCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layoutViews()
+        textView.layer.cornerRadius = 5
+        textView.layer.masksToBounds = true
     }
     
     required init?(coder: NSCoder) {
