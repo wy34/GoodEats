@@ -15,7 +15,7 @@ class RestaurantDetailMapCell: UITableViewCell {
     var restaurant: Restaurant? {
         didSet {
             guard let restaurant = restaurant else { return }
-            addAnnotationTo(location: restaurant.location)
+            addAnnotationTo(location: restaurant.location ?? "")
         }
     }
     

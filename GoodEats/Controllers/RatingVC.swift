@@ -12,7 +12,7 @@ class RatingVC: UIViewController {
     var restaurant: Restaurant? {
         didSet {
             guard let restaurant = restaurant else { return }
-            backgroundImageView.image = UIImage(named: restaurant.image)
+            backgroundImageView.image = UIImage(data: restaurant.image ?? Data())
 
             // Applying the blur effect
             let blurEffect = UIBlurEffect(style: .dark)

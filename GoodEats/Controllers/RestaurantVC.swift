@@ -6,8 +6,26 @@
 //
 
 import UIKit
+import CoreData
 
 class RestaurantVC: UIViewController {
+    // MARK: - Properties
+    lazy var fetchedResultController: NSFetchedResultsController<Restaurant> = {
+        let request: NSFetchRequest<Restaurant> = Restaurant.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        frc.delegate = self
+        
+        do {
+            try frc.performFetch()
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        return frc
+    }()
+    
     // MARK: - Views
     private lazy var tableView: UITableView = {
         let tv = UITableView()
@@ -16,18 +34,16 @@ class RestaurantVC: UIViewController {
         tv.rowHeight = 90
         tv.register(RestaurantTableViewCell.self, forCellReuseIdentifier: RestaurantTableViewCell.reuseId)
         tv.cellLayoutMarginsFollowReadableWidth = true
+        tv.tableFooterView = UIView()
         return tv
     }()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         configureNavBar()
         layoutViews()
-        for family in UIFont.familyNames.sorted() {
-            let names = UIFont.fontNames(forFamilyName: family)
-            print("Family: \(family) Font names: \(names)")
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -63,8 +79,8 @@ class RestaurantVC: UIViewController {
     // MARK: - Helpers
     func handleCheckInAccessoryView(forCellAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        cell?.accessoryView = restaurants[indexPath.row].isCheckedIn ? .none : UIImageView(image: UIImage(named: "heart-tick"))
-        restaurants[indexPath.row].isCheckedIn.toggle()
+        cell?.accessoryView = fetchedResultController.object(at: indexPath).isCheckedIn ? .none : UIImageView(image: UIImage(named: "heart-tick"))
+        fetchedResultController.object(at: indexPath).isCheckedIn.toggle()
     }
     
     // MARK: - Selectors
@@ -78,25 +94,37 @@ class RestaurantVC: UIViewController {
 // MARK: - UITableView Delegate/Datasource
 extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return fetchedResultController.sections?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return restaurants.count
+        return fetchedResultController.sections![section].numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantTableViewCell.reuseId, for: indexPath) as! RestaurantTableViewCell
-        cell.restaurant = restaurants[indexPath.row]
-        cell.accessoryView = restaurants[indexPath.row].isCheckedIn ? UIImageView(image: UIImage(named: "heart-tick")) : .none
+        cell.restaurant = fetchedResultController.object(at: indexPath)
+        cell.accessoryView = fetchedResultController.object(at: indexPath).isCheckedIn ? UIImageView(image: UIImage(named: "heart-tick")) : .none
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return EmptyView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if fetchedResultController.sections![section].numberOfObjects == 0 {
+            return UIScreen.main.bounds.height * 0.5
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let restaurantDetailVC = RestaurantDetailVC()
-        restaurantDetailVC.restaurant = restaurants[indexPath.row]
+        restaurantDetailVC.restaurant = fetchedResultController.object(at: indexPath)
         navigationController?.pushViewController(restaurantDetailVC, animated: true)
 //        let optionMenu = UIAlertController(title: nil, message: "What do you want to do?", preferredStyle: .actionSheet)
 //        
@@ -131,25 +159,26 @@ extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
             completionHandler(true)
         }
         checkInAction.backgroundColor = .systemGreen
-        checkInAction.image = !restaurants[indexPath.row].isCheckedIn ? UIImage(systemName: "checkmark") : UIImage(systemName: "arrow.uturn.left")
+        checkInAction.image = !fetchedResultController.object(at: indexPath).isCheckedIn ? UIImage(systemName: "checkmark") : UIImage(systemName: "arrow.uturn.left")
         
         return UISwipeActionsConfiguration(actions: [checkInAction])
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
-            restaurants.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            let restaurantToDelete = self.fetchedResultController.object(at: indexPath)
+            CoreDataManager.shared.delete(restaurantToDelete)
+            CoreDataManager.shared.save()
             completionHandler(true)
         }
         deleteAction.backgroundColor = UIColor.init(red: 231, green: 76, blue: 60)
         deleteAction.image = UIImage(systemName: "trash")
         
         let shareAction = UIContextualAction(style: .normal, title: "Share") { (action, sourceView, completionHandler) in
-            let defaultText = "Just checking in " + restaurants[indexPath.row].name
+            let defaultText = "Just checking in " + (self.fetchedResultController.object(at: indexPath).name ?? "")
             let activityViewController: UIActivityViewController
             
-            if let imageToShare = UIImage(named: restaurants[indexPath.row].image) {
+            if let imageToShare = UIImage(data: self.fetchedResultController.object(at: indexPath).image ?? Data()) {
                 activityViewController = UIActivityViewController(activityItems: [defaultText, imageToShare], applicationActivities: nil)
             } else {
                 activityViewController = UIActivityViewController(activityItems: [defaultText], applicationActivities: nil)
@@ -170,5 +199,35 @@ extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
         shareAction.image = UIImage(systemName: "square.and.arrow.up")
         
         return UISwipeActionsConfiguration(actions: [deleteAction, shareAction])
+    }
+}
+
+// MARK: - NSFetchedResultsControllerDelegate
+extension RestaurantVC: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            if let newIndexPath = newIndexPath {
+                tableView.insertRows(at: [newIndexPath], with: .fade)
+            }
+        case .delete:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        case .update:
+            if let indexPath = indexPath {
+                tableView.reloadRows(at: [indexPath], with: .fade)
+            }
+        default:
+            tableView.reloadData()
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
     }
 }

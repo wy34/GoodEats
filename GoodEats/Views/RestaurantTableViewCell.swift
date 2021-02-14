@@ -14,7 +14,7 @@ class RestaurantTableViewCell: UITableViewCell {
     var restaurant: Restaurant? {
         didSet {
             guard let restaurant = restaurant else { return }
-            thumbnailImageView.image = UIImage(named: restaurant.image)
+            thumbnailImageView.image = UIImage(data: restaurant.image ?? Data())
             nameLabel.text = restaurant.name
             locationLabel.text = restaurant.location
             typeLabel.text = restaurant.type

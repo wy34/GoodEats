@@ -38,6 +38,6 @@ class RestaurantDetailTextCell: UITableViewCell {
     
     func populateDataIntoViews(fromRestaurant restaurant: Restaurant?) {
         guard let restaurant = restaurant else { return }
-        detailLabel.text = restaurant.description
+        detailLabel.text = restaurant.summary
     }
 }

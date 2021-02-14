@@ -14,7 +14,7 @@ class RestaurantDetailVCHeaderView: UIView {
             guard let restaurant = restaurant else { return }
             nameLabel.text = restaurant.name
             typeLabel.text = restaurant.type
-            restaurantImageView.image = UIImage(named: restaurant.image)
+            restaurantImageView.image = UIImage(data: restaurant.image ?? Data())
             heartImageView.isHidden = !restaurant.isCheckedIn ? true : false
         }
     }

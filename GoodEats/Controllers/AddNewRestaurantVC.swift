@@ -124,7 +124,9 @@ class AddNewRestaurantVC: UIViewController {
             return
         }
         
-        print("Name: \(name)\nType: \(type)\nLocation: \(address)\nPhone: \(phone)\nDescription: \(description)")
+        CoreDataManager.shared.createRestaurantWith(name: name, type: type, location: address, phone: phone, summary: description, image: newRestaurantImageView.image!)
+        CoreDataManager.shared.save()
+        
         dismiss(animated: true, completion: nil)
     }
 }

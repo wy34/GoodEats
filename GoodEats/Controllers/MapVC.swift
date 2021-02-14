@@ -45,7 +45,7 @@ class MapVC: UIViewController {
         guard let restaurant = restaurant else { return }
         let geocoder = CLGeocoder()
         
-        geocoder.geocodeAddressString(restaurant.location) { (placemarks, error) in
+        geocoder.geocodeAddressString(restaurant.location ?? "") { (placemarks, error) in
             if let error = error {
                 print(error.localizedDescription)
                 return
