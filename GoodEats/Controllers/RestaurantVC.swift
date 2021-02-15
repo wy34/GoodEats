@@ -26,7 +26,11 @@ class RestaurantVC: UIViewController {
         return frc
     }()
     
+    var searchedResults = [Restaurant]()
+    
     // MARK: - Views
+    private var searchController: UISearchController!
+    
     private lazy var tableView: UITableView = {
         let tv = UITableView()
         tv.delegate = self
@@ -69,6 +73,9 @@ class RestaurantVC: UIViewController {
                 
         navigationItem.backButtonTitle = ""
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(handleAddTapped))
+        
+        searchController = UISearchController(searchResultsController: nil)
+        navigationItem.searchController = searchController
     }
     
     func layoutViews() {

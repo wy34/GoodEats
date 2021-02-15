@@ -43,6 +43,10 @@ class RestaurantDetailVC: UIViewController {
         super.viewDidLoad()
         configureNavBar()
         layoutViews()
+        
+        if let rating = restaurant?.rating {
+            tableHeaderView.ratingImageView.image = UIImage(named: rating)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,6 +69,7 @@ class RestaurantDetailVC: UIViewController {
     
     func configureRatingImageView(withImage image: String?) {
         restaurant?.rating = image ?? ""
+        CoreDataManager.shared.save()
         tableHeaderView.ratingImageView.image = UIImage(named: image ?? "")
         
         tableHeaderView.ratingImageView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
