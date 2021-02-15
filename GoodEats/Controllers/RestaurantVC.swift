@@ -74,7 +74,12 @@ class RestaurantVC: UIViewController {
         navigationItem.backButtonTitle = ""
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(handleAddTapped))
         
+        navigationController?.navigationBar.sizeToFit() // fixes the issue where a collapsed navbar is the default when searchController is present
         searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Restaurants..."
+        searchController.searchBar.tintColor = UIColor(red: 231, green: 76, blue: 60) // cursor
         navigationItem.searchController = searchController
     }
     
@@ -88,6 +93,17 @@ class RestaurantVC: UIViewController {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.accessoryView = fetchedResultController.object(at: indexPath).isCheckedIn ? .none : UIImageView(image: UIImage(named: "heart-tick"))
         fetchedResultController.object(at: indexPath).isCheckedIn.toggle()
+    }
+    
+    func filterContent(for searchText: String) {
+        guard let restaurants = fetchedResultController.fetchedObjects else { return }
+        
+        searchedResults = restaurants.filter({
+            if let name = $0.name, let location = $0.location {
+                return name.localizedCaseInsensitiveContains(searchText) || location.localizedCaseInsensitiveContains(searchText)
+            }
+            return false
+        })
     }
     
     // MARK: - Selectors
@@ -105,13 +121,19 @@ extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchedResultController.sections![section].numberOfObjects
+        return searchController.isActive ? searchedResults.count : fetchedResultController.sections![section].numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantTableViewCell.reuseId, for: indexPath) as! RestaurantTableViewCell
-        cell.restaurant = fetchedResultController.object(at: indexPath)
-        cell.accessoryView = fetchedResultController.object(at: indexPath).isCheckedIn ? UIImageView(image: UIImage(named: "heart-tick")) : .none
+        cell.restaurant = searchController.isActive ? searchedResults[indexPath.row] : fetchedResultController.object(at: indexPath)
+        
+        if searchController.isActive {
+            cell.accessoryView = searchedResults[indexPath.row].isCheckedIn ? UIImageView(image: UIImage(named: "heart-tick")) : .none
+        } else {
+            cell.accessoryView = fetchedResultController.object(at: indexPath).isCheckedIn ? UIImageView(image: UIImage(named: "heart-tick")) : .none
+        }
+        
         return cell
     }
     
@@ -131,7 +153,7 @@ extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let restaurantDetailVC = RestaurantDetailVC()
-        restaurantDetailVC.restaurant = fetchedResultController.object(at: indexPath)
+        restaurantDetailVC.restaurant = searchController.isActive ? searchedResults[indexPath.row] : fetchedResultController.object(at: indexPath)
         navigationController?.pushViewController(restaurantDetailVC, animated: true)
 //        let optionMenu = UIAlertController(title: nil, message: "What do you want to do?", preferredStyle: .actionSheet)
 //        
@@ -207,6 +229,15 @@ extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
         
         return UISwipeActionsConfiguration(actions: [deleteAction, shareAction])
     }
+    
+    // disables left and right swipe of cell
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if searchController.isActive {
+            return false
+        }
+        
+        return true
+    }
 }
 
 // MARK: - NSFetchedResultsControllerDelegate
@@ -226,8 +257,10 @@ extension RestaurantVC: NSFetchedResultsControllerDelegate {
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
         case .update:
-            if let indexPath = indexPath {
-                tableView.reloadRows(at: [indexPath], with: .fade)
+            if !searchController.isActive {
+                if let indexPath = indexPath {
+                    tableView.reloadRows(at: [indexPath], with: .fade)
+                }
             }
         default:
             tableView.reloadData()
@@ -236,5 +269,15 @@ extension RestaurantVC: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+extension RestaurantVC: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) { // calls whenever searchController is interacted (first tapped, each search letter, cancel)
+        if let searchText = searchController.searchBar.text {
+            filterContent(for: searchText)
+            tableView.reloadData()
+        }
     }
 }

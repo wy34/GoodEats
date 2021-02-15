@@ -7,23 +7,8 @@
 
 import UIKit
 
-class AddNewRestaurantVC: UIViewController {
+class AddNewRestaurantVC: UITableViewController {
     // MARK: - Views
-    private lazy var tableView: UITableView = {
-        let tv = UITableView()
-        tv.register(NewRestaurantImageCell.self, forCellReuseIdentifier: NewRestaurantImageCell.reuseId)
-        tv.register(NameInputCell.self, forCellReuseIdentifier: NameInputCell.reuseId)
-        tv.register(TypeInputCell.self, forCellReuseIdentifier: TypeInputCell.reuseId)
-        tv.register(AddressInputCell.self, forCellReuseIdentifier: AddressInputCell.reuseId)
-        tv.register(PhoneInputCell.self, forCellReuseIdentifier: PhoneInputCell.reuseId)
-        tv.register(DescriptionInputCell.self, forCellReuseIdentifier: DescriptionInputCell.reuseId)
-        tv.separatorStyle = .none
-        tv.tableFooterView = UIView()
-        tv.delegate = self
-        tv.dataSource = self
-        return tv
-    }()
-    
     var newRestaurantImageView: UIImageView!
     
     var nameTextField: UITextField! {
@@ -65,10 +50,23 @@ class AddNewRestaurantVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()
-        layoutViews()
+        setupTableView()
     }
     
     // MARK: - UI
+    func setupTableView() {
+        tableView.register(NewRestaurantImageCell.self, forCellReuseIdentifier: NewRestaurantImageCell.reuseId)
+        tableView.register(NameInputCell.self, forCellReuseIdentifier: NameInputCell.reuseId)
+        tableView.register(TypeInputCell.self, forCellReuseIdentifier: TypeInputCell.reuseId)
+        tableView.register(AddressInputCell.self, forCellReuseIdentifier: AddressInputCell.reuseId)
+        tableView.register(PhoneInputCell.self, forCellReuseIdentifier: PhoneInputCell.reuseId)
+        tableView.register(DescriptionInputCell.self, forCellReuseIdentifier: DescriptionInputCell.reuseId)
+        tableView.separatorStyle = .none
+        tableView.tableFooterView = UIView()
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
     func configureNavBar() {
         title = "New Restaurant"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -132,16 +130,16 @@ class AddNewRestaurantVC: UIViewController {
 }
 
 // MARK: - UITableView Delegate/Datasource
-extension AddNewRestaurantVC: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
+extension AddNewRestaurantVC {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 6
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: NewRestaurantImageCell.reuseId, for: indexPath) as! NewRestaurantImageCell
@@ -176,7 +174,7 @@ extension AddNewRestaurantVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             let photoSourceRequestController = UIAlertController(title: "", message: "Choose your photo source", preferredStyle: .actionSheet)
             
@@ -205,7 +203,7 @@ extension AddNewRestaurantVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
             case 0:
                 return 200
