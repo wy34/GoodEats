@@ -47,7 +47,7 @@ class RestaurantVC: UIViewController {
         super.viewDidLoad()
         configureNavBar()
         layoutViews()
-        present(WalkThruController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil), animated: true, completion: nil)
+        presentOnboarding()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -59,6 +59,12 @@ class RestaurantVC: UIViewController {
     }
     
     // MARK: - UI
+    func presentOnboarding() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        present(WalkThruVC(collectionViewLayout: layout), animated: true, completion: nil)
+    }
+    
     func configureNavBar() {
         title = "GoodEats"
         navigationController?.navigationBar.prefersLargeTitles = true
