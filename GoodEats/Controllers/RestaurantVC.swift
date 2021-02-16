@@ -60,9 +60,11 @@ class RestaurantVC: UIViewController {
     
     // MARK: - UI
     func presentOnboarding() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        present(WalkThruVC(collectionViewLayout: layout), animated: true, completion: nil)
+        if !OnboardingManager.shared.isOldUser {
+            let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .horizontal
+            present(WalkThruVC(collectionViewLayout: layout), animated: true, completion: nil)
+        }
     }
     
     func configureNavBar() {

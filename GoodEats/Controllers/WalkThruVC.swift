@@ -62,8 +62,11 @@ class WalkThruVC: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         layoutViews()
-        
-        
+        setupCollectionView()
+    }
+    
+    // MARK: - UI
+    func setupCollectionView() {
         collectionView.register(OnboardingCell.self, forCellWithReuseIdentifier: OnboardingCell.reuseId)
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -72,7 +75,6 @@ class WalkThruVC: UICollectionViewController {
         collectionView.showsHorizontalScrollIndicator = false
     }
     
-    // MARK: - UI
     func layoutViews() {
         view.addSubviews(collectionView, controlsContainerView)
         collectionView.anchor(top: view.topAnchor, right: view.rightAnchor, left: view.leftAnchor)
@@ -87,16 +89,33 @@ class WalkThruVC: UICollectionViewController {
         controlStack.center(to: controlsContainerView, by: .centerX)
     }
     
+    func updateNextbutton() {
+        if pageControl.currentPage == onboardingObjs.count - 1 {
+            skipButton.alpha = 0
+            nextButton.setTitle("GET STARTED", for: .normal)
+        } else {
+            skipButton.alpha = 1
+            nextButton.setTitle("NEXT", for: .normal)
+        }
+    }
+    
     // MARK: - Selector
     @objc func handleNextButtonTapped() {
+        if pageControl.currentPage == onboardingObjs.count - 1 {
+            OnboardingManager.shared.setAsOldUser()
+            dismiss(animated: true, completion: nil)
+        }
+        
         collectionView.isPagingEnabled = false
         let nextIndex = min(pageControl.currentPage + 1, onboardingObjs.count - 1)
         pageControl.currentPage = nextIndex
         collectionView.scrollToItem(at: IndexPath(item: nextIndex, section: 0), at: .centeredHorizontally, animated: true)
         collectionView.isPagingEnabled = true
+        updateNextbutton()
     }
     
     @objc func handleSkipButtonTapped() {
+        OnboardingManager.shared.setAsOldUser()
         dismiss(animated: true, completion: nil)
     }
     
@@ -104,6 +123,7 @@ class WalkThruVC: UICollectionViewController {
         collectionView.isPagingEnabled = false
         collectionView.scrollToItem(at: IndexPath(item: pageControl.currentPage, section: 0), at: .centeredHorizontally, animated: true)
         collectionView.isPagingEnabled = true
+        updateNextbutton()
     }
 }
 
@@ -129,6 +149,7 @@ extension WalkThruVC: UICollectionViewDelegateFlowLayout {
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         pageControl.currentPage = Int(targetContentOffset.pointee.x) / Int(view.frame.width)
+        updateNextbutton()
     }
 }
 

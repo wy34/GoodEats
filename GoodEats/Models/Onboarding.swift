@@ -12,3 +12,18 @@ struct Onboarding {
     var headline: String
     var subHeadline: String
 }
+
+
+class OnboardingManager {
+    static let shared = OnboardingManager()
+    
+    var onboardingUDKey = "onboardingUDKey"
+    
+    var isOldUser: Bool {
+        return UserDefaults.standard.bool(forKey: onboardingUDKey)
+    }
+    
+    func setAsOldUser() {
+        UserDefaults.standard.setValue(true, forKey: onboardingUDKey)
+    }
+}
