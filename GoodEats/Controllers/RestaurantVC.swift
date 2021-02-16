@@ -45,9 +45,9 @@ class RestaurantVC: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         configureNavBar()
         layoutViews()
+        present(WalkThruController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil), animated: true, completion: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {

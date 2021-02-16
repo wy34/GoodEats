@@ -51,7 +51,7 @@ class RestaurantDetailVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navigationController?.navigationBar.barStyle = .black
+//        navigationController?.navigationBar.barStyle = .black
     }
     
     // MARK: - UI
