@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let backButtonImage = UIImage(systemName: "arrow.left", withConfiguration: UIImage.SymbolConfiguration(weight: .bold))
         UINavigationBar.appearance().backIndicatorImage = backButtonImage
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = backButtonImage
+        UITabBar.appearance().tintColor = UIColor(red: 235, green: 75, blue: 27)
+        UITabBar.appearance().barTintColor = UIColor.black
         return true
     }
 

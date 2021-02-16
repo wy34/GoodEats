@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class RestaurantVC: UIViewController {
+class FavoritesVC: UIViewController {
     // MARK: - Properties
     lazy var fetchedResultController: NSFetchedResultsController<Restaurant> = {
         let request: NSFetchRequest<Restaurant> = Restaurant.fetchRequest()
@@ -68,7 +68,7 @@ class RestaurantVC: UIViewController {
     }
     
     func configureNavBar() {
-        title = "GoodEats"
+        navigationItem.title = "GoodEats"
         navigationController?.navigationBar.prefersLargeTitles = true
         
         if let largeCustomFont = UIFont(name: "Rubik-Medium", size: 40) {
@@ -123,7 +123,7 @@ class RestaurantVC: UIViewController {
 }
 
 // MARK: - UITableView Delegate/Datasource
-extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
+extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultController.sections?.count ?? 0
     }
@@ -161,6 +161,7 @@ extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let restaurantDetailVC = RestaurantDetailVC()
+        restaurantDetailVC.hidesBottomBarWhenPushed = true
         restaurantDetailVC.restaurant = searchController.isActive ? searchedResults[indexPath.row] : fetchedResultController.object(at: indexPath)
         navigationController?.pushViewController(restaurantDetailVC, animated: true)
 //        let optionMenu = UIAlertController(title: nil, message: "What do you want to do?", preferredStyle: .actionSheet)
@@ -249,7 +250,7 @@ extension RestaurantVC: UITableViewDelegate, UITableViewDataSource {
 }
 
 // MARK: - NSFetchedResultsControllerDelegate
-extension RestaurantVC: NSFetchedResultsControllerDelegate {
+extension FavoritesVC: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
@@ -281,7 +282,7 @@ extension RestaurantVC: NSFetchedResultsControllerDelegate {
 }
 
 // MARK: - UISearchResultsUpdating
-extension RestaurantVC: UISearchResultsUpdating {
+extension FavoritesVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) { // calls whenever searchController is interacted (first tapped, each search letter, cancel)
         if let searchText = searchController.searchBar.text {
             filterContent(for: searchText)
