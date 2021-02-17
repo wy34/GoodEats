@@ -69,16 +69,6 @@ class FavoritesVC: UIViewController {
     
     func configureNavBar() {
         navigationItem.title = "GoodEats"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
-        if let largeCustomFont = UIFont(name: "Rubik-Medium", size: 40) {
-            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.font: largeCustomFont, NSAttributedString.Key.foregroundColor: UIColor.init(red: 231, green: 76, blue: 60)]
-        }
-        
-        if let smallCustomFont = UIFont(name: "Rubik-Medium", size: 16) {
-            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: smallCustomFont, NSAttributedString.Key.foregroundColor: UIColor.init(red: 231, green: 76, blue: 60)]
-        }
-                
         navigationItem.backButtonTitle = ""
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(handleAddTapped))
         

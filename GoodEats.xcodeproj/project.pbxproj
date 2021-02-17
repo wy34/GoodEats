@@ -14,6 +14,9 @@
 		4C71DB4E25DC759300311D24 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71DB4D25DC759300311D24 /* RootTabBarController.swift */; };
 		4C71DB5325DC7D6900311D24 /* DiscoverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71DB5225DC7D6900311D24 /* DiscoverVC.swift */; };
 		4C71DB5725DC7DE000311D24 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71DB5625DC7DE000311D24 /* AboutVC.swift */; };
+		4C71DB5C25DC9E9500311D24 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71DB5B25DC9E9500311D24 /* HeaderCell.swift */; };
+		4C71DB6225DCCC4000311D24 /* WebViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71DB6125DCCC4000311D24 /* WebViewVC.swift */; };
+		4C71DB6825DCD95000311D24 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C71DB6725DCD95000311D24 /* CloudKit.framework */; };
 		4C75AE4525D3705A00ECE188 /* RestaurantDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C75AE4425D3705A00ECE188 /* RestaurantDetailVC.swift */; };
 		4C75AE5825D38AB000ECE188 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C75AE4A25D38AAF00ECE188 /* Rubik-Regular.ttf */; };
 		4C75AE5925D38AB000ECE188 /* Rubik-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C75AE4B25D38AAF00ECE188 /* Rubik-ExtraBoldItalic.ttf */; };
@@ -67,6 +70,10 @@
 		4C71DB4D25DC759300311D24 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
 		4C71DB5225DC7D6900311D24 /* DiscoverVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverVC.swift; sourceTree = "<group>"; };
 		4C71DB5625DC7DE000311D24 /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
+		4C71DB5B25DC9E9500311D24 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		4C71DB6125DCCC4000311D24 /* WebViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewVC.swift; sourceTree = "<group>"; };
+		4C71DB6425DCD94000311D24 /* GoodEats.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoodEats.entitlements; sourceTree = "<group>"; };
+		4C71DB6725DCD95000311D24 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		4C75AE4425D3705A00ECE188 /* RestaurantDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailVC.swift; sourceTree = "<group>"; };
 		4C75AE4A25D38AAF00ECE188 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		4C75AE4B25D38AAF00ECE188 /* Rubik-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -119,12 +126,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C71DB6825DCD95000311D24 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C71DB5E25DCC77900311D24 /* AboutVC */ = {
+			isa = PBXGroup;
+			children = (
+				4C71DB5B25DC9E9500311D24 /* HeaderCell.swift */,
+			);
+			path = AboutVC;
+			sourceTree = "<group>";
+		};
+		4C71DB6625DCD95000311D24 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C71DB6725DCD95000311D24 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4C75AE4825D38A3800ECE188 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +219,7 @@
 			children = (
 				4CCD6D1A25D1EF2600B9E299 /* GoodEats */,
 				4CCD6D1925D1EF2600B9E299 /* Products */,
+				4C71DB6625DCD95000311D24 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -209,6 +234,7 @@
 		4CCD6D1A25D1EF2600B9E299 /* GoodEats */ = {
 			isa = PBXGroup;
 			children = (
+				4C71DB6425DCD94000311D24 /* GoodEats.entitlements */,
 				4CA8FD9C25D79970007CE3A3 /* CoreData */,
 				4C75AE4825D38A3800ECE188 /* Resources */,
 				4CCD6D3725D1F00900B9E299 /* Extensions */,
@@ -254,6 +280,7 @@
 				4C71DB4425DC5DEF00311D24 /* WalkThruVC.swift */,
 				4C71DB5225DC7D6900311D24 /* DiscoverVC.swift */,
 				4C71DB5625DC7DE000311D24 /* AboutVC.swift */,
+				4C71DB6125DCCC4000311D24 /* WebViewVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -267,6 +294,7 @@
 				4CC76EE125D639CC00D072A2 /* RestaurantDetailVC */,
 				4CC76EE325D63FD200D072A2 /* AddNewRestaurantVC */,
 				4C71DB4825DC5FFD00311D24 /* OnboardingCell.swift */,
+				4C71DB5E25DCC77900311D24 /* AboutVC */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -382,6 +410,7 @@
 				4CEAA68625D4DC370046AE6F /* RestaurantDetailMapCell.swift in Sources */,
 				4CC76EE525D6400700D072A2 /* NewRestaurantImageCell.swift in Sources */,
 				4CC76EF225D646CC00D072A2 /* AddressInputCell.swift in Sources */,
+				4C71DB6225DCCC4000311D24 /* WebViewVC.swift in Sources */,
 				4C45743725D72976008CB291 /* PaddedTextField.swift in Sources */,
 				4C71DB5725DC7DE000311D24 /* AboutVC.swift in Sources */,
 				4CEAA67525D4774C0046AE6F /* UIColor.swift in Sources */,
@@ -389,6 +418,7 @@
 				4C71DB5325DC7D6900311D24 /* DiscoverVC.swift in Sources */,
 				4CC76EF525D646D100D072A2 /* PhoneInputCell.swift in Sources */,
 				4C75AE4525D3705A00ECE188 /* RestaurantDetailVC.swift in Sources */,
+				4C71DB5C25DC9E9500311D24 /* HeaderCell.swift in Sources */,
 				4CEAA68925D4E13F0046AE6F /* MapVC.swift in Sources */,
 				4C75AE6825D38BCB00ECE188 /* RestaurantDetailVCHeaderView.swift in Sources */,
 				4CCD6D1E25D1EF2600B9E299 /* SceneDelegate.swift in Sources */,
@@ -534,6 +564,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GoodEats/GoodEats.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YNSMJAS38V;
 				INFOPLIST_FILE = GoodEats/Info.plist;
@@ -553,6 +584,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GoodEats/GoodEats.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YNSMJAS38V;
 				INFOPLIST_FILE = GoodEats/Info.plist;

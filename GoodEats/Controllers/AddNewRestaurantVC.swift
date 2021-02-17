@@ -68,25 +68,10 @@ class AddNewRestaurantVC: UITableViewController {
     }
     
     func configureNavBar() {
-        title = "New Restaurant"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "New Restaurant"
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(handleCloseTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.down"), style: .plain, target: self, action: #selector(handleSaveTapped))
         navigationController?.navigationBar.tintColor = .black
-        
-        if let largeCustomFont = UIFont(name: "Rubik-Medium", size: 35) {
-            navigationController?.navigationBar.largeTitleTextAttributes = [
-                NSAttributedString.Key.font: largeCustomFont,
-                NSAttributedString.Key.foregroundColor: UIColor(red: 231, green: 76, blue: 60)
-            ]
-        }
-        
-        if let smallCustomFont = UIFont(name: "Rubik-Medium", size: 16) {
-            navigationController?.navigationBar.titleTextAttributes = [
-                NSAttributedString.Key.font: smallCustomFont,
-                NSAttributedString.Key.foregroundColor: UIColor.init(red: 231, green: 76, blue: 60)
-            ]
-        }
     }
     
     func layoutViews() {

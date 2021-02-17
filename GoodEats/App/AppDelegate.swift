@@ -10,16 +10,27 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let backButtonImage = UIImage(systemName: "arrow.left", withConfiguration: UIImage.SymbolConfiguration(weight: .bold))
-        UINavigationBar.appearance().backIndicatorImage = backButtonImage
-        UINavigationBar.appearance().backIndicatorTransitionMaskImage = backButtonImage
+        configureNavbar()
         UITabBar.appearance().tintColor = UIColor(red: 235, green: 75, blue: 27)
         UITabBar.appearance().barTintColor = UIColor.black
         return true
+    }
+    
+    func configureNavbar() {
+        let backButtonImage = UIImage(systemName: "arrow.left", withConfiguration: UIImage.SymbolConfiguration(weight: .bold))
+        UINavigationBar.appearance().backIndicatorImage = backButtonImage
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = backButtonImage
+        UINavigationBar.appearance().prefersLargeTitles = true
+        
+        if let largeCustomFont = UIFont(name: "Rubik-Medium", size: 35) {
+            UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.font: largeCustomFont, NSAttributedString.Key.foregroundColor: UIColor.init(red: 231, green: 76, blue: 60)]
+        }
+        
+        if let smallCustomFont = UIFont(name: "Rubik-Medium", size: 16) {
+            UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: smallCustomFont, NSAttributedString.Key.foregroundColor: UIColor.init(red: 231, green: 76, blue: 60)]
+        }
     }
 
     // MARK: UISceneSession Lifecycle
