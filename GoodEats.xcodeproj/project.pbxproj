@@ -35,6 +35,7 @@
 		4C75AE6825D38BCB00ECE188 /* RestaurantDetailVCHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C75AE6725D38BCB00ECE188 /* RestaurantDetailVCHeaderView.swift */; };
 		4C75AE6D25D399DB00ECE188 /* RestaurantDetailIconTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C75AE6C25D399DB00ECE188 /* RestaurantDetailIconTextCell.swift */; };
 		4C75AE7025D39C1000ECE188 /* RestaurantDetailTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C75AE6F25D39C1000ECE188 /* RestaurantDetailTextCell.swift */; };
+		4C8286AF25DE2A5300A9E3BC /* CloudRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8286AE25DE2A5300A9E3BC /* CloudRestaurant.swift */; };
 		4CA8FD9A25D79969007CE3A3 /* GoodEats.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4CA8FD9825D79969007CE3A3 /* GoodEats.xcdatamodeld */; };
 		4CA8FD9E25D79A6E007CE3A3 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA8FD9D25D79A6E007CE3A3 /* CoreDataManager.swift */; };
 		4CC76ED525D5B74D00D072A2 /* RestaurantDetailRatingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC76ED425D5B74D00D072A2 /* RestaurantDetailRatingButtonView.swift */; };
@@ -92,6 +93,7 @@
 		4C75AE6725D38BCB00ECE188 /* RestaurantDetailVCHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailVCHeaderView.swift; sourceTree = "<group>"; };
 		4C75AE6C25D399DB00ECE188 /* RestaurantDetailIconTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailIconTextCell.swift; sourceTree = "<group>"; };
 		4C75AE6F25D39C1000ECE188 /* RestaurantDetailTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailTextCell.swift; sourceTree = "<group>"; };
+		4C8286AE25DE2A5300A9E3BC /* CloudRestaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudRestaurant.swift; sourceTree = "<group>"; };
 		4CA8FD9925D79969007CE3A3 /* GoodEats.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoodEats.xcdatamodel; sourceTree = "<group>"; };
 		4CA8FD9D25D79A6E007CE3A3 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		4CC76ED425D5B74D00D072A2 /* RestaurantDetailRatingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailRatingButtonView.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				4CCD6D4225D24A6A00B9E299 /* Onboarding.swift */,
+				4C8286AE25DE2A5300A9E3BC /* CloudRestaurant.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				4C75AE4525D3705A00ECE188 /* RestaurantDetailVC.swift in Sources */,
 				4C71DB5C25DC9E9500311D24 /* HeaderCell.swift in Sources */,
 				4CEAA68925D4E13F0046AE6F /* MapVC.swift in Sources */,
+				4C8286AF25DE2A5300A9E3BC /* CloudRestaurant.swift in Sources */,
 				4C75AE6825D38BCB00ECE188 /* RestaurantDetailVCHeaderView.swift in Sources */,
 				4CCD6D1E25D1EF2600B9E299 /* SceneDelegate.swift in Sources */,
 				4CC76EEB25D645FC00D072A2 /* TypeInputCell.swift in Sources */,
