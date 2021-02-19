@@ -11,30 +11,33 @@ import CloudKit
 class DiscoverVC: UIViewController {
     // MARK: - Properties
     var cloudRestaurants = [CloudRestaurant]()
-    private var imageCache = NSCache<CKRecord.ID, CloudRestaurant>()
+    var tempCloudRestaurants = [CloudRestaurant]()
     
     // MARK: - Views
+    private let refreshControl = UIRefreshControl()
+    
     private lazy var tableView: UITableView = {
         let tv = UITableView()
         tv.delegate = self
         tv.dataSource = self
-        tv.register(UITableViewCell.self, forCellReuseIdentifier: "Discover")
+        tv.register(DiscoverRestaurantCell.self, forCellReuseIdentifier: DiscoverRestaurantCell.reuseId)
         tv.cellLayoutMarginsFollowReadableWidth = true
         tv.tableFooterView = UIView()
-        tv.refreshControl = UIRefreshControl()
-        tv.refreshControl?.backgroundColor = .white
-        tv.refreshControl?.tintColor = .gray
-        tv.refreshControl?.addTarget(self, action: #selector(fetchRecordFromCloudOperationally), for: .valueChanged)
+        tv.allowsSelection = false
+        tv.addSubview(refreshControl)
+        refreshControl.backgroundColor = .white
+        refreshControl.tintColor = .gray
+        refreshControl.addTarget(self, action: #selector(fetchRecordFromCloudOperationally), for: .valueChanged)
         return tv
     }()
     
     private let spinner: UIActivityIndicatorView = {
         let a = UIActivityIndicatorView()
-        a.style = .medium
+        a.style = .large
         a.hidesWhenStopped = true
         return a
     }()
-    
+        
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,15 +99,16 @@ class DiscoverVC: UIViewController {
     
     // Operational api is suitable for bigger amounts of data, provides more flexibility in downloading data (example: downloading specific pieces of data only)
     @objc func fetchRecordFromCloudOperationally() {
-        cloudRestaurants.removeAll()
-        tableView.reloadData()
+        tableView.reloadData() // calling here to avoid the massive space created by the refresh controller for some reason
+        tableView.isScrollEnabled = false
         let container = CKContainer.default()
         let publicDatabase = container.publicCloudDatabase
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Restaurant", predicate: predicate)
+        query.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         
         let queryOperation = CKQueryOperation(query: query)
-        queryOperation.desiredKeys = ["name"] // specify the specific keys to fetch back, only specifiy name here to download it first and lazily download image
+        queryOperation.desiredKeys = ["name", "image"] // specify the specific keys to fetch back, only specifiy name here to download it first and lazily download image
         queryOperation.queuePriority = .veryHigh // setting the execution priority
         queryOperation.resultsLimit = 50 // only 50 records are fetched at any one time
         
@@ -114,8 +118,14 @@ class DiscoverVC: UIViewController {
             if let name = record.object(forKey: "name") as? String {
                 cloudRestaurant.name = name
             }
+            
+            if let asset = record.object(forKey: "image") as? CKAsset {
+                if let data = try? Data(contentsOf: asset.fileURL!) {
+                    cloudRestaurant.image = UIImage(data: data)
+                }
+            }
             cloudRestaurant.recordId = record.recordID
-            self.cloudRestaurants.append(cloudRestaurant)
+            self.tempCloudRestaurants.append(cloudRestaurant)
         }
         
         queryOperation.queryCompletionBlock = { [weak self] (cursor, error) in // this closure is called after all records are fetched
@@ -126,13 +136,15 @@ class DiscoverVC: UIViewController {
             
             print("Successflly retrieve the data from iCloud")
             DispatchQueue.main.async {
+                self?.cloudRestaurants.removeAll()
+                self?.cloudRestaurants = self!.tempCloudRestaurants
+                self?.tempCloudRestaurants.removeAll()
                 self?.spinner.stopAnimating()
                 self?.tableView.reloadData()
-                
-                if let refreshControl = self?.tableView.refreshControl { // ends refreshing otherwise it stays
-                    if refreshControl.isRefreshing {
-                        refreshControl.endRefreshing()
-                    }
+                self?.tableView.isScrollEnabled = true
+
+                if ((self?.refreshControl.isRefreshing) != nil) {
+                    self?.refreshControl.endRefreshing()
                 }
             }
         }
@@ -152,44 +164,20 @@ extension DiscoverVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Discover", for: indexPath)
-        let cloudRestaurant = cloudRestaurants[indexPath.row]
-        
-        cell.textLabel?.text = cloudRestaurants[indexPath.row].name // at this point, name is already downloaded
-        cell.imageView?.image = UIImage(systemName: "photo") // image is not, so we set placeholder
-        cell.imageView?.tintColor = .black
-
-        if let cloudRestaurant = imageCache.object(forKey: cloudRestaurant.recordId!) { // checking if image already exists
-            cell.imageView?.image = cloudRestaurant.image
-        } else {
-            // fetch just image from cloud in background
-            let publicDatabase = CKContainer.default().publicCloudDatabase
-            let fetchRecordsImageOperation = CKFetchRecordsOperation(recordIDs: [cloudRestaurant.recordId!]) // specify a specific record to download
-            fetchRecordsImageOperation.desiredKeys = ["image"]
-            fetchRecordsImageOperation.queuePriority = .veryHigh
-
-            fetchRecordsImageOperation.perRecordCompletionBlock = { (record, recordID, error) in // gets called per record that is completed
-                if let error = error {
-                    print("Failed to get retaurant image: \(error.localizedDescription)")
-                    return
-                }
-
-                if let image = record?.object(forKey: "image") as? CKAsset {
-                    if let imageData = try? Data(contentsOf: image.fileURL!) {
-                        cloudRestaurant.image = UIImage(data: imageData)
-                        self.imageCache.setObject(cloudRestaurant, forKey: cloudRestaurant.recordId!) // saving into cache
-                        DispatchQueue.main.async {
-                            cell.imageView?.image = UIImage(data: imageData)
-                            cell.setNeedsLayout() // becuase the placeholder image size is different than the one just downloaded
-                        }
-                    }
-                }
-            }
-
-            publicDatabase.add(fetchRecordsImageOperation)
-        }
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: DiscoverRestaurantCell.reuseId, for: indexPath) as! DiscoverRestaurantCell
+        cell.cloudRestaurant = cloudRestaurants[indexPath.row]
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "Loading..."
+        label.textAlignment = .center
+        label.font = UIFontMetrics(forTextStyle: .subheadline).scaledFont(for: UIFont.init(name: "Rubik-Regular", size: 16)!)
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return cloudRestaurants.isEmpty ? (refreshControl.isRefreshing ? 18 : 425) : 0
+    }
 }
-
