@@ -10,17 +10,18 @@ import UIKit
 class WalkThruVC: UICollectionViewController {
     // MARK: - Properties
     var onboardingObjs = [
-        Onboarding(image: "onboarding-1", headline: "CREATE YOUR OWN FOOD GUIDE", subHeadline: "Pin your favorite restaurants and create your own food guide"),
-        Onboarding(image: "onboarding-2", headline: "Something Else", subHeadline: "Pin your favorite restaurants and create your own food guide"),
-        Onboarding(image: "onboarding-3", headline: "DISCOVER GREAT RESTAURANTS", subHeadline: "Find restaurants shared by your friends and other foodies")
+        Onboarding(image: "onboarding-1", headline: NSLocalizedString("CREATE YOUR OWN FOOD GUIDE", comment: "CREATE YOUR OWN FOOD GUIDE"), subHeadline: NSLocalizedString("Pin your favorite restaurants and create your own food guide", comment: "Pin your favorite restaurants and create your own food guide")),
+        Onboarding(image: "onboarding-2", headline: NSLocalizedString("SHOW YOU THE LOCATION", comment: "SHOW YOU THE LOCATION"), subHeadline: NSLocalizedString("Search and locate your favorite restaurant on Maps", comment: "Search and locate your favorite restaurant on Maps")),
+        Onboarding(image: "onboarding-3", headline: NSLocalizedString("DISCOVER GREAT RESTAURANTS", comment: "DISCOVER GREAT RESTAURANTS"), subHeadline: NSLocalizedString("Find restaurants shared by your friends and other foodies", comment: "Find restaurants shared by your friends and other foodies"))
     ]
+    
     
     // MARK: - Views
     private let controlsContainerView = UIView()
     
     private lazy var nextButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("NEXT", for: .normal)
+        button.setTitle(NSLocalizedString("NEXT", comment: "NEXT"), for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.9058823529, green: 0.2980392157, blue: 0.2352941176, alpha: 1)
         button.layer.cornerRadius = 25
         button.layer.masksToBounds = true
@@ -32,7 +33,7 @@ class WalkThruVC: UICollectionViewController {
     
     private lazy var skipButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Skip", for: .normal)
+        button.setTitle(NSLocalizedString("Skip", comment: "Skip"), for: .normal)
         button.backgroundColor = .clear
         button.setTitleColor(.darkGray, for: .normal)
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
@@ -92,10 +93,10 @@ class WalkThruVC: UICollectionViewController {
     func updateNextbutton() {
         if pageControl.currentPage == onboardingObjs.count - 1 {
             skipButton.alpha = 0
-            nextButton.setTitle("GET STARTED", for: .normal)
+            nextButton.setTitle(NSLocalizedString("GET STARTED", comment: "GET STARTED"), for: .normal)
         } else {
             skipButton.alpha = 1
-            nextButton.setTitle("NEXT", for: .normal)
+            nextButton.setTitle(NSLocalizedString("NEXT", comment: "NEXT"), for: .normal)
         }
     }
     

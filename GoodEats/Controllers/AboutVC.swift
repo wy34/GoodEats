@@ -10,28 +10,30 @@ import SafariServices
 
 class AboutVC: UIViewController {
     // MARK: - Properties
-    var sectionTitles = ["", "Feedback", "Follow Us"]
+    var sectionTitles = ["", NSLocalizedString("Feedback", comment: "Feedback"), NSLocalizedString("Follow Us", comment: "Follow Us")]
     var sectionContent = [
         [(image: "", text: "", link: "")],
-        [(image: "store", text: "Rate us on App Store", link: "https://www.apple.com/ios/app-store"), (image: "chat", text: "Tell us your feedback", link: "http://www.appcoda.com/contact")],
-        [(image: "twitter", text: "Twitter", link: "https://www.twitter.com/appcodamobile"), (image: "facebook", text: "Facebook", link: "https://www.facebook.com/appcodamobile"), (image: "instagram", text: "Instagram", link: "https://www.instagram.com/appcodadotcom")]
+        [(image: "store", text: NSLocalizedString("Rate us on App Store", comment: "Rate us on App Store"), link: "https://www.apple.com/ios/app-store"), (image: "chat", text: NSLocalizedString("Tell us your feedback", comment: "Tell us your feedback"), link: "https://wy34.github.io./")],
+        [(image: "twitter", text: NSLocalizedString("Twitter", comment: "Twitter"), link: "https://twitter.com/williamyeung34"), (image: "facebook", text: NSLocalizedString("Facebook", comment: "Facebook"), link: "https://www.facebook.com/william.yeung.79"), (image: "instagram", text: NSLocalizedString("Instagram", comment: "Instagram"), link: "https://www.instagram.com/williamyeung34/")]
     ]
     
     // MARK: - Views
     private lazy var tableView: UITableView = {
-        let tv = UITableView()
+        let tv = UITableView(frame: .zero, style: .insetGrouped)
         tv.delegate = self
         tv.dataSource = self
         tv.register(UITableViewCell.self, forCellReuseIdentifier: "About")
         tv.register(HeaderCell.self, forCellReuseIdentifier: HeaderCell.reuseId)
         tv.cellLayoutMarginsFollowReadableWidth = true
         tv.tableFooterView = UIView()
+        tv.backgroundColor = UIColor(named: "DarkMode")
+        tv.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         return tv
     }()
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "About"
+        navigationItem.title = NSLocalizedString("About", comment: "About")
         layoutViews()
     }
     
@@ -65,8 +67,10 @@ extension AboutVC: UITableViewDelegate, UITableViewDataSource {
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "About", for: indexPath)
+        cell.backgroundColor = UIColor(named: "AboutCell")
         cell.textLabel?.text = sectionContent[indexPath.section][indexPath.row].text
-        cell.imageView?.image = UIImage(named: sectionContent[indexPath.section][indexPath.row].image)
+        cell.imageView?.image = UIImage(named: sectionContent[indexPath.section][indexPath.row].image)?.withRenderingMode(.alwaysTemplate)
+        cell.imageView?.tintColor = UIColor(named: "InvertedDarkMode")
         return cell
     }
     

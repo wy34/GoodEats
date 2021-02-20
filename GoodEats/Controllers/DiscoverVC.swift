@@ -24,9 +24,10 @@ class DiscoverVC: UIViewController {
         tv.cellLayoutMarginsFollowReadableWidth = true
         tv.tableFooterView = UIView()
         tv.allowsSelection = false
+        tv.backgroundColor = UIColor(named: "DarkMode")
         tv.addSubview(refreshControl)
-        refreshControl.backgroundColor = .white
-        refreshControl.tintColor = .gray
+        refreshControl.backgroundColor = .clear
+        refreshControl.tintColor = UIColor(named: "InvertedDarkMode")
         refreshControl.addTarget(self, action: #selector(fetchRecordFromCloudOperationally), for: .valueChanged)
         return tv
     }()
@@ -41,7 +42,7 @@ class DiscoverVC: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Discover"
+        navigationItem.title = NSLocalizedString("Discover", comment: "Discover")
         layoutViews()
         spinner.startAnimating()
         fetchRecordFromCloudOperationally()
@@ -171,13 +172,13 @@ extension DiscoverVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
-        label.text = "Loading..."
+        label.text = NSLocalizedString("Loading...", comment: "Loading...")
         label.textAlignment = .center
         label.font = UIFontMetrics(forTextStyle: .subheadline).scaledFont(for: UIFont.init(name: "Rubik-Regular", size: 16)!)
         return label
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return cloudRestaurants.isEmpty ? (refreshControl.isRefreshing ? 18 : 425) : 0
+        return cloudRestaurants.isEmpty ? 425 : 0
     }
 }

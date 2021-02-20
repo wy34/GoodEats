@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="GoodEats/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="de">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="12.4" build-num="12D4e"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>GoodEats</source>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSCameraUsageDescription" xml:space="preserve">
+        <source>You need to grant the app access to your camera in order to take photos.</source>
+        <target>Sie müssen der App Zugriff auf Ihre Kamera gewähren, um Fotos aufzunehmen.</target>
+        <note>Privacy - Camera Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSPhotoLibraryUsageDescription" xml:space="preserve">
+        <source>You need to grant the app access to your photo library so you can pick your favorite restaurant photo.</source>
+        <target>Sie müssen der App Zugriff auf Ihre Fotobibliothek gewähren, damit Sie Ihr Lieblingsrestaurantfoto auswählen können.</target>
+        <note>Privacy - Photo Library Usage Description</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="GoodEats/en.lproj/Localizable.strings" datatype="plaintext" source-language="en" target-language="de">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="12.4" build-num="12D4e"/>
+    </header>
+    <body>
+      <trans-unit id="A great restaurant to try out." xml:space="preserve">
+        <source>A great restaurant to try out.</source>
+        <target>Ein tolles Restaurant zum Ausprobieren.</target>
+        <note>A great restaurant to try out.</note>
+      </trans-unit>
+      <trans-unit id="ADDRESS" xml:space="preserve">
+        <source>ADDRESS</source>
+        <target>ADRESSE</target>
+        <note>ADDRESS</note>
+      </trans-unit>
+      <trans-unit id="About" xml:space="preserve">
+        <source>About</source>
+        <target>Über</target>
+        <note>About</note>
+      </trans-unit>
+      <trans-unit id="Angry" xml:space="preserve">
+        <source>Angry</source>
+        <target>Wütend</target>
+        <note>Angry</note>
+      </trans-unit>
+      <trans-unit id="CREATE YOUR OWN FOOD GUIDE" xml:space="preserve">
+        <source>CREATE YOUR OWN FOOD GUIDE</source>
+        <target>ERSTELLEN SIE IHREN EIGENEN LEBENSMITTELFÜHRER</target>
+        <note>CREATE YOUR OWN FOOD GUIDE</note>
+      </trans-unit>
+      <trans-unit id="Camera" xml:space="preserve">
+        <source>Camera</source>
+        <target>Kamera</target>
+        <note>Camera</note>
+      </trans-unit>
+      <trans-unit id="Cancel" xml:space="preserve">
+        <source>Cancel</source>
+        <target>Abbrechen</target>
+        <note>Cancel</note>
+      </trans-unit>
+      <trans-unit id="Choose your photo source" xml:space="preserve">
+        <source>Choose your photo source</source>
+        <target>Wählen Sie Ihre Fotoquelle</target>
+        <note>Choose your photo source</note>
+      </trans-unit>
+      <trans-unit id="Cool" xml:space="preserve">
+        <source>Cool</source>
+        <target>Kühl</target>
+        <note>Cool</note>
+      </trans-unit>
+      <trans-unit id="DESCRIPTION" xml:space="preserve">
+        <source>DESCRIPTION</source>
+        <target>BESCHREIBUNG</target>
+        <note>DESCRIPTION</note>
+      </trans-unit>
+      <trans-unit id="DISCOVER GREAT RESTAURANTS" xml:space="preserve">
+        <source>DISCOVER GREAT RESTAURANTS</source>
+        <target>TOLLE RESTAURANTS ENTDECKEN</target>
+        <note>DISCOVER GREAT RESTAURANTS</note>
+      </trans-unit>
+      <trans-unit id="Discover" xml:space="preserve">
+        <source>Discover</source>
+        <target>Entdecken Sie</target>
+        <note>Discover</note>
+      </trans-unit>
+      <trans-unit id="Facebook" xml:space="preserve">
+        <source>Facebook</source>
+        <note>Facebook</note>
+      </trans-unit>
+      <trans-unit id="Favorites" xml:space="preserve">
+        <source>Favorites</source>
+        <target>Favoriten</target>
+        <note>Favorites</note>
+      </trans-unit>
+      <trans-unit id="Feedback" xml:space="preserve">
+        <source>Feedback</source>
+        <target>Rückmeldung</target>
+        <note>Feedback</note>
+      </trans-unit>
+      <trans-unit id="Fill in your restaurant address." xml:space="preserve">
+        <source>Fill in your restaurant address.</source>
+        <target>Geben Sie die Adresse Ihres Restaurants ein.</target>
+        <note>Fill in your restaurant address.</note>
+      </trans-unit>
+      <trans-unit id="Fill in your restaurant name." xml:space="preserve">
+        <source>Fill in your restaurant name.</source>
+        <target>Geben Sie den Namen Ihres Restaurants ein.</target>
+        <note>Fill in your restaurant name.</note>
+      </trans-unit>
+      <trans-unit id="Fill in your restaurant phone." xml:space="preserve">
+        <source>Fill in your restaurant phone.</source>
+        <target>Geben Sie Ihr Restauranttelefon ein.</target>
+        <note>Fill in your restaurant phone.</note>
+      </trans-unit>
+      <trans-unit id="Fill in your restaurant type." xml:space="preserve">
+        <source>Fill in your restaurant type.</source>
+        <target>Geben Sie Ihren Restauranttyp ein.</target>
+        <note>Fill in your restaurant type.</note>
+      </trans-unit>
+      <trans-unit id="Find restaurants shared by your friends and other foodies" xml:space="preserve">
+        <source>Find restaurants shared by your friends and other foodies</source>
+        <target>Finden Sie Restaurants, die von Ihren Freunden und anderen Feinschmeckern freigegeben wurden</target>
+        <note>Find restaurants shared by your friends and other foodies</note>
+      </trans-unit>
+      <trans-unit id="Follow Us" xml:space="preserve">
+        <source>Follow Us</source>
+        <target>Folgen Sie uns</target>
+        <note>Follow Us</note>
+      </trans-unit>
+      <trans-unit id="GET STARTED" xml:space="preserve">
+        <source>GET STARTED</source>
+        <target>ANFANGEN</target>
+        <note>GET STARTED</note>
+      </trans-unit>
+      <trans-unit id="GoodEats" xml:space="preserve">
+        <source>GoodEats</source>
+        <target>Gutes Essen</target>
+        <note>GoodEats</note>
+      </trans-unit>
+      <trans-unit id="HOW TO GET HERE" xml:space="preserve">
+        <source>HOW TO GET HERE</source>
+        <target>WIE MAN HIERHER KOMMT</target>
+        <note>HOW TO GET HERE</note>
+      </trans-unit>
+      <trans-unit id="Happy" xml:space="preserve">
+        <source>Happy</source>
+        <target>Glücklich</target>
+        <note>Happy</note>
+      </trans-unit>
+      <trans-unit id="Instagram" xml:space="preserve">
+        <source>Instagram</source>
+        <note>Instagram</note>
+      </trans-unit>
+      <trans-unit id="Loading..." xml:space="preserve">
+        <source>Loading...</source>
+        <target>Laden...</target>
+        <note>Loading...</note>
+      </trans-unit>
+      <trans-unit id="Love" xml:space="preserve">
+        <source>Love</source>
+        <target>Liebe</target>
+        <note>Love</note>
+      </trans-unit>
+      <trans-unit id="NAME" xml:space="preserve">
+        <source>NAME</source>
+        <target>NAMEN</target>
+        <note>NAME</note>
+      </trans-unit>
+      <trans-unit id="NEXT" xml:space="preserve">
+        <source>NEXT</source>
+        <target>NÄCHSTES</target>
+        <note>NEXT</note>
+      </trans-unit>
+      <trans-unit id="New Restaurant" xml:space="preserve">
+        <source>New Restaurant</source>
+        <target>Neues Restaurant</target>
+        <note>New Restaurant</note>
+      </trans-unit>
+      <trans-unit id="OK" xml:space="preserve">
+        <source>OK</source>
+        <target>OK</target>
+        <note>OK</note>
+      </trans-unit>
+      <trans-unit id="Oops" xml:space="preserve">
+        <source>Oops</source>
+        <target>Hoppla</target>
+        <note>Oops</note>
+      </trans-unit>
+      <trans-unit id="PHONE" xml:space="preserve">
+        <source>PHONE</source>
+        <target>TELEFON</target>
+        <note>PHONE</note>
+      </trans-unit>
+      <trans-unit id="Photo Library" xml:space="preserve">
+        <source>Photo Library</source>
+        <target>Foto-Bibliothek</target>
+        <note>Photo Library</note>
+      </trans-unit>
+      <trans-unit id="Pin your favorite restaurants and create your own food guide" xml:space="preserve">
+        <source>Pin your favorite restaurants and create your own food guide</source>
+        <target>Pinnen Sie Ihre Lieblingsrestaurants und erstellen Sie Ihren eigenen Speiseführer</target>
+        <note>Pin your favorite restaurants and create your own food guide</note>
+      </trans-unit>
+      <trans-unit id="Rate It" xml:space="preserve">
+        <source>Rate It</source>
+        <target>Bewerten</target>
+        <note>Rate It</note>
+      </trans-unit>
+      <trans-unit id="Rate us on App Store" xml:space="preserve">
+        <source>Rate us on App Store</source>
+        <target>Bewerten Sie uns im App Store</target>
+        <note>Rate us on App Store</note>
+      </trans-unit>
+      <trans-unit id="SHOW YOU THE LOCATION" xml:space="preserve">
+        <source>SHOW YOU THE LOCATION</source>
+        <target>IHNEN DEN STANDORT ZEIGEN</target>
+        <note>SHOW YOU THE LOCATION</note>
+      </trans-unit>
+      <trans-unit id="Sad" xml:space="preserve">
+        <source>Sad</source>
+        <target>Traurig</target>
+        <note>Sad</note>
+      </trans-unit>
+      <trans-unit id="Search Restaurants..." xml:space="preserve">
+        <source>Search Restaurants...</source>
+        <target>Restaurants suchen...</target>
+        <note>Search Restaurants...</note>
+      </trans-unit>
+      <trans-unit id="Search and locate your favorite restaurant on Maps" xml:space="preserve">
+        <source>Search and locate your favorite restaurant on Maps</source>
+        <target>Suchen und lokalisieren Sie Ihr Lieblingsrestaurant auf Maps</target>
+        <note>Search and locate your favorite restaurant on Maps</note>
+      </trans-unit>
+      <trans-unit id="Skip" xml:space="preserve">
+        <source>Skip</source>
+        <target>Überspringen</target>
+        <note>Skip</note>
+      </trans-unit>
+      <trans-unit id="TYPE" xml:space="preserve">
+        <source>TYPE</source>
+        <target>TYP</target>
+        <note>TYPE</note>
+      </trans-unit>
+      <trans-unit id="Tell us your feedback" xml:space="preserve">
+        <source>Tell us your feedback</source>
+        <target>Sagen Sie uns Ihr Feedback</target>
+        <note>Tell us your feedback</note>
+      </trans-unit>
+      <trans-unit id="Twitter" xml:space="preserve">
+        <source>Twitter</source>
+        <note>Twitter</note>
+      </trans-unit>
+      <trans-unit id="We can't proceed because one of the fields is blank. Please note that all fields are required." xml:space="preserve">
+        <source>We can't proceed because one of the fields is blank. Please note that all fields are required.</source>
+        <target>Wir können nicht fortfahren, weil eines der Felder leer ist. Bitte beachten Sie, dass alle Felder erforderlich sind.</target>
+        <note>We can't proceed because one of the fields is blank. Please note that all fields are required.</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

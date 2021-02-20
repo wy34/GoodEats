@@ -14,8 +14,8 @@ class TypeInputCell: BasicInputCell {
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        label.text = "TYPE"
-        textField.placeholder = "Fill in your restaurant type."
+        label.text = NSLocalizedString("TYPE", comment: "TYPE")
+        textField.placeholder = NSLocalizedString("Fill in your restaurant type.", comment: "Fill in your restaurant type.")
     }
     
     required init?(coder: NSCoder) {

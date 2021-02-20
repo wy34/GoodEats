@@ -42,11 +42,11 @@ class RatingVC: UIViewController {
         return button
     }()
     
-    private let loveButton = UIButton.createRatingButton(withImage: "love", andTitle: "Love")
-    private let coolButton = UIButton.createRatingButton(withImage: "cool", andTitle: "Cool")
-    private let happyButton = UIButton.createRatingButton(withImage: "happy", andTitle: "Happy")
-    private let sadButton = UIButton.createRatingButton(withImage: "sad", andTitle: "Sad")
-    private let angryButton = UIButton.createRatingButton(withImage: "angry", andTitle: "Angry")
+    private let loveButton = UIButton.createRatingButton(withImage: "love", andTitle: NSLocalizedString("Love", comment: "Love"))
+    private let coolButton = UIButton.createRatingButton(withImage: "cool", andTitle: NSLocalizedString("Cool", comment: "Cool"))
+    private let happyButton = UIButton.createRatingButton(withImage: "happy", andTitle: NSLocalizedString("Happy", comment: "Happy"))
+    private let sadButton = UIButton.createRatingButton(withImage: "sad", andTitle: NSLocalizedString("Sad", comment: "Sad"))
+    private let angryButton = UIButton.createRatingButton(withImage: "angry", andTitle: NSLocalizedString("Angry", comment: "Angry"))
     
     private lazy var buttonStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [loveButton, coolButton, happyButton, sadButton, angryButton])

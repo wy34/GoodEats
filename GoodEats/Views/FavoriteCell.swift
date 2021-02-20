@@ -7,9 +7,9 @@
 
 import UIKit
 
-class RestaurantTableViewCell: UITableViewCell {
+class FavoriteCell: UITableViewCell {
     // MARK: - Properties
-    static let reuseId = "RestuarantTableViewCell"
+    static let reuseId = "FavoriteCell"
     
     var restaurant: Restaurant? {
         didSet {
@@ -71,6 +71,7 @@ class RestaurantTableViewCell: UITableViewCell {
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = UIColor(named: "DarkMode")
         layoutViews()
     }
     

@@ -56,8 +56,8 @@ class DiscoverRestaurantCell: UITableViewCell {
     let locationIconImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.image = UIImage(systemName: "location")
-        iv.tintColor = .black
+        iv.image = UIImage(systemName: "location")?.withRenderingMode(.alwaysTemplate)
+        iv.tintColor = UIColor(named: "InvertedDarkMode")
         iv.clipsToBounds = true
         return iv
     }()
@@ -83,8 +83,8 @@ class DiscoverRestaurantCell: UITableViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
-        iv.image = UIImage(systemName: "phone")
-        iv.tintColor = .black
+        iv.image = UIImage(systemName: "phone")?.withRenderingMode(.alwaysTemplate)
+        iv.tintColor = UIColor(named: "InvertedDarkMode")
         return iv
     }()
     
@@ -117,6 +117,7 @@ class DiscoverRestaurantCell: UITableViewCell {
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = UIColor(named: "DarkMode")
         layoutViews()
     }
     

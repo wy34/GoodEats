@@ -14,8 +14,8 @@ class PhoneInputCell: BasicInputCell {
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        label.text = "PHONE"
-        textField.placeholder = "Fill in your restaurant phone."
+        label.text = NSLocalizedString("PHONE", comment: "PHONE")
+        textField.placeholder = NSLocalizedString("Fill in your restaurant phone.", comment: "Fill in your restaurant phone.")
     }
     
     required init?(coder: NSCoder) {

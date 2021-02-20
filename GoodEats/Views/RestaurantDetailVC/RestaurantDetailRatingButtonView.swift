@@ -19,7 +19,7 @@ class RestaurantDetailRatingButtonView: UIView {
     private let rateButton: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
-        button.setTitle("Rate It", for: .normal)
+        button.setTitle(NSLocalizedString("Rate It", comment: "Rate It"), for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.9058823529, green: 0.2980392157, blue: 0.2352941176, alpha: 1)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 25

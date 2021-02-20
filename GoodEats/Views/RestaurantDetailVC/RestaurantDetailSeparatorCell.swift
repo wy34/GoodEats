@@ -14,7 +14,7 @@ class RestaurantDetailSeparatorCell: UITableViewCell {
     // MARK: - Views
     private let subSectionLabel: UILabel = {
         let label = UILabel()
-        label.text = "HOW TO GET HERE"
+        label.text = NSLocalizedString("HOW TO GET HERE", comment: "HOW TO GET HERE")
         label.font = UIFont.preferredFont(forTextStyle: .headline)
         return label
     }()

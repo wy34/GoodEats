@@ -15,7 +15,7 @@ class DescriptionInputCell: UITableViewCell {
     let label: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .headline)
-        label.text = "DESCRIPTION"
+        label.text = NSLocalizedString("DESCRIPTION", comment: "DESCRIPTION")
         label.textColor = .darkGray
         return label
     }()
@@ -23,7 +23,7 @@ class DescriptionInputCell: UITableViewCell {
     let textView: UITextView = {
         let tv = UITextView()
         tv.backgroundColor = #colorLiteral(red: 0.9425370097, green: 0.9603253007, blue: 0.9629049897, alpha: 1)
-        tv.text = "A great restaurant to try out."
+        tv.text = NSLocalizedString("A great restaurant to try out.", comment: "A great restaurant to try out.")
         tv.font = UIFont.preferredFont(forTextStyle: .body)
         tv.textContainerInset = UIEdgeInsets(top: 3, left: 10, bottom: 3, right: 10)
         return tv

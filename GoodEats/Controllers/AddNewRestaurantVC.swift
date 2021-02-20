@@ -69,7 +69,7 @@ class AddNewRestaurantVC: UITableViewController {
     }
     
     func configureNavBar() {
-        navigationItem.title = "New Restaurant"
+        navigationItem.title = NSLocalizedString("New Restaurant", comment: "New Restaurant")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(handleCloseTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.down"), style: .plain, target: self, action: #selector(handleSaveTapped))
         navigationController?.navigationBar.tintColor = .black
@@ -133,8 +133,8 @@ class AddNewRestaurantVC: UITableViewController {
               let address = addressTextField.text, !address.isEmpty,
               let phone = phoneTextField.text, !phone.isEmpty,
               let description = descriptionTextView.text, !description.isEmpty else {
-            let validationAlert = UIAlertController(title: "Oops", message: "We can't proceed because one of the fields is blank. Please note that all fields are required.", preferredStyle: .alert)
-            validationAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            let validationAlert = UIAlertController(title: NSLocalizedString("Oops", comment: "Oops"), message: NSLocalizedString("We can't proceed because one of the fields is blank. Please note that all fields are required.", comment: "We can't proceed because one of the fields is blank. Please note that all fields are required."), preferredStyle: .alert)
+            validationAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .default, handler: nil))
             present(validationAlert, animated: true, completion: nil)
             return
         }
@@ -204,7 +204,7 @@ extension AddNewRestaurantVC {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            let photoSourceRequestController = UIAlertController(title: "", message: "Choose your photo source", preferredStyle: .actionSheet)
+            let photoSourceRequestController = UIAlertController(title: "", message: NSLocalizedString("Choose your photo source", comment: "Choose your photo source"), preferredStyle: .actionSheet)
             
             if let popoverController = photoSourceRequestController.popoverPresentationController {
                 if let cell = tableView.cellForRow(at: indexPath) {
@@ -213,15 +213,15 @@ extension AddNewRestaurantVC {
                 }
             }
             
-            let cameraAction = UIAlertAction(title: "Camera", style: .default) { action in
+            let cameraAction = UIAlertAction(title: NSLocalizedString("Camera", comment: "Camera"), style: .default) { action in
                 self.displayImagePickerFor(type: .camera)
             }
             
-            let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { action in
+            let photoLibraryAction = UIAlertAction(title: NSLocalizedString("Photo Library", comment: "Photo Library"), style: .default) { action in
                 self.displayImagePickerFor(type: .photoLibrary)
             }
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel, handler: nil)
             
             photoSourceRequestController.addAction(cameraAction)
             photoSourceRequestController.addAction(photoLibraryAction)

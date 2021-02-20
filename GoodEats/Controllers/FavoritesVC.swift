@@ -36,10 +36,18 @@ class FavoritesVC: UIViewController {
         tv.delegate = self
         tv.dataSource = self
         tv.rowHeight = 90
-        tv.register(RestaurantTableViewCell.self, forCellReuseIdentifier: RestaurantTableViewCell.reuseId)
+        tv.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.reuseId)
         tv.cellLayoutMarginsFollowReadableWidth = true
         tv.tableFooterView = UIView()
+        tv.backgroundColor = UIColor(named: "DarkMode")
         return tv
+    }()
+    
+    private let heartImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = #imageLiteral(resourceName: "heart-tick").withRenderingMode(.alwaysTemplate)
+//        iv.tintColor = UIColor(named: "InvertedDarkMode")
+        return iv
     }()
     
     // MARK: - Lifecycle
@@ -68,7 +76,7 @@ class FavoritesVC: UIViewController {
     }
     
     func configureNavBar() {
-        navigationItem.title = "GoodEats"
+        navigationItem.title = NSLocalizedString("GoodEats", comment: "GoodEats")
         navigationItem.backButtonTitle = ""
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(handleAddTapped))
         
@@ -76,7 +84,7 @@ class FavoritesVC: UIViewController {
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Restaurants..."
+        searchController.searchBar.placeholder = NSLocalizedString("Search Restaurants...", comment: "Search Restaurants...")
         searchController.searchBar.tintColor = UIColor(red: 231, green: 76, blue: 60) // cursor
         navigationItem.searchController = searchController
     }
@@ -89,7 +97,7 @@ class FavoritesVC: UIViewController {
     // MARK: - Helpers
     func handleCheckInAccessoryView(forCellAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        cell?.accessoryView = fetchedResultController.object(at: indexPath).isCheckedIn ? .none : UIImageView(image: UIImage(named: "heart-tick"))
+        cell?.accessoryView = fetchedResultController.object(at: indexPath).isCheckedIn ? .none : heartImageView
         fetchedResultController.object(at: indexPath).isCheckedIn.toggle()
     }
     
@@ -98,7 +106,7 @@ class FavoritesVC: UIViewController {
         
         searchedResults = restaurants.filter({
             if let name = $0.name, let location = $0.location {
-                return name.localizedCaseInsensitiveContains(searchText) || location.localizedCaseInsensitiveContains(searchText)
+                return name.localizedCaseInsensitiveContains(searchText) || location.localizedCaseInsensitiveContains(searchText) // disregards case
             }
             return false
         })
@@ -123,13 +131,13 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantTableViewCell.reuseId, for: indexPath) as! RestaurantTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reuseId, for: indexPath) as! FavoriteCell
         cell.restaurant = searchController.isActive ? searchedResults[indexPath.row] : fetchedResultController.object(at: indexPath)
         
         if searchController.isActive {
-            cell.accessoryView = searchedResults[indexPath.row].isCheckedIn ? UIImageView(image: UIImage(named: "heart-tick")) : .none
+            cell.accessoryView = searchedResults[indexPath.row].isCheckedIn ? heartImageView : .none
         } else {
-            cell.accessoryView = fetchedResultController.object(at: indexPath).isCheckedIn ? UIImageView(image: UIImage(named: "heart-tick")) : .none
+            cell.accessoryView = fetchedResultController.object(at: indexPath).isCheckedIn ? heartImageView : .none
         }
         
         return cell

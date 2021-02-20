@@ -14,8 +14,8 @@ class NameInputCell: BasicInputCell {
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        label.text = "NAME"
-        textField.placeholder = "Fill in your restaurant name."
+        label.text = NSLocalizedString("NAME", comment: "NAME")
+        textField.placeholder = NSLocalizedString("Fill in your restaurant name.", comment: "Fill in your restaurant name.")
     }
     
     required init?(coder: NSCoder) {

@@ -13,13 +13,13 @@ class RootTabBarController: UIViewController {
         let tb = UITabBarController()
         
         let favoritesVC = UINavigationController(rootViewController: FavoritesVC())
-        favoritesVC.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(named: "favorite"), tag: 0)
+        favoritesVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Favorites", comment: "Favorites"), image: UIImage(named: "favorite"), tag: 0)
         
         let recentVC = UINavigationController(rootViewController: DiscoverVC())
-        recentVC.tabBarItem = UITabBarItem(title: "Discover", image: UIImage(named: "discover"), tag: 1)
+        recentVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Discover", comment: "Discover"), image: UIImage(named: "discover"), tag: 1)
         
         let moreVC = UINavigationController(rootViewController: AboutVC())
-        moreVC.tabBarItem = UITabBarItem(title: "About", image: UIImage(named: "about"), tag: 2)
+        moreVC.tabBarItem = UITabBarItem(title: NSLocalizedString("About", comment: "About"), image: UIImage(named: "about"), tag: 2)
         
         tb.viewControllers = [favoritesVC, recentVC, moreVC]
         

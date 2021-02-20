@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="GoodEats/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="zh-Hant">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="12.4" build-num="12D4e"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>GoodEats</source>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSCameraUsageDescription" xml:space="preserve">
+        <source>You need to grant the app access to your camera in order to take photos.</source>
+        <target>您需要授予應用程序使用您的相機才能拍攝照片。</target>
+        <note>Privacy - Camera Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSPhotoLibraryUsageDescription" xml:space="preserve">
+        <source>You need to grant the app access to your photo library so you can pick your favorite restaurant photo.</source>
+        <target>您需要授予應用程序進入圖片庫才可選擇照片。</target>
+        <note>Privacy - Photo Library Usage Description</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="GoodEats/en.lproj/Localizable.strings" datatype="plaintext" source-language="en" target-language="zh-Hant">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="12.4" build-num="12D4e"/>
+    </header>
+    <body>
+      <trans-unit id="A great restaurant to try out." xml:space="preserve">
+        <source>A great restaurant to try out.</source>
+        <target>是一家值得一试的好餐厅。</target>
+        <note>A great restaurant to try out.</note>
+      </trans-unit>
+      <trans-unit id="ADDRESS" xml:space="preserve">
+        <source>ADDRESS</source>
+        <target>地址</target>
+        <note>ADDRESS</note>
+      </trans-unit>
+      <trans-unit id="About" xml:space="preserve">
+        <source>About</source>
+        <target>关于我们</target>
+        <note>About</note>
+      </trans-unit>
+      <trans-unit id="Angry" xml:space="preserve">
+        <source>Angry</source>
+        <target>愤怒</target>
+        <note>Angry</note>
+      </trans-unit>
+      <trans-unit id="CREATE YOUR OWN FOOD GUIDE" xml:space="preserve">
+        <source>CREATE YOUR OWN FOOD GUIDE</source>
+        <target>创建您自己的食品指南</target>
+        <note>CREATE YOUR OWN FOOD GUIDE</note>
+      </trans-unit>
+      <trans-unit id="Camera" xml:space="preserve">
+        <source>Camera</source>
+        <target>摄像机</target>
+        <note>Camera</note>
+      </trans-unit>
+      <trans-unit id="Cancel" xml:space="preserve">
+        <source>Cancel</source>
+        <target>取消</target>
+        <note>Cancel</note>
+      </trans-unit>
+      <trans-unit id="Choose your photo source" xml:space="preserve">
+        <source>Choose your photo source</source>
+        <target>选择你的照片来源</target>
+        <note>Choose your photo source</note>
+      </trans-unit>
+      <trans-unit id="Cool" xml:space="preserve">
+        <source>Cool</source>
+        <target>凉爽</target>
+        <note>Cool</note>
+      </trans-unit>
+      <trans-unit id="DESCRIPTION" xml:space="preserve">
+        <source>DESCRIPTION</source>
+        <target>描述</target>
+        <note>DESCRIPTION</note>
+      </trans-unit>
+      <trans-unit id="DISCOVER GREAT RESTAURANTS" xml:space="preserve">
+        <source>DISCOVER GREAT RESTAURANTS</source>
+        <target>发现伟大的餐厅</target>
+        <note>DISCOVER GREAT RESTAURANTS</note>
+      </trans-unit>
+      <trans-unit id="Discover" xml:space="preserve">
+        <source>Discover</source>
+        <target>发现</target>
+        <note>Discover</note>
+      </trans-unit>
+      <trans-unit id="Facebook" xml:space="preserve">
+        <source>Facebook</source>
+        <note>Facebook</note>
+      </trans-unit>
+      <trans-unit id="Favorites" xml:space="preserve">
+        <source>Favorites</source>
+        <target>我的最爱</target>
+        <note>Favorites</note>
+      </trans-unit>
+      <trans-unit id="Feedback" xml:space="preserve">
+        <source>Feedback</source>
+        <target>意见反馈</target>
+        <note>Feedback</note>
+      </trans-unit>
+      <trans-unit id="Fill in your restaurant address." xml:space="preserve">
+        <source>Fill in your restaurant address.</source>
+        <target>填写您的餐厅地址。</target>
+        <note>Fill in your restaurant address.</note>
+      </trans-unit>
+      <trans-unit id="Fill in your restaurant name." xml:space="preserve">
+        <source>Fill in your restaurant name.</source>
+        <target>填上你的餐厅名称。</target>
+        <note>Fill in your restaurant name.</note>
+      </trans-unit>
+      <trans-unit id="Fill in your restaurant phone." xml:space="preserve">
+        <source>Fill in your restaurant phone.</source>
+        <target>填写你的餐厅电话。</target>
+        <note>Fill in your restaurant phone.</note>
+      </trans-unit>
+      <trans-unit id="Fill in your restaurant type." xml:space="preserve">
+        <source>Fill in your restaurant type.</source>
+        <target>填写您的餐厅类型。</target>
+        <note>Fill in your restaurant type.</note>
+      </trans-unit>
+      <trans-unit id="Find restaurants shared by your friends and other foodies" xml:space="preserve">
+        <source>Find restaurants shared by your friends and other foodies</source>
+        <target>寻找您的朋友和其他美食家分享的餐厅。</target>
+        <note>Find restaurants shared by your friends and other foodies</note>
+      </trans-unit>
+      <trans-unit id="Follow Us" xml:space="preserve">
+        <source>Follow Us</source>
+        <target>关注我们</target>
+        <note>Follow Us</note>
+      </trans-unit>
+      <trans-unit id="GET STARTED" xml:space="preserve">
+        <source>GET STARTED</source>
+        <target>起步</target>
+        <note>GET STARTED</note>
+      </trans-unit>
+      <trans-unit id="GoodEats" xml:space="preserve">
+        <source>GoodEats</source>
+        <target>好吃</target>
+        <note>GoodEats</note>
+      </trans-unit>
+      <trans-unit id="HOW TO GET HERE" xml:space="preserve">
+        <source>HOW TO GET HERE</source>
+        <target>如何到达这里</target>
+        <note>HOW TO GET HERE</note>
+      </trans-unit>
+      <trans-unit id="Happy" xml:space="preserve">
+        <source>Happy</source>
+        <target>开心</target>
+        <note>Happy</note>
+      </trans-unit>
+      <trans-unit id="Instagram" xml:space="preserve">
+        <source>Instagram</source>
+        <note>Instagram</note>
+      </trans-unit>
+      <trans-unit id="Loading..." xml:space="preserve">
+        <source>Loading...</source>
+        <target>正在加载...</target>
+        <note>Loading...</note>
+      </trans-unit>
+      <trans-unit id="Love" xml:space="preserve">
+        <source>Love</source>
+        <target>爱</target>
+        <note>Love</note>
+      </trans-unit>
+      <trans-unit id="NAME" xml:space="preserve">
+        <source>NAME</source>
+        <target>名字</target>
+        <note>NAME</note>
+      </trans-unit>
+      <trans-unit id="NEXT" xml:space="preserve">
+        <source>NEXT</source>
+        <target>下一个</target>
+        <note>NEXT</note>
+      </trans-unit>
+      <trans-unit id="New Restaurant" xml:space="preserve">
+        <source>New Restaurant</source>
+        <target>新餐厅</target>
+        <note>New Restaurant</note>
+      </trans-unit>
+      <trans-unit id="OK" xml:space="preserve">
+        <source>OK</source>
+        <target>好的</target>
+        <note>OK</note>
+      </trans-unit>
+      <trans-unit id="Oops" xml:space="preserve">
+        <source>Oops</source>
+        <target>糟了</target>
+        <note>Oops</note>
+      </trans-unit>
+      <trans-unit id="PHONE" xml:space="preserve">
+        <source>PHONE</source>
+        <target>电话</target>
+        <note>PHONE</note>
+      </trans-unit>
+      <trans-unit id="Photo Library" xml:space="preserve">
+        <source>Photo Library</source>
+        <target>图片库</target>
+        <note>Photo Library</note>
+      </trans-unit>
+      <trans-unit id="Pin your favorite restaurants and create your own food guide" xml:space="preserve">
+        <source>Pin your favorite restaurants and create your own food guide</source>
+        <target>将你最喜欢的餐厅钉在墙上，创建你自己的美食指南。</target>
+        <note>Pin your favorite restaurants and create your own food guide</note>
+      </trans-unit>
+      <trans-unit id="Rate It" xml:space="preserve">
+        <source>Rate It</source>
+        <target>评价</target>
+        <note>Rate It</note>
+      </trans-unit>
+      <trans-unit id="Rate us on App Store" xml:space="preserve">
+        <source>Rate us on App Store</source>
+        <target>在App Store上给我们评分</target>
+        <note>Rate us on App Store</note>
+      </trans-unit>
+      <trans-unit id="SHOW YOU THE LOCATION" xml:space="preserve">
+        <source>SHOW YOU THE LOCATION</source>
+        <target>向您展示位置</target>
+        <note>SHOW YOU THE LOCATION</note>
+      </trans-unit>
+      <trans-unit id="Sad" xml:space="preserve">
+        <source>Sad</source>
+        <target>悲伤</target>
+        <note>Sad</note>
+      </trans-unit>
+      <trans-unit id="Search Restaurants..." xml:space="preserve">
+        <source>Search Restaurants...</source>
+        <target>搜索餐厅...</target>
+        <note>Search Restaurants...</note>
+      </trans-unit>
+      <trans-unit id="Search and locate your favorite restaurant on Maps" xml:space="preserve">
+        <source>Search and locate your favorite restaurant on Maps</source>
+        <target>在地图上搜索并定位您最喜爱的餐厅</target>
+        <note>Search and locate your favorite restaurant on Maps</note>
+      </trans-unit>
+      <trans-unit id="Skip" xml:space="preserve">
+        <source>Skip</source>
+        <target>跳过</target>
+        <note>Skip</note>
+      </trans-unit>
+      <trans-unit id="TYPE" xml:space="preserve">
+        <source>TYPE</source>
+        <target>类型</target>
+        <note>TYPE</note>
+      </trans-unit>
+      <trans-unit id="Tell us your feedback" xml:space="preserve">
+        <source>Tell us your feedback</source>
+        <target>告诉我们您的反馈</target>
+        <note>Tell us your feedback</note>
+      </trans-unit>
+      <trans-unit id="Twitter" xml:space="preserve">
+        <source>Twitter</source>
+        <note>Twitter</note>
+      </trans-unit>
+      <trans-unit id="We can't proceed because one of the fields is blank. Please note that all fields are required." xml:space="preserve">
+        <source>We can't proceed because one of the fields is blank. Please note that all fields are required.</source>
+        <target>我们无法继续，因为其中一个字段为空白。请注意，所有字段均为必填字段。</target>
+        <note>We can't proceed because one of the fields is blank. Please note that all fields are required.</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -34,6 +34,7 @@ class OnboardingCell: UICollectionViewCell {
         label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik", size: 17)!)
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.textColor = .darkGray
+        label.numberOfLines = 2
         return label
     }()
     
@@ -66,6 +67,7 @@ class OnboardingCell: UICollectionViewCell {
         
         headlineLabel.anchor(top: imageView.bottomAnchor, paddingTop: 20)
         headlineLabel.center(to: imageView, by: .centerX)
+        headlineLabel.setDimension(width: widthAnchor, wMult: 0.95)
         subHeadlineLabel.anchor(top: headlineLabel.bottomAnchor, paddingTop: 10)
         subHeadlineLabel.center(to: headlineLabel, by: .centerX)
         subHeadlineLabel.setDimension(width: widthAnchor, wMult: 0.9)
