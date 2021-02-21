@@ -20,12 +20,19 @@ class DescriptionInputCell: UITableViewCell {
         return label
     }()
     
-    let textView: UITextView = {
+    let placeholderLabel: UILabel = {
+        let label = UILabel()
+        label.text = NSLocalizedString("A great restaurant to try out.", comment: "A great restaurant to try out.")
+        label.textColor = UIColor(named: "Placeholder")
+        return label
+    }()
+    
+    lazy var textView: UITextView = {
         let tv = UITextView()
-        tv.backgroundColor = #colorLiteral(red: 0.9425370097, green: 0.9603253007, blue: 0.9629049897, alpha: 1)
-        tv.text = NSLocalizedString("A great restaurant to try out.", comment: "A great restaurant to try out.")
+        tv.backgroundColor = UIColor(named: "AboutCell")
         tv.font = UIFont.preferredFont(forTextStyle: .body)
-        tv.textContainerInset = UIEdgeInsets(top: 3, left: 10, bottom: 3, right: 10)
+        tv.textContainerInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 10)
+        tv.delegate = self
         return tv
     }()
     
@@ -43,6 +50,7 @@ class DescriptionInputCell: UITableViewCell {
         layoutViews()
         textView.layer.cornerRadius = 5
         textView.layer.masksToBounds = true
+        backgroundColor = UIColor(named: "DarkMode")
     }
     
     required init?(coder: NSCoder) {
@@ -51,10 +59,17 @@ class DescriptionInputCell: UITableViewCell {
     
     // MARK: - UI
     func layoutViews() {
-        contentView.addSubview(inputStack)
+        contentView.addSubviews(inputStack, placeholderLabel)
         textView.setDimension(height: heightAnchor, hMult: 0.6)
         inputStack.anchor(right: readableContentGuide.rightAnchor, left: readableContentGuide.leftAnchor, paddingRight: 2, paddingLeft: 2)
         inputStack.setDimension(height: heightAnchor, hMult: 0.8)
         inputStack.center(to: self, by: .centerY)
+        placeholderLabel.anchor(top: textView.topAnchor, left: textView.leftAnchor, paddingTop: 5, paddingLeft: 10)
+    }
+}
+
+extension DescriptionInputCell: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        placeholderLabel.isHidden = !textView.text.isEmpty
     }
 }

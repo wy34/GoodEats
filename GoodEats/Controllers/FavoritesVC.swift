@@ -43,13 +43,6 @@ class FavoritesVC: UIViewController {
         return tv
     }()
     
-    private let heartImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.image = #imageLiteral(resourceName: "heart-tick").withRenderingMode(.alwaysTemplate)
-//        iv.tintColor = UIColor(named: "InvertedDarkMode")
-        return iv
-    }()
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,8 +55,8 @@ class FavoritesVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
-        navigationController?.navigationBar.tintColor = .black
         navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.tintColor = UIColor(named: "InvertedDarkMode")
     }
     
     // MARK: - UI
@@ -97,8 +90,12 @@ class FavoritesVC: UIViewController {
     // MARK: - Helpers
     func handleCheckInAccessoryView(forCellAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
+        let heartImageView = UIImageView(image: UIImage(named: "heart-tick")?.withRenderingMode(.alwaysTemplate))
+        heartImageView.tintColor = UIColor(named: "InvertedDarkMode")
+        
         cell?.accessoryView = fetchedResultController.object(at: indexPath).isCheckedIn ? .none : heartImageView
         fetchedResultController.object(at: indexPath).isCheckedIn.toggle()
+        CoreDataManager.shared.save()
     }
     
     func filterContent(for searchText: String) {
@@ -133,6 +130,9 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reuseId, for: indexPath) as! FavoriteCell
         cell.restaurant = searchController.isActive ? searchedResults[indexPath.row] : fetchedResultController.object(at: indexPath)
+        
+        let heartImageView = UIImageView(image: UIImage(named: "heart-tick")?.withRenderingMode(.alwaysTemplate))
+        heartImageView.tintColor = UIColor(named: "InvertedDarkMode")
         
         if searchController.isActive {
             cell.accessoryView = searchedResults[indexPath.row].isCheckedIn ? heartImageView : .none

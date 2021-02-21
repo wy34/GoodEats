@@ -24,7 +24,7 @@ class RestaurantDetailIconTextCell: UITableViewCell {
         label.adjustsFontForContentSizeCategory = true
         label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik-Regular", size: 14)!)
         label.numberOfLines = 0
-        label.textColor = .darkGray
+        label.textColor = UIColor(named: "DescriptionText")
         return label
     }()
     
@@ -39,6 +39,7 @@ class RestaurantDetailIconTextCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layoutViews()
+        backgroundColor = UIColor(named: "DarkMode")
     }
     
     required init?(coder: NSCoder) {
@@ -56,10 +57,10 @@ class RestaurantDetailIconTextCell: UITableViewCell {
     func populateDataIntoViews(fromRestaurant restaurant: Restaurant?, forPhone: Bool) {
         guard let restaurant = restaurant else { return }
         if forPhone {
-            iconImageView.image = UIImage(systemName: "phone")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+            iconImageView.image = UIImage(systemName: "phone")?.withTintColor(UIColor(named: "InvertedDarkMode")!, renderingMode: .alwaysOriginal)
             detailLabel.text = restaurant.phone
         } else {
-            iconImageView.image = UIImage(systemName: "map")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+            iconImageView.image = UIImage(systemName: "map")?.withTintColor(UIColor(named: "InvertedDarkMode")!, renderingMode: .alwaysOriginal)
             detailLabel.text = restaurant.location
         }
     }

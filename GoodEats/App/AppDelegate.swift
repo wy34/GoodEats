@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         configureNavbar()
         UITabBar.appearance().tintColor = UIColor(red: 235, green: 75, blue: 27)
-        UITabBar.appearance().barTintColor = UIColor.white
+        UITabBar.appearance().barTintColor = UIColor(named: "DarkMode")
         return true
     }
     

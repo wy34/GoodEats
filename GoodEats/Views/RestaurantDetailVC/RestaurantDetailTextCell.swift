@@ -16,7 +16,7 @@ class RestaurantDetailTextCell: UITableViewCell {
         let label = UILabel()
         label.adjustsFontForContentSizeCategory = true
         label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik-Light", size: 15)!)
-        label.textColor = .darkGray
+        label.textColor = UIColor(named: "DescriptionText")
         label.numberOfLines = 0
         return label
     }()
@@ -25,6 +25,7 @@ class RestaurantDetailTextCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layoutViews()
+        backgroundColor = UIColor(named: "DarkMode")
     }
     
     required init?(coder: NSCoder) {

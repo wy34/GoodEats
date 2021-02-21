@@ -66,13 +66,14 @@ class AddNewRestaurantVC: UITableViewController {
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = UIColor(named: "DarkMode")
     }
     
     func configureNavBar() {
         navigationItem.title = NSLocalizedString("New Restaurant", comment: "New Restaurant")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(handleCloseTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.down"), style: .plain, target: self, action: #selector(handleSaveTapped))
-        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = UIColor(named: "InvertedDarkMode")
     }
     
     func layoutViews() {
@@ -148,6 +149,8 @@ class AddNewRestaurantVC: UITableViewController {
         
         if let data = newRestaurantImageView.image?.pngData() {
             newRestaurant.image  = data
+        } else {
+            newRestaurant.image = UIImage(systemName: "photo")?.pngData()
         }
         
         CoreDataManager.shared.save()

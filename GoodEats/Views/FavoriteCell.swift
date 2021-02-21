@@ -33,7 +33,7 @@ class FavoriteCell: UITableViewCell {
         let label = UILabel()
         label.text = "Location"
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        label.textColor = .darkGray
+        label.textColor = UIColor(named: "DescriptionText")
         label.numberOfLines = 2
         return label
     }()
@@ -42,7 +42,7 @@ class FavoriteCell: UITableViewCell {
         let label = UILabel()
         label.text = "Type"
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        label.textColor = .darkGray
+        label.textColor = UIColor(named: "DescriptionText")
         return label
     }()
     

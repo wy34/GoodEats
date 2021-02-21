@@ -37,6 +37,7 @@ class RestaurantDetailSeparatorCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layoutViews()
+        backgroundColor = UIColor(named: "DarkMode")
     }
     
     required init?(coder: NSCoder) {

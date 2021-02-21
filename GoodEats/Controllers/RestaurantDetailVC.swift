@@ -32,6 +32,7 @@ class RestaurantDetailVC: UIViewController {
         tv.dataSource = self
         tv.separatorStyle = .none
         tv.contentInsetAdjustmentBehavior = .never
+        tv.backgroundColor = UIColor(named: "DarkMode")
         return tv
     }()
     
@@ -51,6 +52,8 @@ class RestaurantDetailVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        navigationController?.navigationBar.tintColor = .white
+
 //        navigationController?.navigationBar.barStyle = .black
     }
     
@@ -59,7 +62,6 @@ class RestaurantDetailVC: UIViewController {
         navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.tintColor = .white
     }
     
     func layoutViews() {

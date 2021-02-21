@@ -18,7 +18,7 @@ class BasicInputCell: UITableViewCell {
     
     let textField: PaddedTextField = {
         let tf = PaddedTextField()
-        tf.backgroundColor = #colorLiteral(red: 0.9425370097, green: 0.9603253007, blue: 0.9629049897, alpha: 1)
+        tf.backgroundColor = UIColor(named: "AboutCell")
         tf.font = UIFont.preferredFont(forTextStyle: .body)
         return tf
     }()
@@ -36,6 +36,7 @@ class BasicInputCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layoutViews()
+        backgroundColor = UIColor(named: "DarkMode")
     }
     
     required init?(coder: NSCoder) {

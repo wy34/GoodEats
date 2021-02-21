@@ -42,6 +42,7 @@ class DiscoverRestaurantCell: UITableViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Moon Rock Cafe"
+        label.numberOfLines = 0
         label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: UIFont.init(name: "Rubik-Medium", size: 25)!)
         return label
     }()
@@ -49,7 +50,13 @@ class DiscoverRestaurantCell: UITableViewCell {
     private let typeLabel: UILabel = {
         let label = UILabel()
         label.text = "Cafe"
-        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: UIFont.init(name: "Rubik-Medium", size: 16)!)
+        label.backgroundColor = #colorLiteral(red: 0.9058823529, green: 0.2980392157, blue: 0.2352941176, alpha: 1)
+        label.adjustsFontForContentSizeCategory = true
+        label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik-Regular", size: 16)!)
+        label.textColor = .white
+        label.textAlignment = .center
+        label.layer.cornerRadius = 5
+        label.layer.masksToBounds = true
         return label
     }()
     
@@ -68,7 +75,7 @@ class DiscoverRestaurantCell: UITableViewCell {
         label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik-Regular", size: 14)!)
         label.numberOfLines = 0
         label.text = "asldfkasjldkfas;df;asjdfjasd;f"
-        label.textColor = .darkGray
+        label.textColor = UIColor(named: "DescriptionText")
         return label
     }()
     
@@ -94,7 +101,7 @@ class DiscoverRestaurantCell: UITableViewCell {
         label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik-Regular", size: 14)!)
         label.numberOfLines = 0
         label.text = "lasfjlaskjdlakjsldfjas;dfj;"
-        label.textColor = .darkGray
+        label.textColor = UIColor(named: "DescriptionText")
         return label
     }()
     
@@ -109,7 +116,7 @@ class DiscoverRestaurantCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik-Regular", size: 14)!)
         label.text = "lasfjlaskjdlakjsldfjaslasfjlaskjdlakjsldfjas;dfj;lasfjlaskjdlakjsldf"
-        label.textColor = .darkGray
+        label.textColor = UIColor(named: "DescriptionText")
         label.numberOfLines = 0
         return label
     }()
@@ -133,10 +140,13 @@ class DiscoverRestaurantCell: UITableViewCell {
         restaurantImageView.setDimension(hConst: 225)
 
         nameLabel.anchor(top: restaurantImageView.bottomAnchor, right: restaurantImageView.rightAnchor, left: restaurantImageView.leftAnchor, paddingTop: 5)
-        typeLabel.anchor(top: nameLabel.bottomAnchor, right: nameLabel.rightAnchor, left: nameLabel.leftAnchor)
+        
+        typeLabel.anchor(top: nameLabel.bottomAnchor, left: nameLabel.leftAnchor, paddingTop: 3)
+        typeLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 20).isActive = true
+        typeLabel.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -95).isActive = true
 
         locationIconImageView.setDimension(wConst: 20, hConst: 20)
-        locationStack.anchor(top: typeLabel.bottomAnchor, right: typeLabel.rightAnchor, left: typeLabel.leftAnchor, paddingTop: 5)
+        locationStack.anchor(top: typeLabel.bottomAnchor, right: restaurantImageView.rightAnchor, left: restaurantImageView.leftAnchor, paddingTop: 5)
 
         phoneIconImageView.setDimension(wConst: 20, hConst: 20)
         phoneStack.anchor(top: locationStack.bottomAnchor, right: locationStack.rightAnchor, left: locationStack.leftAnchor, paddingTop: 5)

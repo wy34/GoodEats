@@ -81,6 +81,7 @@ class RestaurantDetailVCHeaderView: UIView {
     // MARK: - UI
     func configureUI() {
         layoutUI()
+        backgroundColor = UIColor(named: "DarkMode")
     }
     
     func layoutUI() {
