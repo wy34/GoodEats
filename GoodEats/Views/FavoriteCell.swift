@@ -46,6 +46,7 @@ class FavoriteCell: UITableViewCell {
         return label
     }()
     
+    
     let thumbnailImageView: UIImageView = {
         let iv = UIImageView()
         iv.layer.cornerRadius = 30

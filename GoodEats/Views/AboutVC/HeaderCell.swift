@@ -14,9 +14,9 @@ class HeaderCell: UITableViewCell {
     // MARK: - Views
     private let headerView: UIView = {
         let view = UIView()
-        let iv = UIImageView(image: UIImage(named: "foodpin-logo"))
+        let iv = UIImageView(image: UIImage(named: "logo"))
         view.addSubview(iv)
-        iv.setDimension(wConst: 142, hConst: 53)
+        iv.setDimension(wConst: 200, hConst: 53)
         iv.center(x: view.centerXAnchor, y: view.centerYAnchor)
         return view
     }()

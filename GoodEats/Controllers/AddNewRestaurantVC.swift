@@ -92,7 +92,7 @@ class AddNewRestaurantVC: UITableViewController {
         }
     }
     
-    func saveRecordToCloud(restaurant: Restaurant!) {
+    func saveRecordToCloud(restaurant: Restaurant!) {        
         let record = CKRecord(recordType: "Restaurant")
         record.setValue(restaurant.name, forKey: "name")
         record.setValue(restaurant.type, forKey: "type")

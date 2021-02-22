@@ -19,6 +19,10 @@ class DiscoverRestaurantCell: UITableViewCell {
         didSet {
             guard let cloudRestaurant = cloudRestaurant else { return }
             nameLabel.text = cloudRestaurant.name
+            typeLabel.text = cloudRestaurant.type
+            locationDetailLabel.text = cloudRestaurant.location
+            descriptionLabel.text = cloudRestaurant.summary
+            phoneDetailLabel.text = cloudRestaurant.phone
             
             if let restaurant = imageCache.object(forKey: cloudRestaurant.recordId!) {
                 self.restaurantImageView.image = restaurant.image
@@ -36,6 +40,8 @@ class DiscoverRestaurantCell: UITableViewCell {
         iv.clipsToBounds = true
         iv.image = UIImage(systemName: "photo")
         iv.tintColor = .darkGray
+        iv.layer.cornerRadius = 5
+        iv.layer.masksToBounds = true
         return iv
     }()
     
@@ -47,16 +53,21 @@ class DiscoverRestaurantCell: UITableViewCell {
         return label
     }()
     
+    private let typeLabelContainer: UIView = {
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 0.9058823529, green: 0.2980392157, blue: 0.2352941176, alpha: 1)
+        view.layer.cornerRadius = 5
+        view.layer.masksToBounds = true
+        return view
+    }()
+    
     private let typeLabel: UILabel = {
         let label = UILabel()
         label.text = "Cafe"
-        label.backgroundColor = #colorLiteral(red: 0.9058823529, green: 0.2980392157, blue: 0.2352941176, alpha: 1)
         label.adjustsFontForContentSizeCategory = true
         label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik-Regular", size: 16)!)
         label.textColor = .white
         label.textAlignment = .center
-        label.layer.cornerRadius = 5
-        label.layer.masksToBounds = true
         return label
     }()
     
@@ -134,19 +145,22 @@ class DiscoverRestaurantCell: UITableViewCell {
     
     // MARK: - UI
     func layoutViews() {
-        addSubviews(restaurantImageView, nameLabel, typeLabel, locationStack, phoneStack, descriptionLabel)
+        addSubviews(restaurantImageView, nameLabel, typeLabelContainer, locationStack, phoneStack, descriptionLabel)
 
         restaurantImageView.anchor(top: topAnchor, right: readableContentGuide.rightAnchor, left: readableContentGuide.leftAnchor, paddingTop: 15)
         restaurantImageView.setDimension(hConst: 225)
 
         nameLabel.anchor(top: restaurantImageView.bottomAnchor, right: restaurantImageView.rightAnchor, left: restaurantImageView.leftAnchor, paddingTop: 5)
         
-        typeLabel.anchor(top: nameLabel.bottomAnchor, left: nameLabel.leftAnchor, paddingTop: 3)
-        typeLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 20).isActive = true
-        typeLabel.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -95).isActive = true
+        typeLabelContainer.anchor(top: nameLabel.bottomAnchor, left: nameLabel.leftAnchor, paddingTop: 5)
+        typeLabelContainer.heightAnchor.constraint(greaterThanOrEqualToConstant: 20).isActive = true
+        typeLabelContainer.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -95).isActive = true
+  
+        typeLabelContainer.addSubview(typeLabel)
+        typeLabel.anchor(top: typeLabelContainer.topAnchor, right: typeLabelContainer.rightAnchor, bottom: typeLabelContainer.bottomAnchor, left: typeLabelContainer.leftAnchor, paddingTop: 3, paddingRight: 5, paddingBottom: 3, paddingLeft: 5)
 
         locationIconImageView.setDimension(wConst: 20, hConst: 20)
-        locationStack.anchor(top: typeLabel.bottomAnchor, right: restaurantImageView.rightAnchor, left: restaurantImageView.leftAnchor, paddingTop: 5)
+        locationStack.anchor(top: typeLabelContainer.bottomAnchor, right: restaurantImageView.rightAnchor, left: restaurantImageView.leftAnchor, paddingTop: 5)
 
         phoneIconImageView.setDimension(wConst: 20, hConst: 20)
         phoneStack.anchor(top: locationStack.bottomAnchor, right: locationStack.rightAnchor, left: locationStack.leftAnchor, paddingTop: 5)

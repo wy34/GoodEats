@@ -44,7 +44,7 @@ class RestaurantDetailVC: UIViewController {
         super.viewDidLoad()
         configureNavBar()
         layoutViews()
-        
+
         if let rating = restaurant?.rating {
             tableHeaderView.ratingImageView.image = UIImage(named: rating)
         }
@@ -53,15 +53,13 @@ class RestaurantDetailVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.navigationBar.tintColor = .white
-
-//        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     // MARK: - UI
     func configureNavBar() {
         navigationItem.backButtonTitle = ""
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     func layoutViews() {

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C3422C125E226CD00190B0A /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3422C025E226CD00190B0A /* PaddedLabel.swift */; };
 		4C37A5F725D8CF6500B91243 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A5F625D8CF6500B91243 /* EmptyView.swift */; };
 		4C45743725D72976008CB291 /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45743625D72976008CB291 /* PaddedTextField.swift */; };
 		4C71DB4525DC5DEF00311D24 /* WalkThruVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71DB4425DC5DEF00311D24 /* WalkThruVC.swift */; };
@@ -68,7 +67,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4C3422C025E226CD00190B0A /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		4C37A5F625D8CF6500B91243 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		4C45743625D72976008CB291 /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
 		4C71DB4425DC5DEF00311D24 /* WalkThruVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThruVC.swift; sourceTree = "<group>"; };
@@ -250,8 +248,8 @@
 			children = (
 				4C71DB6425DCD94000311D24 /* GoodEats.entitlements */,
 				4CEF5BAD25E096C600E353AC /* Localizations */,
-				4CA8FD9C25D79970007CE3A3 /* CoreData */,
 				4C75AE4825D38A3800ECE188 /* Resources */,
+				4CA8FD9C25D79970007CE3A3 /* CoreData */,
 				4CCD6D3725D1F00900B9E299 /* Extensions */,
 				4CCD6D3025D1EF4B00B9E299 /* App */,
 				4CCD6D4125D24A6000B9E299 /* Models */,
@@ -303,7 +301,6 @@
 		4CCD6D3C25D1F76C00B9E299 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4C3422C025E226CD00190B0A /* PaddedLabel.swift */,
 				4C45743625D72976008CB291 /* PaddedTextField.swift */,
 				4CCD6D3D25D1F79E00B9E299 /* FavoriteCell.swift */,
 				4C37A5F625D8CF6500B91243 /* EmptyView.swift */,
@@ -421,7 +418,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C3422C125E226CD00190B0A /* PaddedLabel.swift in Sources */,
 				4CC76EDB25D5C5F200D072A2 /* UIButton.swift in Sources */,
 				4CCD6D3E25D1F79E00B9E299 /* FavoriteCell.swift in Sources */,
 				4CC76EDF25D6382400D072A2 /* AddNewRestaurantVC.swift in Sources */,

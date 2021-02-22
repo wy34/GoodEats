@@ -41,15 +41,20 @@ class RestaurantDetailVCHeaderView: UIView {
         return label
     }()
     
-    let typeLabel: UILabel = {
+    private let typeLabelContainer: UIView = {
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 0.9058823529, green: 0.2980392157, blue: 0.2352941176, alpha: 1)
+        view.layer.cornerRadius = 5
+        view.layer.masksToBounds = true
+        return view
+    }()
+    
+    private let typeLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = #colorLiteral(red: 0.9058823529, green: 0.2980392157, blue: 0.2352941176, alpha: 1)
         label.adjustsFontForContentSizeCategory = true
         label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik-Regular", size: 13)!)
         label.textColor = .white
         label.textAlignment = .center
-        label.layer.cornerRadius = 5
-        label.layer.masksToBounds = true
         return label
     }()
     
@@ -85,23 +90,26 @@ class RestaurantDetailVCHeaderView: UIView {
     }
     
     func layoutUI() {
-        addSubviews(restaurantImageView, dimmingView, typeLabel, nameLabel, heartImageView, ratingImageView)
+        addSubviews(restaurantImageView, dimmingView, typeLabelContainer, nameLabel, heartImageView, ratingImageView)
         
         restaurantImageView.anchor(top: topAnchor, right: rightAnchor, bottom: bottomAnchor, left: leftAnchor)
         dimmingView.anchor(top: topAnchor, right: rightAnchor, bottom: bottomAnchor, left: leftAnchor)
-            
-        typeLabel.anchor(bottom: bottomAnchor, left: leftAnchor, paddingBottom: 14, paddingLeft: 14)
-        typeLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 20).isActive = true
-        typeLabel.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -95).isActive = true
+        
+        typeLabelContainer.anchor(bottom: bottomAnchor, left: leftAnchor, paddingBottom: 14, paddingLeft: 14)
+        typeLabelContainer.heightAnchor.constraint(greaterThanOrEqualToConstant: 20).isActive = true
+        typeLabelContainer.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -95).isActive = true
+  
+        typeLabelContainer.addSubview(typeLabel)
+        typeLabel.anchor(top: typeLabelContainer.topAnchor, right: typeLabelContainer.rightAnchor, bottom: typeLabelContainer.bottomAnchor, left: typeLabelContainer.leftAnchor, paddingTop: 3, paddingRight: 5, paddingBottom: 3, paddingLeft: 5)
 
-        nameLabel.anchor(bottom: typeLabel.topAnchor, left: typeLabel.leftAnchor, paddingBottom: 3)
+        nameLabel.anchor(bottom: typeLabelContainer.topAnchor, left: typeLabelContainer.leftAnchor, paddingBottom: 3)
         nameLabel.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -50).isActive = true
         
         heartImageView.setDimension(wConst: 15, hConst: 15)
-        heartImageView.anchor(left: typeLabel.rightAnchor, paddingLeft: 8)
-        heartImageView.center(to: typeLabel, by: .centerY)
+        heartImageView.anchor(left: typeLabelContainer.rightAnchor, paddingLeft: 8)
+        heartImageView.center(to: typeLabelContainer, by: .centerY)
         
         ratingImageView.setDimension(wConst: 52, hConst: 50)
-        ratingImageView.anchor(right: rightAnchor, bottom: typeLabel.bottomAnchor, paddingRight: 10)
+        ratingImageView.anchor(right: rightAnchor, bottom: typeLabelContainer.bottomAnchor, paddingRight: 10)
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 
 class RootTabBarController: UIViewController {
     // MARK: - Views
-    private let tabBar: UITabBarController = {
+    let tabBar: UITabBarController = {
         let tb = UITabBarController()
         
         let favoritesVC = UINavigationController(rootViewController: FavoritesVC())

@@ -61,6 +61,7 @@ extension AboutVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: HeaderCell.reuseId, for: indexPath) as! HeaderCell
+            cell.backgroundColor = UIColor(named: "DarkMode")
             cell.isUserInteractionEnabled = false
             cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0) // removes only the separators of the first cell
             return cell

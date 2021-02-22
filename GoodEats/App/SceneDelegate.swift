@@ -7,6 +7,17 @@
 
 import UIKit
 
+enum QuickAction: String {
+    case OpenFavorites = "OpenFavorites"
+    case OpenDiscover = "OpenDiscover"
+    case NewRestaurant = "NewRestaurant"
+    
+    init?(fullIdentifier: String) {
+        guard let shortcutIdentifier = fullIdentifier.components(separatedBy: ".").last else { return nil }
+        self.init(rawValue: shortcutIdentifier)
+    }
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -21,8 +32,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = scene
         window?.makeKeyAndVisible()
         window?.rootViewController = RootTabBarController()
-//        window?.overrideUserInterfaceStyle = .dark
+    }
     
+    
+    // called when user selects an action
+    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        completionHandler(handleQuickAction(shortcutItem: shortcutItem))
+    }
+    
+    private func handleQuickAction(shortcutItem: UIApplicationShortcutItem) -> Bool {
+        let shortcutType = shortcutItem.type
+        guard let shortcutIdentifier = QuickAction(fullIdentifier: shortcutType) else { return false }
+        guard let tabBarController = window?.rootViewController as? RootTabBarController else { return false }
+        
+        switch shortcutIdentifier {
+            case .OpenFavorites:
+                tabBarController.tabBar.selectedIndex = 0
+            case .OpenDiscover:
+                tabBarController.tabBar.selectedIndex = 1
+            case .NewRestaurant:
+                if let favoritesVC = tabBarController.tabBar.viewControllers?[0] {
+                    let addNewRestaurantVC = UINavigationController(rootViewController: AddNewRestaurantVC())
+                    favoritesVC.present(addNewRestaurantVC, animated: true, completion: nil)
+                } else {
+                    return false
+                }
+        }
+        
+        return true
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

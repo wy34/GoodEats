@@ -28,6 +28,8 @@ class FavoritesVC: UIViewController {
     
     var searchedResults = [Restaurant]()
     
+    var isSearching = false
+    
     // MARK: - Views
     private var searchController: UISearchController!
     
@@ -43,6 +45,10 @@ class FavoritesVC: UIViewController {
         return tv
     }()
     
+    @objc func dismissSearchController() {
+        print("dismissing")
+    }
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +81,7 @@ class FavoritesVC: UIViewController {
         
         navigationController?.navigationBar.sizeToFit() // fixes the issue where a collapsed navbar is the default when searchController is present
         searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = NSLocalizedString("Search Restaurants...", comment: "Search Restaurants...")
         searchController.searchBar.tintColor = UIColor(red: 231, green: 76, blue: 60) // cursor
@@ -102,8 +108,8 @@ class FavoritesVC: UIViewController {
         guard let restaurants = fetchedResultController.fetchedObjects else { return }
         
         searchedResults = restaurants.filter({
-            if let name = $0.name, let location = $0.location {
-                return name.localizedCaseInsensitiveContains(searchText) || location.localizedCaseInsensitiveContains(searchText) // disregards case
+            if let name = $0.name, let location = $0.location, let type = $0.type {
+                return name.localizedCaseInsensitiveContains(searchText) || location.localizedCaseInsensitiveContains(searchText) || type.localizedCaseInsensitiveContains(searchText) // disregards case
             }
             return false
         })
@@ -124,17 +130,17 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchController.isActive ? searchedResults.count : fetchedResultController.sections![section].numberOfObjects
+        return isSearching ? searchedResults.count : fetchedResultController.sections![section].numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reuseId, for: indexPath) as! FavoriteCell
-        cell.restaurant = searchController.isActive ? searchedResults[indexPath.row] : fetchedResultController.object(at: indexPath)
+        cell.restaurant = isSearching ? searchedResults[indexPath.row] : fetchedResultController.object(at: indexPath)
         
         let heartImageView = UIImageView(image: UIImage(named: "heart-tick")?.withRenderingMode(.alwaysTemplate))
         heartImageView.tintColor = UIColor(named: "InvertedDarkMode")
         
-        if searchController.isActive {
+        if isSearching {
             cell.accessoryView = searchedResults[indexPath.row].isCheckedIn ? heartImageView : .none
         } else {
             cell.accessoryView = fetchedResultController.object(at: indexPath).isCheckedIn ? heartImageView : .none
@@ -160,7 +166,7 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
         
         let restaurantDetailVC = RestaurantDetailVC()
         restaurantDetailVC.hidesBottomBarWhenPushed = true
-        restaurantDetailVC.restaurant = searchController.isActive ? searchedResults[indexPath.row] : fetchedResultController.object(at: indexPath)
+        restaurantDetailVC.restaurant = isSearching ? searchedResults[indexPath.row] : fetchedResultController.object(at: indexPath)
         navigationController?.pushViewController(restaurantDetailVC, animated: true)
 //        let optionMenu = UIAlertController(title: nil, message: "What do you want to do?", preferredStyle: .actionSheet)
 //        
@@ -239,11 +245,67 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
     
     // disables left and right swipe of cell
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if searchController.isActive {
+        if isSearching {
             return false
         }
         
         return true
+    }
+    
+    // creates preview and context menu
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let configuration = UIContextMenuConfiguration(identifier: indexPath.row as NSCopying, previewProvider: {
+            // instantiating the VC that we are previewing
+            let restaurantDetailVC = RestaurantDetailVC()
+            let selectedRestaurant = self.fetchedResultController.object(at: indexPath)
+            restaurantDetailVC.restaurant = selectedRestaurant
+            return restaurantDetailVC
+        }) { actions in
+            let checkInAction = UIAction(title: "Check-In", image: UIImage(systemName: "checkmark")) { action in
+                self.fetchedResultController.object(at: indexPath).isCheckedIn = self.fetchedResultController.object(at: indexPath).isCheckedIn ? false : true
+            }
+            
+            let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in
+                let defaultText = NSLocalizedString("Just checking in at ", comment: "Just checking int at ") + self.fetchedResultController.object(at: indexPath).name!
+                let activityController: UIActivityViewController
+                
+                if let restaurantImage = self.fetchedResultController.object(at: indexPath).image, let imageToShare = UIImage(data: restaurantImage) {
+                    activityController = UIActivityViewController(activityItems: [defaultText, imageToShare], applicationActivities: nil)
+                } else {
+                    activityController = UIActivityViewController(activityItems: [defaultText], applicationActivities: nil)
+                }
+                
+                self.present(activityController, animated: true, completion: nil)
+            }
+            
+            let deleteAction = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
+                let restaurantToDelete = self.fetchedResultController.object(at: indexPath)
+                CoreDataManager.shared.delete(restaurantToDelete)
+                CoreDataManager.shared.save()
+            }
+            
+            return UIMenu(title: "", children: [checkInAction, shareAction, deleteAction])
+        }
+        
+        return configuration
+    }
+    
+    // action to perform when preview is tapped (ie: enlarging the preview)
+    func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        guard let selectedRow = configuration.identifier as? Int else {
+            print("Failed to retrieve the row number")
+            return
+        }
+        
+        let restaurantDetailVC = RestaurantDetailVC()
+        let selectedRestaurant = fetchedResultController.fetchedObjects![selectedRow]
+        restaurantDetailVC.restaurant = selectedRestaurant
+        restaurantDetailVC.hidesBottomBarWhenPushed = true
+        
+        animator.preferredCommitStyle = .pop
+        animator.addCompletion {
+            self.show(restaurantDetailVC, sender: self)
+        }
     }
 }
 
@@ -264,10 +326,8 @@ extension FavoritesVC: NSFetchedResultsControllerDelegate {
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
         case .update:
-            if !searchController.isActive {
-                if let indexPath = indexPath {
-                    tableView.reloadRows(at: [indexPath], with: .fade)
-                }
+            if let indexPath = indexPath {
+                tableView.reloadRows(at: [indexPath], with: .fade)
             }
         default:
             tableView.reloadData()
@@ -280,11 +340,27 @@ extension FavoritesVC: NSFetchedResultsControllerDelegate {
 }
 
 // MARK: - UISearchResultsUpdating
-extension FavoritesVC: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) { // calls whenever searchController is interacted (first tapped, each search letter, cancel)
-        if let searchText = searchController.searchBar.text {
+extension FavoritesVC: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text != "" {
+            self.isSearching = true
             filterContent(for: searchText)
-            tableView.reloadData()
+        } else {
+            self.isSearching = false
         }
+        
+        tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.isSearching = false
+        tableView.reloadData()
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+extension FavoritesVC: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) { // dismiss keyboard when trying to scroll during isSearching == true
+        searchController.searchBar.resignFirstResponder()
     }
 }

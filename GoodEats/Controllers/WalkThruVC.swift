@@ -72,7 +72,7 @@ class WalkThruVC: UICollectionViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.isPagingEnabled = true
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor(named: "DarkMode")
         collectionView.showsHorizontalScrollIndicator = false
     }
     
@@ -84,7 +84,7 @@ class WalkThruVC: UICollectionViewController {
         controlsContainerView.anchor(top: collectionView.bottomAnchor, right: view.rightAnchor, bottom: view.bottomAnchor, left: view.leftAnchor)
         
         controlsContainerView.addSubview(controlStack)
-        controlsContainerView.backgroundColor = .white
+        controlsContainerView.backgroundColor = UIColor(named: "DarkMode")
         nextButton.setDimension(wConst: 190, hConst: 50)
         controlStack.anchor(bottom: controlsContainerView.safeAreaLayoutGuide.bottomAnchor)
         controlStack.center(to: controlsContainerView, by: .centerX)
@@ -100,10 +100,24 @@ class WalkThruVC: UICollectionViewController {
         }
     }
     
+    // MARK: - 3D touch Shortcuts
+    func createQuickActions() {
+        // if 3d touch is available
+        if traitCollection.forceTouchCapability == .available {
+            if let bundleIdentifier = Bundle.main.bundleIdentifier {
+                let shortcutItem1 = UIApplicationShortcutItem(type: "\(bundleIdentifier).OpenFavorites", localizedTitle: "Show Favorites", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "favorite"), userInfo: nil)
+                let shortcutItem2 = UIApplicationShortcutItem(type: "\(bundleIdentifier).OpenDiscover", localizedTitle: "Discover Restaurants", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "discover"), userInfo: nil)
+                let shortcutItem3 = UIApplicationShortcutItem(type: "\(bundleIdentifier).NewRestaurant", localizedTitle: "New Restaurant", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(type: .add), userInfo: nil)
+                UIApplication.shared.shortcutItems = [shortcutItem1, shortcutItem2, shortcutItem3]
+            }
+        }
+    }
+    
     // MARK: - Selector
     @objc func handleNextButtonTapped() {
         if pageControl.currentPage == onboardingObjs.count - 1 {
             OnboardingManager.shared.setAsOldUser()
+            createQuickActions()
             dismiss(animated: true, completion: nil)
         }
         
@@ -117,6 +131,7 @@ class WalkThruVC: UICollectionViewController {
     
     @objc func handleSkipButtonTapped() {
         OnboardingManager.shared.setAsOldUser()
+        createQuickActions()
         dismiss(animated: true, completion: nil)
     }
     

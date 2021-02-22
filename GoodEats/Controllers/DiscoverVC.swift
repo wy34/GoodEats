@@ -77,8 +77,24 @@ class DiscoverVC: UIViewController {
                     
                     cloudRestaurant.recordId = record.recordID
                     
+                    if let location = record.object(forKey: "location") as? String {
+                        cloudRestaurant.location = location
+                    }
+                    
+                    if let description = record.object(forKey: "description") as? String {
+                        cloudRestaurant.summary = description
+                    }
+                    
                     if let name = record.object(forKey: "name") as? String {
                         cloudRestaurant.name = name
+                    }
+                    
+                    if let phone = record.object(forKey: "phone") as? String {
+                        cloudRestaurant.phone = phone
+                    }
+                    
+                    if let type = record.object(forKey: "type") as? String {
+                        cloudRestaurant.type = type
                     }
                     
                     if let image = record.object(forKey: "image") as? CKAsset {
@@ -109,23 +125,41 @@ class DiscoverVC: UIViewController {
         query.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         
         let queryOperation = CKQueryOperation(query: query)
-        queryOperation.desiredKeys = ["name", "image"] // specify the specific keys to fetch back, only specifiy name here to download it first and lazily download image
+        queryOperation.desiredKeys = ["name", "image", "type", "location", "description", "phone"] // specify the specific keys to fetch back, only specifiy name here to download it first and lazily download image
         queryOperation.queuePriority = .veryHigh // setting the execution priority
         queryOperation.resultsLimit = 50 // only 50 records are fetched at any one time
         
-        
         queryOperation.recordFetchedBlock = { record in // this closure is called every time a record is fetched back
             let cloudRestaurant = CloudRestaurant()
+            
+            cloudRestaurant.recordId = record.recordID
+            
+            if let location = record.object(forKey: "location") as? String {
+                cloudRestaurant.location = location
+            }
+            
+            if let description = record.object(forKey: "description") as? String {
+                cloudRestaurant.summary = description
+            }
+            
             if let name = record.object(forKey: "name") as? String {
                 cloudRestaurant.name = name
             }
             
-            if let asset = record.object(forKey: "image") as? CKAsset {
-                if let data = try? Data(contentsOf: asset.fileURL!) {
+            if let phone = record.object(forKey: "phone") as? String {
+                cloudRestaurant.phone = phone
+            }
+            
+            if let type = record.object(forKey: "type") as? String {
+                cloudRestaurant.type = type
+            }
+            
+            if let image = record.object(forKey: "image") as? CKAsset {
+                if let data = try? Data(contentsOf: image.fileURL!) {
                     cloudRestaurant.image = UIImage(data: data)
                 }
             }
-            cloudRestaurant.recordId = record.recordID
+            
             self.tempCloudRestaurants.append(cloudRestaurant)
         }
         

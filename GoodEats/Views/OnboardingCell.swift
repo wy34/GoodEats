@@ -41,7 +41,7 @@ class OnboardingCell: UICollectionViewCell {
     private let subHeadlineLabel: UILabel = {
         let label = UILabel()
         label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik", size: 16)!)
-        label.textColor = .lightGray
+        label.textColor = UIColor(named: "DescriptionText")
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
