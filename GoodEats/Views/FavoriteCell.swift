@@ -22,7 +22,7 @@ class FavoriteCell: UITableViewCell {
     }
     
     // MARK: - Views
-    let nameLabel = UILabel.createLabel(textStyle: .headline)
+    let nameLabel = UILabel.createLabel(textColor: UIColor(named: "InvertedDarkMode")!, textStyle: .headline)
     let locationLabel = UILabel.createLabel(textColor: UIColor(named: "DescriptionText")!, textStyle: .subheadline, numberOfLines: 2)
     private let typeLabel = UILabel.createLabel(textColor: UIColor(named: "DescriptionText")!, textStyle: .subheadline)
     

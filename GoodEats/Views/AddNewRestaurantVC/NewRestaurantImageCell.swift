@@ -16,7 +16,7 @@ class NewRestaurantImageCell: UITableViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        iv.tintColor = UIColor(named: "InvertedDarkMode")
+        iv.tintColor = UIColor.init(red: 231, green: 76, blue: 60)
         iv.image = UIImage(systemName: "photo")?.withRenderingMode(.alwaysTemplate)
         return iv
     }()

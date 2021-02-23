@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import UserNotifications
+import CloudKit
 
 class FavoritesVC: UIViewController {
     // MARK: - Properties
@@ -155,10 +156,83 @@ class FavoritesVC: UIViewController {
         content.categoryIdentifier = categoryId // associate actions to this particular notification
         
         // trigger set for every 24 hours (86400 seconds)
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: (10*60*60), repeats: true)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: (24*60*60), repeats: true)
         let request = UNNotificationRequest(identifier: "goodEats.restaurantSuggestion", content: content, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+    
+    func handleSharing(indexPath: IndexPath) {
+        let alertController = UIAlertController(title: "Share", message: "Where would you like to share this to?", preferredStyle: .alert)
+        
+        if let popoverController = alertController.popoverPresentationController {
+            if let cell = tableView.cellForRow(at: indexPath) {
+                popoverController.sourceView = cell
+                popoverController.sourceRect = cell.bounds
+            }
+        }
+        
+        let discoverAction = UIAlertAction(title: "Discover", style: .default) { [weak self] (action) in
+            let restaurant = self?.fetchedResultController.object(at: indexPath)
+            self?.saveRecordToCloud(restaurant: restaurant)
+        }
+
+        let otherAction = UIAlertAction(title: "Other", style: .default, handler: { [weak self] (action) in
+            let defaultText = "Just checking in at " + (self?.fetchedResultController.object(at: indexPath).name ?? "")
+            let activityViewController: UIActivityViewController
+
+            if let imageToShare = UIImage(data: self?.fetchedResultController.object(at: indexPath).image ?? Data()) {
+                activityViewController = UIActivityViewController(activityItems: [defaultText, imageToShare], applicationActivities: nil)
+            } else {
+                activityViewController = UIActivityViewController(activityItems: [defaultText], applicationActivities: nil)
+            }
+
+            // for ipads
+            if let popoverViewController = activityViewController.popoverPresentationController {
+                if let cell = self?.tableView.cellForRow(at: indexPath) {
+                    popoverViewController.sourceView = cell
+                    popoverViewController.sourceRect = cell.bounds
+                }
+            }
+
+            self?.present(activityViewController, animated: true, completion: nil)
+        })
+        
+        alertController.addAction(discoverAction)
+        alertController.addAction(otherAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func saveRecordToCloud(restaurant: Restaurant!) {
+        let record = CKRecord(recordType: "Restaurant")
+        record.setValue(restaurant.name, forKey: "name")
+        record.setValue(restaurant.type, forKey: "type")
+        record.setValue(restaurant.location, forKey: "location")
+        record.setValue(restaurant.phone, forKey: "phone")
+        record.setValue(restaurant.summary, forKey: "description")
+                
+        // resize the image because we don't want to upload a super high resolution photo
+        let originalImage = UIImage(data: restaurant.image!)!
+        let scalingFactor = (originalImage.size.width > 1024) ? 1024 / originalImage.size.width : 1.0
+        let scaledImage = UIImage(data: restaurant.image!, scale: scalingFactor)!
+        
+        // write the image to local file for temporary use
+        let imageFilePath = NSTemporaryDirectory() + restaurant.name!
+        let imageFileUrl = URL(fileURLWithPath: imageFilePath)
+        try? scaledImage.jpegData(compressionQuality: 0.8)?.write(to: imageFileUrl)
+        
+        // create image asset for icloud
+        let imageAsset = CKAsset(fileURL: imageFileUrl)
+        record.setValue(imageAsset, forKey: "image")
+        
+        // get the public icloud database
+        let publicDatabase = CKContainer.default().publicCloudDatabase
+        
+        // save record to icloud
+        publicDatabase.save(record) { (record, error) in
+            try? FileManager.default.removeItem(at: imageFileUrl)
+        }
     }
     
     // MARK: - Selectors
@@ -238,24 +312,7 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
         deleteAction.image = UIImage(systemName: "trash")
         
         let shareAction = UIContextualAction(style: .normal, title: "Share") { (action, sourceView, completionHandler) in
-            let defaultText = "Just checking in " + (self.fetchedResultController.object(at: indexPath).name ?? "")
-            let activityViewController: UIActivityViewController
-            
-            if let imageToShare = UIImage(data: self.fetchedResultController.object(at: indexPath).image ?? Data()) {
-                activityViewController = UIActivityViewController(activityItems: [defaultText, imageToShare], applicationActivities: nil)
-            } else {
-                activityViewController = UIActivityViewController(activityItems: [defaultText], applicationActivities: nil)
-            }
-            
-            // for ipads
-            if let popoverViewController = activityViewController.popoverPresentationController {
-                if let cell = tableView.cellForRow(at: indexPath) {
-                    popoverViewController.sourceView = cell
-                    popoverViewController.sourceRect = cell.bounds
-                }
-            }
-            
-            self.present(activityViewController, animated: true, completion: nil)
+            self.handleSharing(indexPath: indexPath)
             completionHandler(true)
         }
         shareAction.backgroundColor = UIColor.init(red: 254, green: 149, blue: 38)
@@ -287,16 +344,7 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
             }
             
             let shareAction = UIAction(title: NSLocalizedString("Share", comment: "Share"), image: UIImage(systemName: "square.and.arrow.up")) { action in
-                let defaultText = NSLocalizedString("Just checking in at ", comment: "Just checking int at ") + self.fetchedResultController.object(at: indexPath).name!
-                let activityController: UIActivityViewController
-                
-                if let restaurantImage = self.fetchedResultController.object(at: indexPath).image, let imageToShare = UIImage(data: restaurantImage) {
-                    activityController = UIActivityViewController(activityItems: [defaultText, imageToShare], applicationActivities: nil)
-                } else {
-                    activityController = UIActivityViewController(activityItems: [defaultText], applicationActivities: nil)
-                }
-                
-                self.present(activityController, animated: true, completion: nil)
+                self.handleSharing(indexPath: indexPath)
             }
             
             let deleteAction = UIAction(title: NSLocalizedString("Delete", comment: "Delete"), image: UIImage(systemName: "trash"), attributes: .destructive) { action in

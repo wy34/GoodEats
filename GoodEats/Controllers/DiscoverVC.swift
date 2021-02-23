@@ -14,6 +14,8 @@ class DiscoverVC: UIViewController {
     var tempCloudRestaurants = [CloudRestaurant]()
     
     // MARK: - Views
+    let customLoadViewLauncher = CustomLoadViewLauncher()
+
     private let refreshControl = UIRefreshControl()
     
     private lazy var tableView: UITableView = {
@@ -31,29 +33,25 @@ class DiscoverVC: UIViewController {
         refreshControl.addTarget(self, action: #selector(fetchRecordFromCloudOperationally), for: .valueChanged)
         return tv
     }()
-    
-    private let spinner: UIActivityIndicatorView = {
-        let a = UIActivityIndicatorView()
-        a.style = .large
-        a.hidesWhenStopped = true
-        return a
-    }()
         
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = NSLocalizedString("Discover", comment: "Discover")
+        configureNavBar()
         layoutViews()
-        spinner.startAnimating()
-        fetchRecordFromCloudOperationally()
+        handleLoad()
     }
     
     // MARK: - UI
+    func configureNavBar() {
+        navigationItem.title = NSLocalizedString("Discover", comment: "Discover")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.clockwise"), style: .plain, target: self, action: #selector(handleLoad))
+        navigationItem.rightBarButtonItem?.isEnabled = false
+    }
+    
     func layoutViews() {
-        view.addSubviews(tableView, spinner)
+        view.addSubview(tableView)
         tableView.anchor(top: view.topAnchor, right: view.rightAnchor, bottom: view.bottomAnchor, left: view.leftAnchor)
-        spinner.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 150)
-        spinner.center(to: view, by: .centerX)
     }
     
     // Convenient api is suitable for small pieces of data, downloads record wholly
@@ -107,7 +105,7 @@ class DiscoverVC: UIViewController {
                 })
 
                 DispatchQueue.main.async {
-                    self?.spinner.stopAnimating()
+//                    self?.spinner.stopAnimating()
                     self?.tableView.reloadData()
                 }
             }
@@ -174,9 +172,10 @@ class DiscoverVC: UIViewController {
                 self?.cloudRestaurants.removeAll()
                 self?.cloudRestaurants = self!.tempCloudRestaurants
                 self?.tempCloudRestaurants.removeAll()
-                self?.spinner.stopAnimating()
                 self?.tableView.reloadData()
                 self?.tableView.isScrollEnabled = true
+                self?.navigationItem.rightBarButtonItem?.isEnabled = true
+                self?.customLoadViewLauncher.dismissCustomLoadView()
 
                 if ((self?.refreshControl.isRefreshing) != nil) {
                     self?.refreshControl.endRefreshing()
@@ -185,6 +184,17 @@ class DiscoverVC: UIViewController {
         }
         
         publicDatabase.add(queryOperation)
+    }
+    
+    // MARK: - Selectors
+    @objc func handleLoad() {
+        // shows the table in the background as empty
+        cloudRestaurants.removeAll()
+        tableView.reloadData()
+        // shows the custom load screen
+        customLoadViewLauncher.showCustomLoadView()
+        // fetch data
+        fetchRecordFromCloudOperationally()
     }
 }
 
@@ -202,29 +212,5 @@ extension DiscoverVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: DiscoverRestaurantCell.reuseId, for: indexPath) as! DiscoverRestaurantCell
         cell.cloudRestaurant = cloudRestaurants[indexPath.row]
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel()
-        label.text = NSLocalizedString("Loading...", comment: "Loading...")
-        label.textAlignment = .center
-        label.font = UIFontMetrics(forTextStyle: .subheadline).scaledFont(for: UIFont.init(name: "Rubik-Regular", size: 16)!)
-        return label
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return cloudRestaurants.isEmpty && spinner.isAnimating ? 425 : 0
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let label = UILabel()
-        label.text = NSLocalizedString("Add a restaurant to share it.", comment: "Add a restaurant to share it.")
-        label.textAlignment = .center
-        label.font = UIFontMetrics(forTextStyle: .subheadline).scaledFont(for: UIFont.init(name: "Rubik-Regular", size: 16)!)
-        return label
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        cloudRestaurants.isEmpty && !spinner.isAnimating ? 425 : 0
     }
 }

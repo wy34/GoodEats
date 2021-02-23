@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import CloudKit
+//import CloudKit
 
 class AddNewRestaurantVC: UITableViewController {
     // MARK: - Views
@@ -92,36 +92,36 @@ class AddNewRestaurantVC: UITableViewController {
         }
     }
     
-    func saveRecordToCloud(restaurant: Restaurant!) {        
-        let record = CKRecord(recordType: "Restaurant")
-        record.setValue(restaurant.name, forKey: "name")
-        record.setValue(restaurant.type, forKey: "type")
-        record.setValue(restaurant.location, forKey: "location")
-        record.setValue(restaurant.phone, forKey: "phone")
-        record.setValue(restaurant.summary, forKey: "description")
-                
-        // resize the image because we don't want to upload a super high resolution photo
-        let originalImage = UIImage(data: restaurant.image!)!
-        let scalingFactor = (originalImage.size.width > 1024) ? 1024 / originalImage.size.width : 1.0
-        let scaledImage = UIImage(data: restaurant.image!, scale: scalingFactor)!
-        
-        // write the image to local file for temporary use
-        let imageFilePath = NSTemporaryDirectory() + restaurant.name!
-        let imageFileUrl = URL(fileURLWithPath: imageFilePath)
-        try? scaledImage.jpegData(compressionQuality: 0.8)?.write(to: imageFileUrl)
-        
-        // create image asset for icloud
-        let imageAsset = CKAsset(fileURL: imageFileUrl)
-        record.setValue(imageAsset, forKey: "image")
-        
-        // get the public icloud database
-        let publicDatabase = CKContainer.default().publicCloudDatabase
-        
-        // save record to icloud
-        publicDatabase.save(record) { (record, error) in
-            try? FileManager.default.removeItem(at: imageFileUrl)
-        }
-    }
+//    func saveRecordToCloud(restaurant: Restaurant!) {
+//        let record = CKRecord(recordType: "Restaurant")
+//        record.setValue(restaurant.name, forKey: "name")
+//        record.setValue(restaurant.type, forKey: "type")
+//        record.setValue(restaurant.location, forKey: "location")
+//        record.setValue(restaurant.phone, forKey: "phone")
+//        record.setValue(restaurant.summary, forKey: "description")
+//
+//        // resize the image because we don't want to upload a super high resolution photo
+//        let originalImage = UIImage(data: restaurant.image!)!
+//        let scalingFactor = (originalImage.size.width > 1024) ? 1024 / originalImage.size.width : 1.0
+//        let scaledImage = UIImage(data: restaurant.image!, scale: scalingFactor)!
+//
+//        // write the image to local file for temporary use
+//        let imageFilePath = NSTemporaryDirectory() + restaurant.name!
+//        let imageFileUrl = URL(fileURLWithPath: imageFilePath)
+//        try? scaledImage.jpegData(compressionQuality: 0.8)?.write(to: imageFileUrl)
+//
+//        // create image asset for icloud
+//        let imageAsset = CKAsset(fileURL: imageFileUrl)
+//        record.setValue(imageAsset, forKey: "image")
+//
+//        // get the public icloud database
+//        let publicDatabase = CKContainer.default().publicCloudDatabase
+//
+//        // save record to icloud
+//        publicDatabase.save(record) { (record, error) in
+//            try? FileManager.default.removeItem(at: imageFileUrl)
+//        }
+//    }
     
     // MARK: - Selector
     @objc func handleCloseTapped() {
@@ -140,21 +140,16 @@ class AddNewRestaurantVC: UITableViewController {
             return
         }
         
-        let newRestaurant = Restaurant(context: CoreDataManager.shared.persistentContainer.viewContext)
-        newRestaurant.name = name
-        newRestaurant.type = type
-        newRestaurant.location = address
-        newRestaurant.phone = phone
-        newRestaurant.summary = description
+        var selectedImage: UIImage
         
-        if let data = newRestaurantImageView.image?.pngData() {
-            newRestaurant.image  = data
+        if let image = newRestaurantImageView.image {
+            selectedImage = image
         } else {
-            newRestaurant.image = UIImage(systemName: "photo")?.pngData()
+            selectedImage = UIImage(systemName: "photo")!.withTintColor(UIColor.init(red: 231, green: 76, blue: 60))
         }
         
+        CoreDataManager.shared.createRestaurantWith(name: name, type: type, location: address, phone: phone, summary: description, image: selectedImage)
         CoreDataManager.shared.save()
-        saveRecordToCloud(restaurant: newRestaurant)
         
         dismiss(animated: true, completion: nil)
     }

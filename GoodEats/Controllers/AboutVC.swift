@@ -10,12 +10,13 @@ import SafariServices
 
 class AboutVC: UIViewController {
     // MARK: - Properties
-    var sectionTitles = ["", NSLocalizedString("Feedback", comment: "Feedback"), NSLocalizedString("Follow Us", comment: "Follow Us")]
+    var sectionTitles = ["", NSLocalizedString("Feedback", comment: "Feedback"), NSLocalizedString("Follow Me", comment: "Follow Us")]
     var sectionContent = [
         [(image: "", text: "", link: "")],
-        [(image: "store", text: NSLocalizedString("Rate us on App Store", comment: "Rate us on App Store"), link: "https://www.apple.com/ios/app-store"), (image: "chat", text: NSLocalizedString("Tell us your feedback", comment: "Tell us your feedback"), link: "https://wy34.github.io./")],
+        [(image: "store", text: NSLocalizedString("Rate us on App Store", comment: "Rate us on App Store"), link: "https://apps.apple.com/us/app/goodeats-restaurant-guide/id1554770779"), (image: "chat", text: NSLocalizedString("Tell us your feedback", comment: "Tell us your feedback"), link: "https://wy34.github.io./")],
         [(image: "twitter", text: NSLocalizedString("Twitter", comment: "Twitter"), link: "https://twitter.com/williamyeung34"), (image: "facebook", text: NSLocalizedString("Facebook", comment: "Facebook"), link: "https://www.facebook.com/william.yeung.79"), (image: "instagram", text: NSLocalizedString("Instagram", comment: "Instagram"), link: "https://www.instagram.com/williamyeung34/")]
     ]
+
     
     // MARK: - Views
     private lazy var tableView: UITableView = {
