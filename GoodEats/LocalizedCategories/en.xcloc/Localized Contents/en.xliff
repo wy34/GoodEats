@@ -42,6 +42,11 @@
         <target>About</target>
         <note>About</note>
       </trans-unit>
+      <trans-unit id="Add a restaurant to share it." xml:space="preserve">
+        <source>Add a restaurant to share it.</source>
+        <target>Add a restaurant to share it.</target>
+        <note>Add a restaurant to share it.</note>
+      </trans-unit>
       <trans-unit id="Angry" xml:space="preserve">
         <source>Angry</source>
         <target>Angry</target>
@@ -61,6 +66,11 @@
         <source>Cancel</source>
         <target>Cancel</target>
         <note>Cancel</note>
+      </trans-unit>
+      <trans-unit id="Check-In" xml:space="preserve">
+        <source>Check-In</source>
+        <target>Check-In</target>
+        <note>Check-In</note>
       </trans-unit>
       <trans-unit id="Choose your photo source" xml:space="preserve">
         <source>Choose your photo source</source>
@@ -82,10 +92,20 @@
         <target>DISCOVER GREAT RESTAURANTS</target>
         <note>DISCOVER GREAT RESTAURANTS</note>
       </trans-unit>
+      <trans-unit id="Delete" xml:space="preserve">
+        <source>Delete</source>
+        <target>Delete</target>
+        <note>Delete</note>
+      </trans-unit>
       <trans-unit id="Discover" xml:space="preserve">
         <source>Discover</source>
         <target>Discover</target>
         <note>Discover</note>
+      </trans-unit>
+      <trans-unit id="Discover Restaurants" xml:space="preserve">
+        <source>Discover Restaurants</source>
+        <target>Discover Restaurants</target>
+        <note>Discover Restaurants</note>
       </trans-unit>
       <trans-unit id="Facebook" xml:space="preserve">
         <source>Facebook</source>
@@ -152,10 +172,30 @@
         <target>Happy</target>
         <note>Happy</note>
       </trans-unit>
+      <trans-unit id="I recommend you to check out" xml:space="preserve">
+        <source>I recommend you to check out</source>
+        <target>I recommend you to check out</target>
+        <note>I recommend you to check out</note>
+      </trans-unit>
+      <trans-unit id="I recommend you to check out (randomSuggestedRestaurant.name!). The restaurant is one of your favorites. It is located at (randomSuggestedRestaurant.location!). Would you like to give it a try?" xml:space="preserve">
+        <source>I recommend you to check out (randomSuggestedRestaurant.name!). The restaurant is one of your favorites. It is located at (randomSuggestedRestaurant.location!). Would you like to give it a try?</source>
+        <target>I recommend you to check out (randomSuggestedRestaurant.name!). The restaurant is one of your favorites. It is located at (randomSuggestedRestaurant.location!). Would you like to give it a try?</target>
+        <note>I recommend you to check out \(randomSuggestedRestaurant.name!). The restaurant is one of your favorites. It is located at \(randomSuggestedRestaurant.location!). Would you like to give it a try?</note>
+      </trans-unit>
       <trans-unit id="Instagram" xml:space="preserve">
         <source>Instagram</source>
         <target>Instagram</target>
         <note>Instagram</note>
+      </trans-unit>
+      <trans-unit id="Just checking in at " xml:space="preserve">
+        <source>Just checking in at </source>
+        <target>Just checking in at </target>
+        <note>Just checking int at</note>
+      </trans-unit>
+      <trans-unit id="Later" xml:space="preserve">
+        <source>Later</source>
+        <target>Later</target>
+        <note>Later</note>
       </trans-unit>
       <trans-unit id="Loading..." xml:space="preserve">
         <source>Loading...</source>
@@ -181,6 +221,11 @@
         <source>New Restaurant</source>
         <target>New Restaurant</target>
         <note>New Restaurant</note>
+      </trans-unit>
+      <trans-unit id="Nothing Here" xml:space="preserve">
+        <source>Nothing Here</source>
+        <target>Nothing Here</target>
+        <note>Nothing Here</note>
       </trans-unit>
       <trans-unit id="OK" xml:space="preserve">
         <source>OK</source>
@@ -217,6 +262,16 @@
         <target>Rate us on App Store</target>
         <note>Rate us on App Store</note>
       </trans-unit>
+      <trans-unit id="Reserve a table" xml:space="preserve">
+        <source>Reserve a table</source>
+        <target>Reserve a table</target>
+        <note>Reserve a table</note>
+      </trans-unit>
+      <trans-unit id="Restaurant Recommendation" xml:space="preserve">
+        <source>Restaurant Recommendation</source>
+        <target>Restaurant Recommendation</target>
+        <note>Restaurant Recommendation</note>
+      </trans-unit>
       <trans-unit id="SHOW YOU THE LOCATION" xml:space="preserve">
         <source>SHOW YOU THE LOCATION</source>
         <target>SHOW YOU THE LOCATION</target>
@@ -237,6 +292,16 @@
         <target>Search and locate your favorite restaurant on Maps</target>
         <note>Search and locate your favorite restaurant on Maps</note>
       </trans-unit>
+      <trans-unit id="Share" xml:space="preserve">
+        <source>Share</source>
+        <target>Share</target>
+        <note>Share</note>
+      </trans-unit>
+      <trans-unit id="Show Favorites" xml:space="preserve">
+        <source>Show Favorites</source>
+        <target>Show Favorites</target>
+        <note>Show Favorites</note>
+      </trans-unit>
       <trans-unit id="Skip" xml:space="preserve">
         <source>Skip</source>
         <target>Skip</target>
@@ -247,10 +312,25 @@
         <target>TYPE</target>
         <note>TYPE</note>
       </trans-unit>
+      <trans-unit id="Tap + to add some restaurants" xml:space="preserve">
+        <source>Tap + to add some restaurants</source>
+        <target>Tap + to add some restaurants</target>
+        <note>Tap + to add some restaurants</note>
+      </trans-unit>
       <trans-unit id="Tell us your feedback" xml:space="preserve">
         <source>Tell us your feedback</source>
         <target>Tell us your feedback</target>
         <note>Tell us your feedback</note>
+      </trans-unit>
+      <trans-unit id="The restaurant is one of your favorites. It is located at" xml:space="preserve">
+        <source>The restaurant is one of your favorites. It is located at</source>
+        <target>The restaurant is one of your favorites. It is located at</target>
+        <note>The restaurant is one of your favorites. It is located at</note>
+      </trans-unit>
+      <trans-unit id="Try new food today" xml:space="preserve">
+        <source>Try new food today</source>
+        <target>Try new food today</target>
+        <note>Try new food today</note>
       </trans-unit>
       <trans-unit id="Twitter" xml:space="preserve">
         <source>Twitter</source>
@@ -261,6 +341,11 @@
         <source>We can't proceed because one of the fields is blank. Please note that all fields are required.</source>
         <target>We can't proceed because one of the fields is blank. Please note that all fields are required.</target>
         <note>We can't proceed because one of the fields is blank. Please note that all fields are required.</note>
+      </trans-unit>
+      <trans-unit id="Would you like to give it a try?" xml:space="preserve">
+        <source>Would you like to give it a try?</source>
+        <target>Would you like to give it a try?</target>
+        <note>Would you like to give it a try?</note>
       </trans-unit>
     </body>
   </file>

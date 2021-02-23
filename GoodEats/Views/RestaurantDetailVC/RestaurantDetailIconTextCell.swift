@@ -19,14 +19,7 @@ class RestaurantDetailIconTextCell: UITableViewCell {
         return iv
     }()
     
-    let detailLabel: UILabel = {
-        let label = UILabel()
-        label.adjustsFontForContentSizeCategory = true
-        label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik-Regular", size: 14)!)
-        label.numberOfLines = 0
-        label.textColor = UIColor(named: "DescriptionText")
-        return label
-    }()
+    let detailLabel = UILabel.createLabel(textColor: UIColor(named: "DescriptionText")!, fontName: "Rubik-Regular", textStyle: .headline, fontSize: 14, alignment: .left)
     
     lazy var iconLabelStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [iconImageView, detailLabel])

@@ -12,12 +12,7 @@ class RestaurantDetailSeparatorCell: UITableViewCell {
     static let reuseId = "RestaurantDetailSeparatorCell"
     
     // MARK: - Views
-    private let subSectionLabel: UILabel = {
-        let label = UILabel()
-        label.text = NSLocalizedString("HOW TO GET HERE", comment: "HOW TO GET HERE")
-        label.font = UIFont.preferredFont(forTextStyle: .headline)
-        return label
-    }()
+    private let subSectionLabel = UILabel.createLabel(text: "HOW TO GET HERE", textColor: UIColor(named: "InvertedDarkMode")!, textStyle: .headline)
     
     private let separator: UIView = {
         let view = UIView()

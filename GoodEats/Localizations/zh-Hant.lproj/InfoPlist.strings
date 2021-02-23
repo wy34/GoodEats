@@ -4,3 +4,6 @@
 /* Privacy - Photo Library Usage Description */
 "NSPhotoLibraryUsageDescription" = "您需要授予應用程序進入圖片庫才可選擇照片。";
 
+
+"CFBundleDisplayName" = "好吃";
+"CFBundleName" = "好吃";

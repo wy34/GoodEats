@@ -20,23 +20,15 @@ class WalkThruVC: UICollectionViewController {
     private let controlsContainerView = UIView()
     
     private lazy var nextButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle(NSLocalizedString("NEXT", comment: "NEXT"), for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.9058823529, green: 0.2980392157, blue: 0.2352941176, alpha: 1)
+        let button = UIButton.createOnboardingVCButtons(title: "NEXT", titleColor: .white, bgColor: #colorLiteral(red: 0.9058823529, green: 0.2980392157, blue: 0.2352941176, alpha: 1), textStyle: .subheadline)
         button.layer.cornerRadius = 25
         button.layer.masksToBounds = true
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .subheadline)
         button.addTarget(self, action: #selector(handleNextButtonTapped), for: .touchUpInside)
         return button
     }()
     
     private lazy var skipButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle(NSLocalizedString("Skip", comment: "Skip"), for: .normal)
-        button.backgroundColor = .clear
-        button.setTitleColor(.darkGray, for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        let button = UIButton.createOnboardingVCButtons(title: "Skip", titleColor: .darkGray, bgColor: .clear, textStyle: .body)
         button.addTarget(self, action: #selector(handleSkipButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -105,9 +97,9 @@ class WalkThruVC: UICollectionViewController {
         // if 3d touch is available
         if traitCollection.forceTouchCapability == .available {
             if let bundleIdentifier = Bundle.main.bundleIdentifier {
-                let shortcutItem1 = UIApplicationShortcutItem(type: "\(bundleIdentifier).OpenFavorites", localizedTitle: "Show Favorites", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "favorite"), userInfo: nil)
-                let shortcutItem2 = UIApplicationShortcutItem(type: "\(bundleIdentifier).OpenDiscover", localizedTitle: "Discover Restaurants", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "discover"), userInfo: nil)
-                let shortcutItem3 = UIApplicationShortcutItem(type: "\(bundleIdentifier).NewRestaurant", localizedTitle: "New Restaurant", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(type: .add), userInfo: nil)
+                let shortcutItem1 = UIApplicationShortcutItem(type: "\(bundleIdentifier).OpenFavorites", localizedTitle: NSLocalizedString("Show Favorites", comment: "Show Favorites"), localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "favorite"), userInfo: nil)
+                let shortcutItem2 = UIApplicationShortcutItem(type: "\(bundleIdentifier).OpenDiscover", localizedTitle: NSLocalizedString( "Discover Restaurants", comment:  "Discover Restaurants"), localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "discover"), userInfo: nil)
+                let shortcutItem3 = UIApplicationShortcutItem(type: "\(bundleIdentifier).NewRestaurant", localizedTitle: NSLocalizedString("New Restaurant", comment: "New Restaurant"), localizedSubtitle: nil, icon: UIApplicationShortcutIcon(type: .add), userInfo: nil)
                 UIApplication.shared.shortcutItems = [shortcutItem1, shortcutItem2, shortcutItem3]
             }
         }

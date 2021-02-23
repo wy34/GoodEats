@@ -4,6 +4,9 @@
 /* About */
 "About" = "关于我们";
 
+/* Add a restaurant to share it. */
+"Add a restaurant to share it." = "添加一家餐厅来分享。";
+
 /* ADDRESS */
 "ADDRESS" = "地址";
 
@@ -16,6 +19,9 @@
 /* Cancel */
 "Cancel" = "取消";
 
+/* Check-In */
+"Check-In" = "签到";
+
 /* Choose your photo source */
 "Choose your photo source" = "选择你的照片来源";
 
@@ -25,6 +31,9 @@
 /* CREATE YOUR OWN FOOD GUIDE */
 "CREATE YOUR OWN FOOD GUIDE" = "创建您自己的食品指南";
 
+/* Delete */
+"Delete" = "删除";
+
 /* DESCRIPTION */
 "DESCRIPTION" = "描述";
 
@@ -33,6 +42,9 @@
 
 /* DISCOVER GREAT RESTAURANTS */
 "DISCOVER GREAT RESTAURANTS" = "发现伟大的餐厅";
+
+/* Discover Restaurants */
+"Discover Restaurants" = "发现餐厅";
 
 /* Favorites */
 "Favorites" = "我的最爱";
@@ -70,6 +82,15 @@
 /* HOW TO GET HERE */
 "HOW TO GET HERE" = "如何到达这里";
 
+/* I recommend you to check out */
+"I recommend you to check out" = "我建议你去看看";
+
+/* Just checking int at */
+"Just checking in at " = "只是报到的时候 ";
+
+/* Later */
+"Later" = "以后";
+
 /* Loading... */
 "Loading..." = "正在加载...";
 
@@ -84,6 +105,9 @@
 
 /* NEXT */
 "NEXT" = "下一个";
+
+/* Nothing Here */
+"Nothing Here" = "这里什么都没有";
 
 /* OK */
 "OK" = "好的";
@@ -106,6 +130,12 @@
 /* Rate us on App Store */
 "Rate us on App Store" = "在App Store上给我们评分";
 
+/* Reserve a table */
+"Reserve a table" = "预订桌子";
+
+/* Restaurant Recommendation */
+"Restaurant Recommendation" = "餐厅推荐";
+
 /* Sad */
 "Sad" = "悲伤";
 
@@ -115,18 +145,36 @@
 /* Search Restaurants... */
 "Search Restaurants..." = "搜索餐厅...";
 
+/* Share */
+"Share" = "分享";
+
+/* Show Favorites */
+"Show Favorites" = "显示收藏夹";
+
 /* SHOW YOU THE LOCATION */
 "SHOW YOU THE LOCATION" = "向您展示位置";
 
 /* Skip */
 "Skip" = "跳过";
 
+/* Tap + to add some restaurants */
+"Tap + to add some restaurants" = "点击+添加一些餐厅";
+
 /* Tell us your feedback */
 "Tell us your feedback" = "告诉我们您的反馈";
+
+/* The restaurant is one of your favorites. It is located at */
+"The restaurant is one of your favorites. It is located at" = "这家餐厅是你最喜欢的餐厅之一。它位于";
+
+/* Try new food today */
+"Try new food today" = "今天尝试新的食物";
 
 /* TYPE */
 "TYPE" = "类型";
 
 /* We can't proceed because one of the fields is blank. Please note that all fields are required. */
 "We can't proceed because one of the fields is blank. Please note that all fields are required." = "我们无法继续，因为其中一个字段为空白。请注意，所有字段均为必填字段。";
+
+/* Would you like to give it a try? */
+"Would you like to give it a try?" = "你想试一试吗？";
 

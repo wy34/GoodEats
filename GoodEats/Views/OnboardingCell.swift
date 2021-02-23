@@ -28,21 +28,14 @@ class OnboardingCell: UICollectionViewCell {
     }()
     
     let headlineLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.adjustsFontForContentSizeCategory = true
-        label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik", size: 17)!)
+        let label = UILabel.createLabel(textColor: .darkGray, fontName: "Rubik", textStyle: .headline, fontSize: 17, alignment: .center)
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.textColor = .darkGray
         label.numberOfLines = 2
         return label
     }()
     
     private let subHeadlineLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik", size: 16)!)
-        label.textColor = UIColor(named: "DescriptionText")
-        label.textAlignment = .center
+        let label = UILabel.createLabel(textColor: UIColor(named: "DescriptionText")!, fontName: "Rubik", textStyle: .headline, fontSize: 16, alignment: .center)
         label.numberOfLines = 0
         return label
     }()

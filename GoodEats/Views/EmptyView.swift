@@ -16,6 +16,10 @@ class EmptyView: UIView {
         return iv
     }()
     
+    private let nothingHereLabel = UILabel.createEmptyViewLabel(text: "Nothing Here", textColor: "InvertedDarkMode", fontSize: 26)
+    
+    private let tapToAddLabel = UILabel.createEmptyViewLabel(text: "Tap + to add some restaurants", textColor: "DescriptionText", fontSize: 18)
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,8 +32,10 @@ class EmptyView: UIView {
     
     // MARK: - UI
     func layoutViews() {
-        addSubview(emptyImageView)
-        emptyImageView.setDimension(wConst: 320, hConst: 356)
-        emptyImageView.anchor(top: topAnchor, right: rightAnchor, bottom: bottomAnchor, left: leftAnchor, paddingRight: 28, paddingLeft: 28)
+        addSubviews(emptyImageView, nothingHereLabel, tapToAddLabel)
+        emptyImageView.setDimension(width: widthAnchor, height: widthAnchor, wMult: 0.45, hMult: 0.45)
+        emptyImageView.center(x: self.centerXAnchor, y: self.centerYAnchor, yPadding: -25)
+        nothingHereLabel.anchor(top: emptyImageView.bottomAnchor, right: rightAnchor, left: leftAnchor, paddingTop: 10, paddingRight: 25, paddingLeft: 25)
+        tapToAddLabel.anchor(top: nothingHereLabel.bottomAnchor, right: rightAnchor, left: leftAnchor, paddingTop: 5, paddingRight: 25, paddingLeft: 25)
     }
 }

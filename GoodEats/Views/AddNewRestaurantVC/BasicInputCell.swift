@@ -9,12 +9,7 @@ import UIKit
 
 class BasicInputCell: UITableViewCell {
     // MARK: - Views
-    let label: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: .headline)
-        label.textColor = .darkGray
-        return label
-    }()
+    let label = UILabel.createLabel(textColor: .darkGray, textStyle: .headline)
     
     let textField: PaddedTextField = {
         let tf = PaddedTextField()

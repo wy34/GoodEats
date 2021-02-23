@@ -4,6 +4,9 @@
 /* About */
 "About" = "Über";
 
+/* Add a restaurant to share it. */
+"Add a restaurant to share it." = "Fügen Sie ein Restaurant hinzu, um es zu teilen.";
+
 /* ADDRESS */
 "ADDRESS" = "ADRESSE";
 
@@ -16,6 +19,9 @@
 /* Cancel */
 "Cancel" = "Abbrechen";
 
+/* Check-In */
+"Check-In" = "Einchecken";
+
 /* Choose your photo source */
 "Choose your photo source" = "Wählen Sie Ihre Fotoquelle";
 
@@ -25,6 +31,9 @@
 /* CREATE YOUR OWN FOOD GUIDE */
 "CREATE YOUR OWN FOOD GUIDE" = "ERSTELLEN SIE IHREN EIGENEN LEBENSMITTELFÜHRER";
 
+/* Delete */
+"Delete" = "Löschen";
+
 /* DESCRIPTION */
 "DESCRIPTION" = "BESCHREIBUNG";
 
@@ -33,6 +42,9 @@
 
 /* DISCOVER GREAT RESTAURANTS */
 "DISCOVER GREAT RESTAURANTS" = "TOLLE RESTAURANTS ENTDECKEN";
+
+/* Discover Restaurants */
+"Discover Restaurants" = "Restaurants entdecken";
 
 /* Favorites */
 "Favorites" = "Favoriten";
@@ -70,6 +82,15 @@
 /* HOW TO GET HERE */
 "HOW TO GET HERE" = "WIE MAN HIERHER KOMMT";
 
+/* I recommend you to check out */
+"I recommend you to check out" = "Ich empfehle Ihnen einen Blick auf";
+
+/* Just checking int at */
+"Just checking in at " = "Einfach mal reinschauen bei ";
+
+/* Later */
+"Later" = "Später";
+
 /* Loading... */
 "Loading..." = "Laden...";
 
@@ -84,6 +105,9 @@
 
 /* NEXT */
 "NEXT" = "NÄCHSTES";
+
+/* Nothing Here */
+"Nothing Here" = "Nichts hier";
 
 /* OK */
 "OK" = "OK";
@@ -106,6 +130,12 @@
 /* Rate us on App Store */
 "Rate us on App Store" = "Bewerten Sie uns im App Store";
 
+/* Reserve a table */
+"Reserve a table" = "Reservieren Sie einen Tisch";
+
+/* Restaurant Recommendation */
+"Restaurant Recommendation" = "Restaurant-Empfehlung";
+
 /* Sad */
 "Sad" = "Traurig";
 
@@ -115,18 +145,36 @@
 /* Search Restaurants... */
 "Search Restaurants..." = "Restaurants suchen...";
 
+/* Share */
+"Share" = "Teilen";
+
+/* Show Favorites */
+"Show Favorites" = "Favoriten anzeigen";
+
 /* SHOW YOU THE LOCATION */
 "SHOW YOU THE LOCATION" = "IHNEN DEN STANDORT ZEIGEN";
 
 /* Skip */
 "Skip" = "Überspringen";
 
+/* Tap + to add some restaurants */
+"Tap + to add some restaurants" = "Tippen Sie auf +, um einige Restaurants hinzuzufügen";
+
 /* Tell us your feedback */
 "Tell us your feedback" = "Sagen Sie uns Ihr Feedback";
 
+/* The restaurant is one of your favorites. It is located at */
+"The restaurant is one of your favorites. It is located at" = "Das Restaurant ist einer Ihrer Favoriten. Es befindet sich in";
+
+/* Try new food today */
+"Try new food today" = "Probieren Sie heute neue Lebensmittel";
+
 /* TYPE */
-"TYPE" = "TYP";
+"TYPE" = "TYPE";
 
 /* We can't proceed because one of the fields is blank. Please note that all fields are required. */
 "We can't proceed because one of the fields is blank. Please note that all fields are required." = "Wir können nicht fortfahren, weil eines der Felder leer ist. Bitte beachten Sie, dass alle Felder erforderlich sind.";
+
+/* Would you like to give it a try? */
+"Would you like to give it a try?" = "Möchten Sie es einmal ausprobieren?";
 

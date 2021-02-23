@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4C37A5F725D8CF6500B91243 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A5F625D8CF6500B91243 /* EmptyView.swift */; };
 		4C45743725D72976008CB291 /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45743625D72976008CB291 /* PaddedTextField.swift */; };
+		4C5223F625E4AE8C00D59E01 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C5223F425E4AE8C00D59E01 /* InfoPlist.strings */; };
+		4C5223F925E4AE8C00D59E01 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C5223F725E4AE8C00D59E01 /* Localizable.strings */; };
+		4C52240025E4BD8F00D59E01 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5223FF25E4BD8F00D59E01 /* UILabel.swift */; };
 		4C71DB4525DC5DEF00311D24 /* WalkThruVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71DB4425DC5DEF00311D24 /* WalkThruVC.swift */; };
 		4C71DB4925DC5FFD00311D24 /* OnboardingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71DB4825DC5FFD00311D24 /* OnboardingCell.swift */; };
 		4C71DB4E25DC759300311D24 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71DB4D25DC759300311D24 /* RootTabBarController.swift */; };
@@ -62,13 +65,16 @@
 		4CEAA68225D491500046AE6F /* RestaurantDetailSeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEAA68125D491500046AE6F /* RestaurantDetailSeparatorCell.swift */; };
 		4CEAA68625D4DC370046AE6F /* RestaurantDetailMapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEAA68525D4DC370046AE6F /* RestaurantDetailMapCell.swift */; };
 		4CEAA68925D4E13F0046AE6F /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEAA68825D4E13F0046AE6F /* MapVC.swift */; };
-		4CEF5BC825E0C3A600E353AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF5BC625E0C3A600E353AC /* InfoPlist.strings */; };
-		4CEF5BCB25E0C3A600E353AC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF5BC925E0C3A600E353AC /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4C37A5F625D8CF6500B91243 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		4C45743625D72976008CB291 /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
+		4C5223F525E4AE8C00D59E01 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		4C5223F825E4AE8C00D59E01 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		4C5223FB25E4AEA200D59E01 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4C5223FC25E4AEA200D59E01 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4C5223FF25E4BD8F00D59E01 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		4C71DB4425DC5DEF00311D24 /* WalkThruVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThruVC.swift; sourceTree = "<group>"; };
 		4C71DB4825DC5FFD00311D24 /* OnboardingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCell.swift; sourceTree = "<group>"; };
 		4C71DB4D25DC759300311D24 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
@@ -127,10 +133,6 @@
 		4CEAA68825D4E13F0046AE6F /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		4CEF5B9D25E0635B00E353AC /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		4CEF5B9F25E0638700E353AC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		4CEF5BC725E0C3A600E353AC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		4CEF5BCA25E0C3A600E353AC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		4CEF5BCD25E0C3B400E353AC /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		4CEF5BCE25E0C3B400E353AC /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +279,7 @@
 				4CCD6D3425D1F00100B9E299 /* UIView.swift */,
 				4CEAA67425D4774C0046AE6F /* UIColor.swift */,
 				4CC76EDA25D5C5F200D072A2 /* UIButton.swift */,
+				4C5223FF25E4BD8F00D59E01 /* UILabel.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -325,8 +328,8 @@
 		4CEF5BAD25E096C600E353AC /* Localizations */ = {
 			isa = PBXGroup;
 			children = (
-				4CEF5BC925E0C3A600E353AC /* Localizable.strings */,
-				4CEF5BC625E0C3A600E353AC /* InfoPlist.strings */,
+				4C5223F725E4AE8C00D59E01 /* Localizable.strings */,
+				4C5223F425E4AE8C00D59E01 /* InfoPlist.strings */,
 			);
 			path = Localizations;
 			sourceTree = "<group>";
@@ -395,12 +398,12 @@
 				4C75AE5E25D38AB000ECE188 /* Rubik-MediumItalic.ttf in Resources */,
 				4C75AE6025D38AB000ECE188 /* Rubik-SemiBoldItalic.ttf in Resources */,
 				4CCD6D2825D1EF2700B9E299 /* LaunchScreen.storyboard in Resources */,
-				4CEF5BCB25E0C3A600E353AC /* Localizable.strings in Resources */,
+				4C5223F925E4AE8C00D59E01 /* Localizable.strings in Resources */,
 				4C75AE5B25D38AB000ECE188 /* Rubik-Italic.ttf in Resources */,
 				4C75AE5825D38AB000ECE188 /* Rubik-Regular.ttf in Resources */,
 				4C75AE6225D38AB000ECE188 /* Rubik-LightItalic.ttf in Resources */,
 				4C75AE5925D38AB000ECE188 /* Rubik-ExtraBoldItalic.ttf in Resources */,
-				4CEF5BC825E0C3A600E353AC /* InfoPlist.strings in Resources */,
+				4C5223F625E4AE8C00D59E01 /* InfoPlist.strings in Resources */,
 				4C75AE5F25D38AB000ECE188 /* Rubik-ExtraBold.ttf in Resources */,
 				4C75AE6425D38AB000ECE188 /* Rubik-BoldItalic.ttf in Resources */,
 				4C75AE6325D38AB000ECE188 /* Rubik-Black.ttf in Resources */,
@@ -419,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CC76EDB25D5C5F200D072A2 /* UIButton.swift in Sources */,
+				4C52240025E4BD8F00D59E01 /* UILabel.swift in Sources */,
 				4CCD6D3E25D1F79E00B9E299 /* FavoriteCell.swift in Sources */,
 				4CC76EDF25D6382400D072A2 /* AddNewRestaurantVC.swift in Sources */,
 				4CC76ED525D5B74D00D072A2 /* RestaurantDetailRatingButtonView.swift in Sources */,
@@ -462,6 +466,24 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		4C5223F425E4AE8C00D59E01 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C5223F525E4AE8C00D59E01 /* zh-Hant */,
+				4C5223FB25E4AEA200D59E01 /* de */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4C5223F725E4AE8C00D59E01 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C5223F825E4AE8C00D59E01 /* zh-Hant */,
+				4C5223FC25E4AEA200D59E01 /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		4CCD6D2625D1EF2700B9E299 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -470,24 +492,6 @@
 				4CEF5B9F25E0638700E353AC /* de */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		4CEF5BC625E0C3A600E353AC /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4CEF5BC725E0C3A600E353AC /* de */,
-				4CEF5BCD25E0C3B400E353AC /* zh-Hant */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		4CEF5BC925E0C3A600E353AC /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4CEF5BCA25E0C3A600E353AC /* de */,
-				4CEF5BCE25E0C3B400E353AC /* zh-Hant */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

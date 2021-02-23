@@ -13,10 +13,7 @@ class RestaurantDetailTextCell: UITableViewCell {
     
     // MARK: - Views
     let detailLabel: UILabel = {
-        let label = UILabel()
-        label.adjustsFontForContentSizeCategory = true
-        label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik-Light", size: 15)!)
-        label.textColor = UIColor(named: "DescriptionText")
+        let label = UILabel.createLabel(textColor: UIColor(named: "DescriptionText")!, fontName: "Rubik-Light", textStyle: .headline, fontSize: 15, alignment: .left)
         label.numberOfLines = 0
         return label
     }()

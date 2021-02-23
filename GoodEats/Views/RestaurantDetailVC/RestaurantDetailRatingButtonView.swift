@@ -41,7 +41,7 @@ class RestaurantDetailRatingButtonView: UIView {
     func layoutViews() {
         addSubview(rateButton)
         rateButton.setDimension(wConst: 345, hConst: 47)
-        rateButton.anchor(right: rightAnchor, bottom: bottomAnchor, left: leftAnchor, paddingRight: 15, paddingBottom: 21, paddingLeft: 15)
+        rateButton.anchor(right: rightAnchor, bottom: bottomAnchor, left: leftAnchor, paddingRight: 15, paddingBottom: 10, paddingLeft: 15)
     }
     
     // MARK: - Selector

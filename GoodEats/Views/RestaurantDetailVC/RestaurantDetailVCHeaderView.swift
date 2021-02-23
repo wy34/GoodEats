@@ -49,14 +49,7 @@ class RestaurantDetailVCHeaderView: UIView {
         return view
     }()
     
-    private let typeLabel: UILabel = {
-        let label = UILabel()
-        label.adjustsFontForContentSizeCategory = true
-        label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik-Regular", size: 13)!)
-        label.textColor = .white
-        label.textAlignment = .center
-        return label
-    }()
+    private let typeLabel = UILabel.createLabel(textColor: .white, fontName: "Rubik-Regular", textStyle: .headline, fontSize: 13, alignment: .center)
     
     let heartImageView: UIImageView = {
         let iv = UIImageView()

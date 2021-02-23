@@ -213,6 +213,18 @@ extension DiscoverVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return cloudRestaurants.isEmpty ? 425 : 0
+        return cloudRestaurants.isEmpty && spinner.isAnimating ? 425 : 0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = NSLocalizedString("Add a restaurant to share it.", comment: "Add a restaurant to share it.")
+        label.textAlignment = .center
+        label.font = UIFontMetrics(forTextStyle: .subheadline).scaledFont(for: UIFont.init(name: "Rubik-Regular", size: 16)!)
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        cloudRestaurants.isEmpty && !spinner.isAnimating ? 425 : 0
     }
 }

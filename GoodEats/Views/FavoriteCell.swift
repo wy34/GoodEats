@@ -22,30 +22,9 @@ class FavoriteCell: UITableViewCell {
     }
     
     // MARK: - Views
-    let nameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Name"
-        label.font = UIFont.preferredFont(forTextStyle: .headline)
-        return label
-    }()
-    
-    let locationLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Location"
-        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        label.textColor = UIColor(named: "DescriptionText")
-        label.numberOfLines = 2
-        return label
-    }()
-    
-    private let typeLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Type"
-        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        label.textColor = UIColor(named: "DescriptionText")
-        return label
-    }()
-    
+    let nameLabel = UILabel.createLabel(textStyle: .headline)
+    let locationLabel = UILabel.createLabel(textColor: UIColor(named: "DescriptionText")!, textStyle: .subheadline, numberOfLines: 2)
+    private let typeLabel = UILabel.createLabel(textColor: UIColor(named: "DescriptionText")!, textStyle: .subheadline)
     
     let thumbnailImageView: UIImageView = {
         let iv = UIImageView()

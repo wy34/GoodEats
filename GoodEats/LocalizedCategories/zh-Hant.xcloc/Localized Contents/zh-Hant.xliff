@@ -26,20 +26,25 @@
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="12.4" build-num="12D4e"/>
     </header>
     <body>
-      <trans-unit id="A great restaurant to try out." xml:space="preserve">
-        <source>A great restaurant to try out.</source>
-        <target>是一家值得一试的好餐厅。</target>
-        <note>A great restaurant to try out.</note>
-      </trans-unit>
-      <trans-unit id="ADDRESS" xml:space="preserve">
-        <source>ADDRESS</source>
-        <target>地址</target>
-        <note>ADDRESS</note>
-      </trans-unit>
-      <trans-unit id="About" xml:space="preserve">
-        <source>About</source>
-        <target>关于我们</target>
-        <note>About</note>
+        <trans-unit id="A great restaurant to try out." xml:space="preserve">
+          <source>A great restaurant to try out.</source>
+          <target>是一家值得一试的好餐厅。</target>
+          <note>A great restaurant to try out.</note>
+        </trans-unit>
+        <trans-unit id="ADDRESS" xml:space="preserve">
+          <source>ADDRESS</source>
+          <target>地址</target>
+          <note>ADDRESS</note>
+        </trans-unit>
+        <trans-unit id="About" xml:space="preserve">
+          <source>About</source>
+          <target>关于我们</target>
+          <note>About</note>
+        </trans-unit>
+      <trans-unit id="Add a restaurant to share it." xml:space="preserve">
+        <source>Add a restaurant to share it.</source>
+        <target>添加一家餐厅来分享。</target>
+        <note>Add a restaurant to share it.</note>
       </trans-unit>
       <trans-unit id="Angry" xml:space="preserve">
         <source>Angry</source>
@@ -61,6 +66,11 @@
         <target>取消</target>
         <note>Cancel</note>
       </trans-unit>
+      <trans-unit id="Check-In" xml:space="preserve">
+        <source>Check-In</source>
+        <target>签到</target>
+        <note>Check-In</note>
+      </trans-unit>
       <trans-unit id="Choose your photo source" xml:space="preserve">
         <source>Choose your photo source</source>
         <target>选择你的照片来源</target>
@@ -81,10 +91,20 @@
         <target>发现伟大的餐厅</target>
         <note>DISCOVER GREAT RESTAURANTS</note>
       </trans-unit>
+      <trans-unit id="Delete" xml:space="preserve">
+        <source>Delete</source>
+        <target>删除</target>
+        <note>Delete</note>
+      </trans-unit>
       <trans-unit id="Discover" xml:space="preserve">
         <source>Discover</source>
         <target>发现</target>
         <note>Discover</note>
+      </trans-unit>
+      <trans-unit id="Discover Restaurants" xml:space="preserve">
+        <source>Discover Restaurants</source>
+        <target>发现餐厅</target>
+        <note>Discover Restaurants</note>
       </trans-unit>
       <trans-unit id="Facebook" xml:space="preserve">
         <source>Facebook</source>
@@ -150,9 +170,24 @@
         <target>开心</target>
         <note>Happy</note>
       </trans-unit>
+      <trans-unit id="I recommend you to check out" xml:space="preserve">
+        <source>I recommend you to check out</source>
+        <target>我建议你去看看</target>
+        <note>I recommend you to check out</note>
+      </trans-unit>
       <trans-unit id="Instagram" xml:space="preserve">
         <source>Instagram</source>
         <note>Instagram</note>
+      </trans-unit>
+      <trans-unit id="Just checking in at " xml:space="preserve">
+        <source>Just checking in at </source>
+        <target>只是报到的时候 </target>
+        <note>Just checking int at</note>
+      </trans-unit>
+      <trans-unit id="Later" xml:space="preserve">
+        <source>Later</source>
+        <target>以后</target>
+        <note>Later</note>
       </trans-unit>
       <trans-unit id="Loading..." xml:space="preserve">
         <source>Loading...</source>
@@ -178,6 +213,11 @@
         <source>New Restaurant</source>
         <target>新餐厅</target>
         <note>New Restaurant</note>
+      </trans-unit>
+      <trans-unit id="Nothing Here" xml:space="preserve">
+        <source>Nothing Here</source>
+        <target>这里什么都没有</target>
+        <note>Nothing Here</note>
       </trans-unit>
       <trans-unit id="OK" xml:space="preserve">
         <source>OK</source>
@@ -214,6 +254,16 @@
         <target>在App Store上给我们评分</target>
         <note>Rate us on App Store</note>
       </trans-unit>
+      <trans-unit id="Reserve a table" xml:space="preserve">
+        <source>Reserve a table</source>
+        <target>预订桌子</target>
+        <note>Reserve a table</note>
+      </trans-unit>
+      <trans-unit id="Restaurant Recommendation" xml:space="preserve">
+        <source>Restaurant Recommendation</source>
+        <target>餐厅推荐</target>
+        <note>Restaurant Recommendation</note>
+      </trans-unit>
       <trans-unit id="SHOW YOU THE LOCATION" xml:space="preserve">
         <source>SHOW YOU THE LOCATION</source>
         <target>向您展示位置</target>
@@ -234,6 +284,16 @@
         <target>在地图上搜索并定位您最喜爱的餐厅</target>
         <note>Search and locate your favorite restaurant on Maps</note>
       </trans-unit>
+      <trans-unit id="Share" xml:space="preserve">
+        <source>Share</source>
+        <target>分享</target>
+        <note>Share</note>
+      </trans-unit>
+      <trans-unit id="Show Favorites" xml:space="preserve">
+        <source>Show Favorites</source>
+        <target>显示收藏夹</target>
+        <note>Show Favorites</note>
+      </trans-unit>
       <trans-unit id="Skip" xml:space="preserve">
         <source>Skip</source>
         <target>跳过</target>
@@ -244,10 +304,25 @@
         <target>类型</target>
         <note>TYPE</note>
       </trans-unit>
+      <trans-unit id="Tap + to add some restaurants" xml:space="preserve">
+        <source>Tap + to add some restaurants</source>
+        <target>点击+添加一些餐厅</target>
+        <note>Tap + to add some restaurants</note>
+      </trans-unit>
       <trans-unit id="Tell us your feedback" xml:space="preserve">
         <source>Tell us your feedback</source>
         <target>告诉我们您的反馈</target>
         <note>Tell us your feedback</note>
+      </trans-unit>
+      <trans-unit id="The restaurant is one of your favorites. It is located at" xml:space="preserve">
+        <source>The restaurant is one of your favorites. It is located at</source>
+        <target>这家餐厅是你最喜欢的餐厅之一。它位于</target>
+        <note>The restaurant is one of your favorites. It is located at</note>
+      </trans-unit>
+      <trans-unit id="Try new food today" xml:space="preserve">
+        <source>Try new food today</source>
+        <target>今天尝试新的食物</target>
+        <note>Try new food today</note>
       </trans-unit>
       <trans-unit id="Twitter" xml:space="preserve">
         <source>Twitter</source>
@@ -257,6 +332,11 @@
         <source>We can't proceed because one of the fields is blank. Please note that all fields are required.</source>
         <target>我们无法继续，因为其中一个字段为空白。请注意，所有字段均为必填字段。</target>
         <note>We can't proceed because one of the fields is blank. Please note that all fields are required.</note>
+      </trans-unit>
+      <trans-unit id="Would you like to give it a try?" xml:space="preserve">
+        <source>Would you like to give it a try?</source>
+        <target>你想试一试吗？</target>
+        <note>Would you like to give it a try?</note>
       </trans-unit>
     </body>
   </file>

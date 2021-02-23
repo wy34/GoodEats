@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 class FavoritesVC: UIViewController {
     // MARK: - Properties
@@ -45,24 +46,19 @@ class FavoritesVC: UIViewController {
         return tv
     }()
     
-    @objc func dismissSearchController() {
-        print("dismissing")
-    }
-
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()
         layoutViews()
         presentOnboarding()
+        prepareNotification()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
-        navigationController?.navigationBar.barStyle = .default
-        navigationController?.navigationBar.tintColor = UIColor(named: "InvertedDarkMode")
     }
     
     // MARK: - UI
@@ -113,6 +109,56 @@ class FavoritesVC: UIViewController {
             }
             return false
         })
+    }
+    
+    func prepareNotification() {
+        // only notify if we actually have restaurants
+        if fetchedResultController.fetchedObjects!.count <= 0 {
+            return
+        }
+        
+        // picks a random restaurant
+        let randomNum = Int.random(in: 0..<fetchedResultController.fetchedObjects!.count)
+        let randomSuggestedRestaurant = fetchedResultController.fetchedObjects![randomNum]
+        
+        // creating the user notification
+        let content = UNMutableNotificationContent()
+        content.title = NSLocalizedString("Restaurant Recommendation", comment: "Restaurant Recommendation")
+        content.subtitle = NSLocalizedString("Try new food today", comment: "Try new food today")
+        
+        let contentBodyPart1 = NSLocalizedString("I recommend you to check out", comment: "I recommend you to check out")
+        let contentBodyPart2 = NSLocalizedString("The restaurant is one of your favorites. It is located at", comment: "The restaurant is one of your favorites. It is located at")
+        let contentBodyPart3 = NSLocalizedString("Would you like to give it a try?", comment: "Would you like to give it a try?")
+        
+        content.body = contentBodyPart1 + " \(randomSuggestedRestaurant.name!). " + contentBodyPart2 + " \(randomSuggestedRestaurant.name!). " + contentBodyPart3
+        content.sound = UNNotificationSound.default
+        content.userInfo = ["phone": randomSuggestedRestaurant.phone!] // adding a piece of info to the underlying dictionary
+        
+        // adding image to notification
+        let tempDirPath = NSTemporaryDirectory()
+        let tempDirURL = URL(fileURLWithPath: tempDirPath, isDirectory: true)
+        let tempFileURL = tempDirURL.appendingPathComponent("suggested-restaurant.jpg")
+        
+        if let image = UIImage(data: randomSuggestedRestaurant.image! as Data) {
+            try? image.jpegData(compressionQuality: 1.0)?.write(to: tempFileURL)
+            if let restaurantImage = try? UNNotificationAttachment(identifier: "restaurantImage", url: tempFileURL, options: nil) {
+                content.attachments = [restaurantImage]
+            }
+        }
+        
+        // Creating custom notification actions and adding them to notification center (no functionalities at this point)
+        let categoryId = "goodEats.restaurantActions"
+        let laterAction = UNNotificationAction(identifier: "goodEats.cancel", title: NSLocalizedString("Later", comment: "Later"), options: [])
+        let callAction = UNNotificationAction(identifier: "goodEats.call", title: NSLocalizedString("Reserve a table", comment: "Reserve a table"), options: [.foreground])
+        let category = UNNotificationCategory(identifier: categoryId, actions: [laterAction, callAction], intentIdentifiers: [], options: [])
+        UNUserNotificationCenter.current().setNotificationCategories([category])
+        content.categoryIdentifier = categoryId // associate actions to this particular notification
+        
+        // trigger set for every 24 hours (86400 seconds)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: (10*60*60), repeats: true)
+        let request = UNNotificationRequest(identifier: "goodEats.restaurantSuggestion", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
     // MARK: - Selectors
@@ -168,31 +214,6 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
         restaurantDetailVC.hidesBottomBarWhenPushed = true
         restaurantDetailVC.restaurant = isSearching ? searchedResults[indexPath.row] : fetchedResultController.object(at: indexPath)
         navigationController?.pushViewController(restaurantDetailVC, animated: true)
-//        let optionMenu = UIAlertController(title: nil, message: "What do you want to do?", preferredStyle: .actionSheet)
-//        
-//        // for ipads
-//        if let popoverController = optionMenu.popoverPresentationController {
-//            if let cell = tableView.cellForRow(at: indexPath) {
-//                popoverController.sourceView = cell
-//                popoverController.sourceRect = cell.bounds
-//            }
-//        }
-//        
-//        let callAction = UIAlertAction(title: "Call 123-000-\(indexPath.row)", style: .default) { (action) in
-//            let alertMessage = UIAlertController(title: "Service Unavailable", message: "Sorry, the call feature is not available yet. Please retry later.", preferredStyle: .alert)
-//            alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//            self.present(alertMessage, animated: true, completion: nil)
-//        }
-//        
-//        let checkInAction = UIAlertAction(title: restaurants[indexPath.row].isCheckedIn ? "Undo Check in" : "Check In", style: .default) { (action) in
-//            self.handleCheckInAccessoryView(forCellAt: indexPath)
-//        }
-//        
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//        optionMenu.addAction(callAction)
-//        optionMenu.addAction(checkInAction)
-//        optionMenu.addAction(cancelAction)
-//        present(optionMenu, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -261,11 +282,11 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
             restaurantDetailVC.restaurant = selectedRestaurant
             return restaurantDetailVC
         }) { actions in
-            let checkInAction = UIAction(title: "Check-In", image: UIImage(systemName: "checkmark")) { action in
+            let checkInAction = UIAction(title: NSLocalizedString("Check-In", comment: "Check-In"), image: UIImage(systemName: "checkmark")) { action in
                 self.fetchedResultController.object(at: indexPath).isCheckedIn = self.fetchedResultController.object(at: indexPath).isCheckedIn ? false : true
             }
             
-            let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in
+            let shareAction = UIAction(title: NSLocalizedString("Share", comment: "Share"), image: UIImage(systemName: "square.and.arrow.up")) { action in
                 let defaultText = NSLocalizedString("Just checking in at ", comment: "Just checking int at ") + self.fetchedResultController.object(at: indexPath).name!
                 let activityController: UIActivityViewController
                 
@@ -278,7 +299,7 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
                 self.present(activityController, animated: true, completion: nil)
             }
             
-            let deleteAction = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
+            let deleteAction = UIAction(title: NSLocalizedString("Delete", comment: "Delete"), image: UIImage(systemName: "trash"), attributes: .destructive) { action in
                 let restaurantToDelete = self.fetchedResultController.object(at: indexPath)
                 CoreDataManager.shared.delete(restaurantToDelete)
                 CoreDataManager.shared.save()

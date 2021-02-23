@@ -33,10 +33,6 @@ class RootTabBarController: UIViewController {
     }
     
     // MARK: - UI
-    func configureUI() {
-        
-    }
-    
     func layoutViews() {
         view.addSubview(tabBar.view)
     }

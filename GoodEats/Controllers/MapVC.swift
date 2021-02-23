@@ -31,13 +31,13 @@ class MapVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.barStyle = .default
-        navigationController?.navigationBar.tintColor = UIColor(named: "InvertedDarkMode")
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     // MARK: - UI
     func layoutViews() {
-        view.addSubview(mapView)
+        view.addSubviews(mapView)
         mapView.anchor(top: view.topAnchor, right: view.rightAnchor, bottom: view.bottomAnchor, left: view.leftAnchor)
     }
     

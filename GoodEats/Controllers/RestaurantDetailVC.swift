@@ -31,7 +31,7 @@ class RestaurantDetailVC: UIViewController {
         tv.delegate = self
         tv.dataSource = self
         tv.separatorStyle = .none
-        tv.contentInsetAdjustmentBehavior = .never
+//        tv.contentInsetAdjustmentBehavior = .never // have the table view ignore the navbar and navbar is essentially invisible but still there
         tv.backgroundColor = UIColor(named: "DarkMode")
         return tv
     }()
@@ -52,14 +52,16 @@ class RestaurantDetailVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navigationController?.navigationBar.tintColor = .white
+        navigationItem.largeTitleDisplayMode = .never
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     // MARK: - UI
     func configureNavBar() {
+        navigationItem.title = restaurant?.name
         navigationItem.backButtonTitle = ""
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "phone"), style: .plain, target: self, action: #selector(callRestaurant(sender:)))
     }
     
     func layoutViews() {
@@ -78,6 +80,15 @@ class RestaurantDetailVC: UIViewController {
             self.tableHeaderView.ratingImageView.transform = .identity
         }
     }
+    
+    // MARK: - Selectors
+    @objc func callRestaurant(sender: UIBarButtonItem) {
+        if let phoneUrl = URL(string: "tel://\(self.restaurant?.phone ?? "")") {
+            if UIApplication.shared.canOpenURL(phoneUrl) {
+                UIApplication.shared.open(phoneUrl)
+            }
+        }
+    }
 }
 
 // MARK: - UITableView Delegate/Datasource
@@ -92,7 +103,8 @@ extension RestaurantDetailVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 350
+        let height = UIScreen.main.bounds.height
+        return height < 375 ? height * 0.4 : height * 0.45
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -144,7 +156,7 @@ extension RestaurantDetailVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 90
+        return 75
     }
 }
 

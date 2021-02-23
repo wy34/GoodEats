@@ -12,20 +12,9 @@ class DescriptionInputCell: UITableViewCell {
     static let reuseId = "DescriptionInputCell"
     
     // MARK: - Views
-    let label: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: .headline)
-        label.text = NSLocalizedString("DESCRIPTION", comment: "DESCRIPTION")
-        label.textColor = .darkGray
-        return label
-    }()
+    let label = UILabel.createLabel(text: "DESCRIPTION", textColor: .darkGray, textStyle: .headline)
     
-    let placeholderLabel: UILabel = {
-        let label = UILabel()
-        label.text = NSLocalizedString("A great restaurant to try out.", comment: "A great restaurant to try out.")
-        label.textColor = UIColor(named: "Placeholder")
-        return label
-    }()
+    let placeholderLabel = UILabel.createLabel(text: "A great restaurant to try out.", textColor: UIColor(named: "Placeholder")!, textStyle: .body)
     
     lazy var textView: UITextView = {
         let tv = UITextView()

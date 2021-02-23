@@ -62,12 +62,8 @@ class DiscoverRestaurantCell: UITableViewCell {
     }()
     
     private let typeLabel: UILabel = {
-        let label = UILabel()
+        let label = UILabel.createLabel(textColor: .white, fontName: "Rubik-Regular", textStyle: .headline, fontSize: 16, alignment: .center)
         label.text = "Cafe"
-        label.adjustsFontForContentSizeCategory = true
-        label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik-Regular", size: 16)!)
-        label.textColor = .white
-        label.textAlignment = .center
         return label
     }()
     
@@ -81,12 +77,8 @@ class DiscoverRestaurantCell: UITableViewCell {
     }()
     
     let locationDetailLabel: UILabel = {
-        let label = UILabel()
-        label.adjustsFontForContentSizeCategory = true
-        label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik-Regular", size: 14)!)
+        let label = UILabel.createLabel(textColor: UIColor(named: "DescriptionText")!, fontName: "Rubik-Regular", textStyle: .headline, fontSize: 13, alignment: .left)
         label.numberOfLines = 0
-        label.text = "asldfkasjldkfas;df;asjdfjasd;f"
-        label.textColor = UIColor(named: "DescriptionText")
         return label
     }()
     
@@ -107,12 +99,8 @@ class DiscoverRestaurantCell: UITableViewCell {
     }()
     
     let phoneDetailLabel: UILabel = {
-        let label = UILabel()
-        label.adjustsFontForContentSizeCategory = true
-        label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik-Regular", size: 14)!)
+        let label = UILabel.createLabel(textColor: UIColor(named: "DescriptionText")!, fontName: "Rubik-Regular", textStyle: .headline, fontSize: 13, alignment: .left)
         label.numberOfLines = 0
-        label.text = "lasfjlaskjdlakjsldfjas;dfj;"
-        label.textColor = UIColor(named: "DescriptionText")
         return label
     }()
     
@@ -124,10 +112,7 @@ class DiscoverRestaurantCell: UITableViewCell {
     }()
     
     private let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont(name: "Rubik-Regular", size: 14)!)
-        label.text = "lasfjlaskjdlakjsldfjaslasfjlaskjdlakjsldfjas;dfj;lasfjlaskjdlakjsldf"
-        label.textColor = UIColor(named: "DescriptionText")
+        let label = UILabel.createLabel(textColor: UIColor(named: "DescriptionText")!, fontName: "Rubik-Regular", textStyle: .headline, fontSize: 16, alignment: .left)
         label.numberOfLines = 0
         return label
     }()
@@ -148,9 +133,9 @@ class DiscoverRestaurantCell: UITableViewCell {
         addSubviews(restaurantImageView, nameLabel, typeLabelContainer, locationStack, phoneStack, descriptionLabel)
 
         restaurantImageView.anchor(top: topAnchor, right: readableContentGuide.rightAnchor, left: readableContentGuide.leftAnchor, paddingTop: 15)
-        restaurantImageView.setDimension(hConst: 225)
+        restaurantImageView.setDimension(hConst: 350)
 
-        nameLabel.anchor(top: restaurantImageView.bottomAnchor, right: restaurantImageView.rightAnchor, left: restaurantImageView.leftAnchor, paddingTop: 5)
+        nameLabel.anchor(top: restaurantImageView.bottomAnchor, right: restaurantImageView.rightAnchor, left: restaurantImageView.leftAnchor, paddingTop: 10)
         
         typeLabelContainer.anchor(top: nameLabel.bottomAnchor, left: nameLabel.leftAnchor, paddingTop: 5)
         typeLabelContainer.heightAnchor.constraint(greaterThanOrEqualToConstant: 20).isActive = true
@@ -160,11 +145,11 @@ class DiscoverRestaurantCell: UITableViewCell {
         typeLabel.anchor(top: typeLabelContainer.topAnchor, right: typeLabelContainer.rightAnchor, bottom: typeLabelContainer.bottomAnchor, left: typeLabelContainer.leftAnchor, paddingTop: 3, paddingRight: 5, paddingBottom: 3, paddingLeft: 5)
 
         locationIconImageView.setDimension(wConst: 20, hConst: 20)
-        locationStack.anchor(top: typeLabelContainer.bottomAnchor, right: restaurantImageView.rightAnchor, left: restaurantImageView.leftAnchor, paddingTop: 5)
+        locationStack.anchor(top: typeLabelContainer.bottomAnchor, right: restaurantImageView.rightAnchor, left: restaurantImageView.leftAnchor, paddingTop: 15)
 
         phoneIconImageView.setDimension(wConst: 20, hConst: 20)
         phoneStack.anchor(top: locationStack.bottomAnchor, right: locationStack.rightAnchor, left: locationStack.leftAnchor, paddingTop: 5)
 
-        descriptionLabel.anchor(top: phoneStack.bottomAnchor, right: phoneStack.rightAnchor, bottom: bottomAnchor, left: phoneStack.leftAnchor, paddingTop: 5, paddingBottom: 15)
+        descriptionLabel.anchor(top: phoneStack.bottomAnchor, right: phoneStack.rightAnchor, bottom: bottomAnchor, left: phoneStack.leftAnchor, paddingTop: 15, paddingBottom: 15)
     }
 }
