@@ -27,6 +27,7 @@ class CustomLoadViewLauncher: NSObject {
     
     private let customSpinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView()
+        spinner.hidesWhenStopped = true
         spinner.style = .large
         spinner.color = .white
         return spinner

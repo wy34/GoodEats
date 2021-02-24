@@ -61,7 +61,7 @@ class RestaurantDetailVC: UIViewController {
     func configureNavBar() {
         navigationItem.title = restaurant?.name
         navigationItem.backButtonTitle = ""
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "phone"), style: .plain, target: self, action: #selector(callRestaurant(sender:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "phone.fill", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), style: .plain, target: self, action: #selector(callRestaurant(sender:)))
     }
     
     func layoutViews() {

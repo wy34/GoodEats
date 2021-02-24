@@ -45,7 +45,7 @@ class DiscoverVC: UIViewController {
     // MARK: - UI
     func configureNavBar() {
         navigationItem.title = NSLocalizedString("Discover", comment: "Discover")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.clockwise"), style: .plain, target: self, action: #selector(handleLoad))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.clockwise", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), style: .plain, target: self, action: #selector(handleLoad))
         navigationItem.rightBarButtonItem?.isEnabled = false
     }
     

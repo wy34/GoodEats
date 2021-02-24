@@ -71,8 +71,8 @@ class AddNewRestaurantVC: UITableViewController {
     
     func configureNavBar() {
         navigationItem.title = NSLocalizedString("New Restaurant", comment: "New Restaurant")
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(handleCloseTapped))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.down"), style: .plain, target: self, action: #selector(handleSaveTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), style: .plain, target: self, action: #selector(handleCloseTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.down", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), style: .plain, target: self, action: #selector(handleSaveTapped))
         navigationController?.navigationBar.tintColor = UIColor(named: "InvertedDarkMode")
     }
     
@@ -91,37 +91,6 @@ class AddNewRestaurantVC: UITableViewController {
             present(imagePicker, animated: true, completion: nil)
         }
     }
-    
-//    func saveRecordToCloud(restaurant: Restaurant!) {
-//        let record = CKRecord(recordType: "Restaurant")
-//        record.setValue(restaurant.name, forKey: "name")
-//        record.setValue(restaurant.type, forKey: "type")
-//        record.setValue(restaurant.location, forKey: "location")
-//        record.setValue(restaurant.phone, forKey: "phone")
-//        record.setValue(restaurant.summary, forKey: "description")
-//
-//        // resize the image because we don't want to upload a super high resolution photo
-//        let originalImage = UIImage(data: restaurant.image!)!
-//        let scalingFactor = (originalImage.size.width > 1024) ? 1024 / originalImage.size.width : 1.0
-//        let scaledImage = UIImage(data: restaurant.image!, scale: scalingFactor)!
-//
-//        // write the image to local file for temporary use
-//        let imageFilePath = NSTemporaryDirectory() + restaurant.name!
-//        let imageFileUrl = URL(fileURLWithPath: imageFilePath)
-//        try? scaledImage.jpegData(compressionQuality: 0.8)?.write(to: imageFileUrl)
-//
-//        // create image asset for icloud
-//        let imageAsset = CKAsset(fileURL: imageFileUrl)
-//        record.setValue(imageAsset, forKey: "image")
-//
-//        // get the public icloud database
-//        let publicDatabase = CKContainer.default().publicCloudDatabase
-//
-//        // save record to icloud
-//        publicDatabase.save(record) { (record, error) in
-//            try? FileManager.default.removeItem(at: imageFileUrl)
-//        }
-//    }
     
     // MARK: - Selector
     @objc func handleCloseTapped() {

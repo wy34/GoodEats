@@ -97,8 +97,8 @@ class WalkThruVC: UICollectionViewController {
         // if 3d touch is available
         if traitCollection.forceTouchCapability == .available {
             if let bundleIdentifier = Bundle.main.bundleIdentifier {
-                let shortcutItem1 = UIApplicationShortcutItem(type: "\(bundleIdentifier).OpenFavorites", localizedTitle: NSLocalizedString("Show Favorites", comment: "Show Favorites"), localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "favorite"), userInfo: nil)
-                let shortcutItem2 = UIApplicationShortcutItem(type: "\(bundleIdentifier).OpenDiscover", localizedTitle: NSLocalizedString( "Discover Restaurants", comment:  "Discover Restaurants"), localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "discover"), userInfo: nil)
+                let shortcutItem1 = UIApplicationShortcutItem(type: "\(bundleIdentifier).OpenFavorites", localizedTitle: NSLocalizedString("Show Favorites", comment: "Show Favorites"), localizedSubtitle: nil, icon: UIApplicationShortcutIcon(systemImageName: "star"), userInfo: nil)
+                let shortcutItem2 = UIApplicationShortcutItem(type: "\(bundleIdentifier).OpenDiscover", localizedTitle: NSLocalizedString( "Discover Restaurants", comment:  "Discover Restaurants"), localizedSubtitle: nil, icon: UIApplicationShortcutIcon(systemImageName: "eyeglasses"), userInfo: nil)
                 let shortcutItem3 = UIApplicationShortcutItem(type: "\(bundleIdentifier).NewRestaurant", localizedTitle: NSLocalizedString("New Restaurant", comment: "New Restaurant"), localizedSubtitle: nil, icon: UIApplicationShortcutIcon(type: .add), userInfo: nil)
                 UIApplication.shared.shortcutItems = [shortcutItem1, shortcutItem2, shortcutItem3]
             }

@@ -82,6 +82,9 @@
 /* HOW TO GET HERE */
 "HOW TO GET HERE" = "如何到达这里";
 
+/* iCloud */
+"iCloud" = "iCloud";
+
 /* I recommend you to check out */
 "I recommend you to check out" = "我建议你去看看";
 
@@ -115,6 +118,9 @@
 /* Oops */
 "Oops" = "糟了";
 
+/* Other */
+"Other" = "其他";
+
 /* PHONE */
 "PHONE" = "电话";
 
@@ -123,6 +129,9 @@
 
 /* Pin your favorite restaurants and create your own food guide */
 "Pin your favorite restaurants and create your own food guide" = "将你最喜欢的餐厅钉在墙上，创建你自己的美食指南。";
+
+/* Please sign in to iCloud in order to share to Discover page. */
+"Please sign in to iCloud in order to share to Discover page." = "请登录iCloud，以便分享到发现页面。";
 
 /* Rate It */
 "Rate It" = "评价";
@@ -174,6 +183,9 @@
 
 /* We can't proceed because one of the fields is blank. Please note that all fields are required. */
 "We can't proceed because one of the fields is blank. Please note that all fields are required." = "我们无法继续，因为其中一个字段为空白。请注意，所有字段均为必填字段。";
+
+/* Where would you like to share this to? */
+"Where would you like to share this to?" = "你想把这个分享给哪里？";
 
 /* Would you like to give it a try? */
 "Would you like to give it a try?" = "你想试一试吗？";

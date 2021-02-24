@@ -74,7 +74,7 @@ class FavoritesVC: UIViewController {
     func configureNavBar() {
         navigationItem.title = NSLocalizedString("GoodEats", comment: "GoodEats")
         navigationItem.backButtonTitle = ""
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(handleAddTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), style: .plain, target: self, action: #selector(handleAddTapped))
         
         navigationController?.navigationBar.sizeToFit() // fixes the issue where a collapsed navbar is the default when searchController is present
         searchController = UISearchController(searchResultsController: nil)
@@ -162,48 +162,6 @@ class FavoritesVC: UIViewController {
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
-    func handleSharing(indexPath: IndexPath) {
-        let alertController = UIAlertController(title: "Share", message: "Where would you like to share this to?", preferredStyle: .alert)
-        
-        if let popoverController = alertController.popoverPresentationController {
-            if let cell = tableView.cellForRow(at: indexPath) {
-                popoverController.sourceView = cell
-                popoverController.sourceRect = cell.bounds
-            }
-        }
-        
-        let discoverAction = UIAlertAction(title: "Discover", style: .default) { [weak self] (action) in
-            let restaurant = self?.fetchedResultController.object(at: indexPath)
-            self?.saveRecordToCloud(restaurant: restaurant)
-        }
-
-        let otherAction = UIAlertAction(title: "Other", style: .default, handler: { [weak self] (action) in
-            let defaultText = "Just checking in at " + (self?.fetchedResultController.object(at: indexPath).name ?? "")
-            let activityViewController: UIActivityViewController
-
-            if let imageToShare = UIImage(data: self?.fetchedResultController.object(at: indexPath).image ?? Data()) {
-                activityViewController = UIActivityViewController(activityItems: [defaultText, imageToShare], applicationActivities: nil)
-            } else {
-                activityViewController = UIActivityViewController(activityItems: [defaultText], applicationActivities: nil)
-            }
-
-            // for ipads
-            if let popoverViewController = activityViewController.popoverPresentationController {
-                if let cell = self?.tableView.cellForRow(at: indexPath) {
-                    popoverViewController.sourceView = cell
-                    popoverViewController.sourceRect = cell.bounds
-                }
-            }
-
-            self?.present(activityViewController, animated: true, completion: nil)
-        })
-        
-        alertController.addAction(discoverAction)
-        alertController.addAction(otherAction)
-        
-        present(alertController, animated: true, completion: nil)
-    }
-    
     func saveRecordToCloud(restaurant: Restaurant!) {
         let record = CKRecord(recordType: "Restaurant")
         record.setValue(restaurant.name, forKey: "name")
@@ -232,6 +190,42 @@ class FavoritesVC: UIViewController {
         // save record to icloud
         publicDatabase.save(record) { (record, error) in
             try? FileManager.default.removeItem(at: imageFileUrl)
+        }
+    }
+    
+    func handleShare(indexPath: IndexPath) {
+        let defaultText = NSLocalizedString("Just checking in at ", comment: "Just checking in at ") + (fetchedResultController.object(at: indexPath).name ?? "")
+        let activityViewController: UIActivityViewController
+
+        if let imageToShare = UIImage(data: fetchedResultController.object(at: indexPath).image ?? Data()) {
+            activityViewController = UIActivityViewController(activityItems: [defaultText, imageToShare], applicationActivities: nil)
+        } else {
+            activityViewController = UIActivityViewController(activityItems: [defaultText], applicationActivities: nil)
+        }
+
+        // for ipads
+        if let popoverViewController = activityViewController.popoverPresentationController {
+            if let cell = tableView.cellForRow(at: indexPath) {
+                popoverViewController.sourceView = cell
+                popoverViewController.sourceRect = cell.bounds
+            }
+        }
+
+        present(activityViewController, animated: true, completion: nil)
+    }
+    
+    func handleDiscover(indexPath: IndexPath) {
+        // check to see if user is signed in to iCloud
+        if let _ = FileManager.default.ubiquityIdentityToken {
+            print("IS Signed in to iCloud")
+            let restaurant = fetchedResultController.object(at: indexPath)
+            self.saveRecordToCloud(restaurant: restaurant)
+        }
+        else {
+            print("NOT Signed in to iCloud")
+            let alertController = UIAlertController(title: NSLocalizedString("iCloud", comment: "iCloud"), message: NSLocalizedString("Please sign in to iCloud in order to share to Discover page.", comment: "Please sign in to iCloud in order to share to Discover page."), preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .default, handler: nil))
+            present(alertController, animated: true, completion: nil)
         }
     }
     
@@ -296,7 +290,7 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
             completionHandler(true)
         }
         checkInAction.backgroundColor = .systemGreen
-        checkInAction.image = !fetchedResultController.object(at: indexPath).isCheckedIn ? UIImage(systemName: "checkmark") : UIImage(systemName: "arrow.uturn.left")
+        checkInAction.image = !fetchedResultController.object(at: indexPath).isCheckedIn ? UIImage(systemName: "checkmark") : UIImage(systemName: "arrow.uturn.backward")
         
         return UISwipeActionsConfiguration(actions: [checkInAction])
     }
@@ -311,14 +305,21 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
         deleteAction.backgroundColor = UIColor.init(red: 231, green: 76, blue: 60)
         deleteAction.image = UIImage(systemName: "trash")
         
-        let shareAction = UIContextualAction(style: .normal, title: "Share") { (action, sourceView, completionHandler) in
-            self.handleSharing(indexPath: indexPath)
+        let shareAction = UIContextualAction(style: .normal, title: "Share") { [weak self] (action, sourceView, completionHandler) in
+            self?.handleShare(indexPath: indexPath)
             completionHandler(true)
         }
         shareAction.backgroundColor = UIColor.init(red: 254, green: 149, blue: 38)
         shareAction.image = UIImage(systemName: "square.and.arrow.up")
         
-        return UISwipeActionsConfiguration(actions: [deleteAction, shareAction])
+        let discoverAction = UIContextualAction(style: .normal, title: "Discover") { (action, sourceView, completionHandler) in
+            self.handleDiscover(indexPath: indexPath)
+            completionHandler(true)
+        }
+        discoverAction.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        discoverAction.image = UIImage(systemName: "eyeglasses")
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction, shareAction, discoverAction])
     }
     
     // disables left and right swipe of cell
@@ -343,8 +344,12 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
                 self.fetchedResultController.object(at: indexPath).isCheckedIn = self.fetchedResultController.object(at: indexPath).isCheckedIn ? false : true
             }
             
-            let shareAction = UIAction(title: NSLocalizedString("Share", comment: "Share"), image: UIImage(systemName: "square.and.arrow.up")) { action in
-                self.handleSharing(indexPath: indexPath)
+            let discoverAction = UIAction(title: NSLocalizedString("Discover", comment: "Discover"), image: UIImage(systemName: "eyeglasses")) { [weak self] (action) in
+                self?.handleDiscover(indexPath: indexPath)
+            }
+            
+            let shareAction = UIAction(title: NSLocalizedString("Share", comment: "Share"), image: UIImage(systemName: "square.and.arrow.up")) { [weak self] action in
+                self?.handleShare(indexPath: indexPath)
             }
             
             let deleteAction = UIAction(title: NSLocalizedString("Delete", comment: "Delete"), image: UIImage(systemName: "trash"), attributes: .destructive) { action in
@@ -353,7 +358,7 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
                 CoreDataManager.shared.save()
             }
             
-            return UIMenu(title: "", children: [checkInAction, shareAction, deleteAction])
+            return UIMenu(title: "", children: [checkInAction, discoverAction, shareAction, deleteAction])
         }
         
         return configuration

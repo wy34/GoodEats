@@ -85,6 +85,9 @@
 /* I recommend you to check out */
 "I recommend you to check out" = "Ich empfehle Ihnen einen Blick auf";
 
+/* iCloud */
+"iCloud" = "iCloud";
+
 /* Just checking int at */
 "Just checking in at " = "Einfach mal reinschauen bei ";
 
@@ -115,6 +118,9 @@
 /* Oops */
 "Oops" = "Hoppla";
 
+/* Other */
+"Other" = "Andere";
+
 /* PHONE */
 "PHONE" = "TELEFON";
 
@@ -123,6 +129,9 @@
 
 /* Pin your favorite restaurants and create your own food guide */
 "Pin your favorite restaurants and create your own food guide" = "Pinnen Sie Ihre Lieblingsrestaurants und erstellen Sie Ihren eigenen Speiseführer";
+
+/* Please sign in to iCloud in order to share to Discover page. */
+"Please sign in to iCloud in order to share to Discover page." = "Bitte melden Sie sich bei iCloud an, um die Seite Discover zu teilen.";
 
 /* Rate It */
 "Rate It" = "Bewerten";
@@ -174,6 +183,9 @@
 
 /* We can't proceed because one of the fields is blank. Please note that all fields are required. */
 "We can't proceed because one of the fields is blank. Please note that all fields are required." = "Wir können nicht fortfahren, weil eines der Felder leer ist. Bitte beachten Sie, dass alle Felder erforderlich sind.";
+
+/* Where would you like to share this to? */
+"Where would you like to share this to?" = "Wohin möchten Sie dies weitergeben?";
 
 /* Would you like to give it a try? */
 "Would you like to give it a try?" = "Möchten Sie es einmal ausprobieren?";
