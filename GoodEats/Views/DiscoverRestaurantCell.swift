@@ -38,7 +38,7 @@ class DiscoverRestaurantCell: UITableViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
-        iv.image = UIImage(systemName: "photo")
+//        iv.image = UIImage(systemName: "photo")
         iv.tintColor = .darkGray
         iv.layer.cornerRadius = 5
         iv.layer.masksToBounds = true
@@ -47,7 +47,7 @@ class DiscoverRestaurantCell: UITableViewCell {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Moon Rock Cafe"
+//        label.text = "Moon Rock Cafe"
         label.numberOfLines = 0
         label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: UIFont.init(name: "Rubik-Medium", size: 25)!)
         return label
@@ -63,7 +63,7 @@ class DiscoverRestaurantCell: UITableViewCell {
     
     private let typeLabel: UILabel = {
         let label = UILabel.createLabel(textColor: .white, fontName: "Rubik-Regular", textStyle: .headline, fontSize: 16, alignment: .center)
-        label.text = "Cafe"
+//        label.text = "Cafe"
         return label
     }()
     

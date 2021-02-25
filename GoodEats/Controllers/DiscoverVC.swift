@@ -264,4 +264,18 @@ extension DiscoverVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return isConnectedToNetwork == true ? 0 : 250
     }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let containerView = UIView()
+        let label = UILabel.createEmptyViewLabel(text: "Currently empty. Add a new restaurant or try refreshing!", textColor: "InvertedDarkMode", fontSize: 16)
+        label.numberOfLines = 0
+        containerView.addSubview(label)
+        label.setDimension(width: containerView.widthAnchor, wMult: 0.75)
+        label.center(x: containerView.centerXAnchor, y: containerView.centerYAnchor)
+        return containerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return cloudRestaurants.count == 0 ? 250 : 0
+    }
 }

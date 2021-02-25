@@ -67,11 +67,7 @@ class FavoritesVC: UIViewController {
         if !OnboardingManager.shared.isOldUser {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .horizontal
-            
-            let walkThruVC = WalkThruVC(collectionViewLayout: layout)
-//            walkThruVC.presentationController?.delegate = self
-//            walkThruVC.modalPresentationStyle = .fullScreen
-            present(walkThruVC, animated: true, completion: nil)
+            present(WalkThruVC(collectionViewLayout: layout), animated: true, completion: nil)
         }
     }
     
@@ -79,6 +75,7 @@ class FavoritesVC: UIViewController {
         navigationItem.title = NSLocalizedString("GoodEats", comment: "GoodEats")
         navigationItem.backButtonTitle = ""
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), style: .plain, target: self, action: #selector(handleAddTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "info.circle", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), style: .plain, target: self, action: #selector(handleTipsTapped(sender:)))
         
         navigationController?.navigationBar.sizeToFit() // fixes the issue where a collapsed navbar is the default when searchController is present
         searchController = UISearchController(searchResultsController: nil)
@@ -238,6 +235,17 @@ class FavoritesVC: UIViewController {
         let addNewRestaurantVC = AddNewRestaurantVC()
         let navigationController = UINavigationController(rootViewController: addNewRestaurantVC)
         present(navigationController, animated: true, completion: nil)
+    }
+    
+    @objc func handleTipsTapped(sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: NSLocalizedString("Tip", comment: "Tip"), message: NSLocalizedString("Swipe left/right or force touch on a restaurant to show more options.", comment: "Swipe left/right or 3D touch on a restaurant to show more options."), preferredStyle: .alert)
+        
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.barButtonItem = sender
+        }
+        
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
 }
 

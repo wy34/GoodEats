@@ -19,7 +19,7 @@ class RootTabBarController: UIViewController {
         recentVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Discover", comment: "Discover"), image: UIImage(systemName: "eyeglasses", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), tag: 1)
         
         let moreVC = UINavigationController(rootViewController: AboutVC())
-        moreVC.tabBarItem = UITabBarItem(title: NSLocalizedString("About", comment: "About"), image: UIImage(systemName: "info.circle", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), tag: 2)
+        moreVC.tabBarItem = UITabBarItem(title: NSLocalizedString("About", comment: "About"), image: UIImage(systemName: "person", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), tag: 2)
         
         tb.viewControllers = [favoritesVC, recentVC, moreVC]
         

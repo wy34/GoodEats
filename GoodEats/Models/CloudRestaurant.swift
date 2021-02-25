@@ -18,4 +18,3 @@ class CloudRestaurant: NSObject {
     var summary: String = ""
 }
 
-

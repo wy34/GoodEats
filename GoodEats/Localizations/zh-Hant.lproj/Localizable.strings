@@ -31,6 +31,9 @@
 /* CREATE YOUR OWN FOOD GUIDE */
 "CREATE YOUR OWN FOOD GUIDE" = "创建您自己的食品指南";
 
+/* Currently empty. Add a new restaurant or try refreshing! */
+"Currently empty. Add a new restaurant or try refreshing!" = "目前是空的。添加一家新的餐厅或尝试刷新!";
+
 /* Delete */
 "Delete" = "删除";
 
@@ -81,6 +84,9 @@
 
 /* HOW TO GET HERE */
 "HOW TO GET HERE" = "如何到达这里";
+
+/* "Hello Foodies!" */
+"Hello Foodies!" = "你好，美食家！";
 
 /* iCloud */
 "iCloud" = "iCloud";
@@ -166,6 +172,9 @@
 /* Skip */
 "Skip" = "跳过";
 
+/* Swipe left/right or force touch on a restaurant to show more options. */
+"Swipe left/right or force touch on a restaurant to show more options." = "向左/向右滑动或强行触摸餐厅，以显示更多选项。";
+
 /* Tap + to add some restaurants */
 "Tap + to add some restaurants" = "点击+添加一些餐厅";
 
@@ -178,11 +187,17 @@
 /* There is no network connection. Please make sure wifi or cellular data is turned on. */
 "There is no network connection. Please make sure wifi or cellular data is turned on." = "没有网络连接。请确认wifi或手机数据已打开。";
 
+/* Tip */
+"Tip" = "建议";
+
 /* Try new food today */
 "Try new food today" = "今天尝试新的食物";
 
 /* TYPE */
 "TYPE" = "类型";
+
+/* Welcome to GoodEats! All the restaurants that you, as well as, all other users have shared, will show up here in real time. */
+"Welcome to GoodEats! All the restaurants that you, as well as, all other users have shared, will show up here in real time." = "欢迎来到GoodEats！你以及其他用户分享的所有餐厅，都会实时显示在这里。您和其他用户分享的所有餐厅，都会实时显示在这里。";
 
 /* We can't proceed because one of the fields is blank. Please note that all fields are required. */
 "We can't proceed because one of the fields is blank. Please note that all fields are required." = "我们无法继续，因为其中一个字段为空白。请注意，所有字段均为必填字段。";

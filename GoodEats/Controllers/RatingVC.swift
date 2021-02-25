@@ -80,7 +80,7 @@ class RatingVC: UIViewController {
         buttonStack.center(x: view.centerXAnchor, y: view.centerYAnchor)
         
         for button in buttonStack.subviews {
-            button.transform = CGAffineTransform(translationX: 600, y: 0)
+            button.transform = CGAffineTransform(translationX: 1000, y: 0)
         }
     }
     

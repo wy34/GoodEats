@@ -31,6 +31,9 @@
 /* CREATE YOUR OWN FOOD GUIDE */
 "CREATE YOUR OWN FOOD GUIDE" = "ERSTELLEN SIE IHREN EIGENEN LEBENSMITTELFÜHRER";
 
+/* Currently empty. Add a new restaurant or try refreshing! */
+"Currently empty. Add a new restaurant or try refreshing!" = "Derzeit leer. Fügen Sie ein neues Restaurant hinzu oder versuchen Sie zu erfrischen!";
+
 /* Delete */
 "Delete" = "Löschen";
 
@@ -78,6 +81,9 @@
 
 /* Happy */
 "Happy" = "Glücklich";
+
+/* Hello Foodies! */
+"Hello Foodies!" = "Hallo Foodies!";
 
 /* HOW TO GET HERE */
 "HOW TO GET HERE" = "WIE MAN HIERHER KOMMT";
@@ -166,6 +172,9 @@
 /* Skip */
 "Skip" = "Überspringen";
 
+/* Swipe left/right or force touch on a restaurant to show more options. */
+"Swipe left/right or force touch on a restaurant to show more options." = "Wischen Sie nach links/rechts oder berühren Sie ein Restaurant, um weitere Optionen anzuzeigen.";
+
 /* Tap + to add some restaurants */
 "Tap + to add some restaurants" = "Tippen Sie auf +, um einige Restaurants hinzuzufügen";
 
@@ -178,6 +187,9 @@
 /* There is no network connection. Please make sure wifi or cellular data is turned on. */
 "There is no network connection. Please make sure wifi or cellular data is turned on." = "Es besteht keine Netzwerkverbindung. Bitte stellen Sie sicher, dass WLAN oder Mobilfunkdaten eingeschaltet sind.";
 
+/* Tip */
+"Tip" = "Anregung";
+
 /* Try new food today */
 "Try new food today" = "Probieren Sie heute neue Lebensmittel";
 
@@ -186,6 +198,9 @@
 
 /* We can't proceed because one of the fields is blank. Please note that all fields are required. */
 "We can't proceed because one of the fields is blank. Please note that all fields are required." = "Wir können nicht fortfahren, weil eines der Felder leer ist. Bitte beachten Sie, dass alle Felder erforderlich sind.";
+
+/* Welcome to GoodEats! All the restaurants that you, as well as, all other users have shared, will show up here in real time. */
+"Welcome to GoodEats! All the restaurants that you, as well as, all other users have shared, will show up here in real time." = "Willkommen bei GoodEats! Alle Restaurants, die Sie sowie alle anderen Benutzer freigegeben haben, werden hier in Echtzeit angezeigt.";
 
 /* Where would you like to share this to? */
 "Where would you like to share this to?" = "Wohin möchten Sie dies weitergeben?";

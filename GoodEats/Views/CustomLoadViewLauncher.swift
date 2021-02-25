@@ -12,7 +12,7 @@ class CustomLoadViewLauncher: NSObject {
     private let blackView: UIView = {
         let view = UIView()
         view.alpha = 0
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.25)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
         return view
     }()
     
@@ -44,17 +44,41 @@ class CustomLoadViewLauncher: NSObject {
         return label
     }()
     
+    private lazy var welcomeAlertView: WelcomeAlertView = {
+        let view = WelcomeAlertView()
+        view.delegate = self
+        view.alpha = 0
+        view.transform = CGAffineTransform(scaleX: 0, y: 0)
+        return view
+    }()
+    
     // MARK: - Init
     override init() {
         super.init()
     }
     
     // MARK: - Helpers
+    func showWelcomeAlertView() {
+        if let keyWindow = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.blackView.frame = keyWindow.frame
+                keyWindow.addSubview(self.blackView)
+
+                keyWindow.addSubview(self.welcomeAlertView)
+                self.welcomeAlertView.center(x: keyWindow.centerXAnchor, y: keyWindow.centerYAnchor)
+                self.welcomeAlertView.setDimension(width: keyWindow.widthAnchor, height: keyWindow.heightAnchor)
+
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.55, initialSpringVelocity: 1, options: .curveEaseIn) {
+                    self.blackView.alpha = 1
+                    self.welcomeAlertView.alpha = 1
+                    self.welcomeAlertView.transform = .identity
+                }
+            }
+        }
+    }
+    
     func showCustomLoadView() {
         if let keyWindow = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first {
-            blackView.frame = keyWindow.frame
-            keyWindow.addSubview(blackView)
-            
             keyWindow.addSubview(customSpinnerBgView)
             customSpinnerBgView.setDimension(wConst: 115, hConst: 115)
             customSpinnerBgView.center(x: keyWindow.centerXAnchor, y: keyWindow.centerYAnchor)
@@ -68,7 +92,6 @@ class CustomLoadViewLauncher: NSObject {
             loadingLabel.anchor(top: customSpinner.bottomAnchor, paddingTop: 5)
             
             UIView.animate(withDuration: 0.25) {
-                self.blackView.alpha = 1
                 self.customSpinnerBgView.alpha = 1
                 self.loadingLabel.alpha = 1
             }
@@ -76,14 +99,30 @@ class CustomLoadViewLauncher: NSObject {
     }
     
     func dismissCustomLoadView() {
+        if WelcomeAlertManager.shared.isFirstTimeShowing {
+            showWelcomeAlertView()
+        }
+        
         UIView.animate(withDuration: 0.25) {
-            self.blackView.removeFromSuperview()
-            self.blackView.alpha = 0
             self.customSpinnerBgView.removeFromSuperview()
             self.customSpinnerBgView.alpha = 0
             self.loadingLabel.removeFromSuperview()
             self.loadingLabel.alpha = 0
             self.customSpinner.stopAnimating()
         }
+    }
+}
+
+// MARK: - WelcomeAlertViewDelegate
+extension CustomLoadViewLauncher: WelcomeAlertViewDelegate {
+    func dismissWelcomeAlert() {
+        UIView.animate(withDuration: 0.5) {
+            self.blackView.alpha = 0
+            self.blackView.removeFromSuperview()
+            self.welcomeAlertView.alpha = 0
+            self.welcomeAlertView.removeFromSuperview()
+        }
+        
+        WelcomeAlertManager.shared.stopShowingWelcomeAlert()
     }
 }
