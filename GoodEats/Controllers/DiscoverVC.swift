@@ -7,12 +7,18 @@
 
 import UIKit
 import CloudKit
+import Network
 
 class DiscoverVC: UIViewController {
     // MARK: - Properties
     var cloudRestaurants = [CloudRestaurant]()
     var tempCloudRestaurants = [CloudRestaurant]()
     
+    // Used to check for network connectivity
+    let monitor = NWPathMonitor()
+    var isConnectedToNetwork: Bool?
+    var wasTherePreviousConnection = false
+
     // MARK: - Views
     let customLoadViewLauncher = CustomLoadViewLauncher()
 
@@ -39,7 +45,7 @@ class DiscoverVC: UIViewController {
         super.viewDidLoad()
         configureNavBar()
         layoutViews()
-        handleLoad()
+        setupNetworkMonitor()
     }
     
     // MARK: - UI
@@ -52,6 +58,38 @@ class DiscoverVC: UIViewController {
     func layoutViews() {
         view.addSubview(tableView)
         tableView.anchor(top: view.topAnchor, right: view.rightAnchor, bottom: view.bottomAnchor, left: view.leftAnchor)
+    }
+    
+    func setupNetworkMonitor() {
+        monitor.pathUpdateHandler = { [weak self] path in
+            if path.status == .satisfied {
+                print("We're connected!")
+                self?.isConnectedToNetwork = true
+            } else {
+                print("No connection.")
+                self?.isConnectedToNetwork = false
+            }
+            
+            // only reload if going from no network to wifi/cellular
+            DispatchQueue.main.async {
+                if let isConnectedToNetwork = self?.isConnectedToNetwork {
+                    if self?.wasTherePreviousConnection == false && isConnectedToNetwork {
+                        self?.handleLoad()
+                        self?.wasTherePreviousConnection = true
+                        self?.tableView.addSubview(self!.refreshControl)
+                    } else if isConnectedToNetwork == false {
+                        self?.navigationItem.rightBarButtonItem?.isEnabled = false
+                        self?.refreshControl.removeFromSuperview()
+                        self?.cloudRestaurants = []
+                        self?.tableView.reloadData()
+                        self?.wasTherePreviousConnection = false
+                    }
+                }
+            }
+        }
+        
+        let queue = DispatchQueue(label: "Monitor")
+        monitor.start(queue: queue)
     }
     
     // Convenient api is suitable for small pieces of data, downloads record wholly
@@ -105,7 +143,6 @@ class DiscoverVC: UIViewController {
                 })
 
                 DispatchQueue.main.async {
-//                    self?.spinner.stopAnimating()
                     self?.tableView.reloadData()
                 }
             }
@@ -212,5 +249,19 @@ extension DiscoverVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: DiscoverRestaurantCell.reuseId, for: indexPath) as! DiscoverRestaurantCell
         cell.cloudRestaurant = cloudRestaurants[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let containerView = UIView()
+        let label = UILabel.createEmptyViewLabel(text: "There is no network connection. Please make sure wifi or cellular data is turned on.", textColor: "InvertedDarkMode", fontSize: 16)
+        label.numberOfLines = 0
+        containerView.addSubview(label)
+        label.setDimension(width: containerView.widthAnchor, wMult: 0.75)
+        label.center(x: containerView.centerXAnchor, y: containerView.centerYAnchor)
+        return containerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return isConnectedToNetwork == true ? 0 : 250
     }
 }

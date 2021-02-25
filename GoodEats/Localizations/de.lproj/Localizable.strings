@@ -175,6 +175,9 @@
 /* The restaurant is one of your favorites. It is located at */
 "The restaurant is one of your favorites. It is located at" = "Das Restaurant ist einer Ihrer Favoriten. Es befindet sich in";
 
+/* There is no network connection. Please make sure wifi or cellular data is turned on. */
+"There is no network connection. Please make sure wifi or cellular data is turned on." = "Es besteht keine Netzwerkverbindung. Bitte stellen Sie sicher, dass WLAN oder Mobilfunkdaten eingeschaltet sind.";
+
 /* Try new food today */
 "Try new food today" = "Probieren Sie heute neue Lebensmittel";
 

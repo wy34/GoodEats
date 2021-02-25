@@ -15,7 +15,6 @@ class WalkThruVC: UICollectionViewController {
         Onboarding(image: "onboarding-3", headline: NSLocalizedString("DISCOVER GREAT RESTAURANTS", comment: "DISCOVER GREAT RESTAURANTS"), subHeadline: NSLocalizedString("Find restaurants shared by your friends and other foodies", comment: "Find restaurants shared by your friends and other foodies"))
     ]
     
-    
     // MARK: - Views
     private let controlsContainerView = UIView()
     
@@ -56,6 +55,7 @@ class WalkThruVC: UICollectionViewController {
         super.viewDidLoad()
         layoutViews()
         setupCollectionView()
+        presentationController?.delegate = self // for the viewControllerDidDismiss delegate
     }
     
     // MARK: - UI
@@ -161,3 +161,10 @@ extension WalkThruVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - UIAdaptivePresentationControllerDelegate
+extension WalkThruVC: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        OnboardingManager.shared.setAsOldUser()
+        createQuickActions()
+    }
+}

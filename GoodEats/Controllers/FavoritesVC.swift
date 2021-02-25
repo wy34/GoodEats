@@ -67,7 +67,11 @@ class FavoritesVC: UIViewController {
         if !OnboardingManager.shared.isOldUser {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .horizontal
-            present(WalkThruVC(collectionViewLayout: layout), animated: true, completion: nil)
+            
+            let walkThruVC = WalkThruVC(collectionViewLayout: layout)
+//            walkThruVC.presentationController?.delegate = self
+//            walkThruVC.modalPresentationStyle = .fullScreen
+            present(walkThruVC, animated: true, completion: nil)
         }
     }
     
@@ -438,3 +442,10 @@ extension FavoritesVC: UIScrollViewDelegate {
         searchController.searchBar.resignFirstResponder()
     }
 }
+
+//// MARK: - UIAdaptivePresentationControllerDelegate
+//extension FavoritesVC: UIAdaptivePresentationControllerDelegate {
+//    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) { // if someone swipes down on onboarding view, treat as if they pressed skipped or get started
+//        print("Dismissing")
+//    }
+//}

@@ -175,6 +175,9 @@
 /* The restaurant is one of your favorites. It is located at */
 "The restaurant is one of your favorites. It is located at" = "这家餐厅是你最喜欢的餐厅之一。它位于";
 
+/* There is no network connection. Please make sure wifi or cellular data is turned on. */
+"There is no network connection. Please make sure wifi or cellular data is turned on." = "没有网络连接。请确认wifi或手机数据已打开。";
+
 /* Try new food today */
 "Try new food today" = "今天尝试新的食物";
 
